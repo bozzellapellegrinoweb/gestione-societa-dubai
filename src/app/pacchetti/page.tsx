@@ -1,122 +1,131 @@
 import Link from 'next/link'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
-import { CheckCircle, ArrowRight } from 'lucide-react'
-import { PLANS, ADDONS } from '@/lib/pricing'
-import { formatAED, formatEUR } from '@/lib/utils'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Pacchetti e Prezzi — Contabilità Dubai · societa-dubai.it',
-  description: 'Confronta tutti i piani di gestione contabile per società a Dubai. Da 500 AED/mese. Free Zone, Mainland, Offshore. Powered by PB TAX International.',
+  description: 'Confronta tutti i piani di gestione contabile per società a Dubai. Da 500 AED/mese. Free Zone, Mainland, Offshore.',
 }
 
-const features = [
-  'Contabilità mensile',
-  'Corporate Tax Return annuale',
-  'Comunicazione in italiano',
-  'Account manager dedicato',
-  'Reportistica mensile',
-  'Verifica compliance annuale',
-  'Riconciliazione bancaria avanzata',
-  'Budget & forecasting trimestrale',
-  'CFO on-demand (2h/mese)',
+const planNames = ['ESSENTIAL', 'SMART', 'PROFESSIONAL', 'BUSINESS', 'PREMIUM', 'CORPORATE', 'ENTERPRISE']
+const planPrices = ['500', '800', '1.200', '1.500', '1.800', '2.000', 'Su misura']
+const planUnits = ['AED/mese', 'AED/mese', 'AED/mese', 'AED/mese', 'AED/mese', 'AED/mese', '']
+
+type TableRow = { label: string; vals: string[] }
+const Y = '✓', N = '—'
+const tableRows: TableRow[] = [
+  { label: 'Contabilità mensile', vals: ['25', '50', '100', '150', '300', '500', '500+'] },
+  { label: 'Corporate Tax Return', vals: [Y, Y, Y, Y, Y, Y, Y] },
+  { label: 'VAT Return', vals: [N, Y, Y, Y, Y, Y, Y] },
+  { label: 'Gestione visti', vals: [N, N, N, Y, Y, Y, Y] },
+  { label: 'Consulenza Italia-UAE', vals: [N, Y, Y, Y, Y, Y, Y] },
+  { label: 'Account manager dedicato', vals: [N, N, Y, Y, Y, Y, Y] },
 ]
 
-const planFeatureMap: Record<string, boolean[]> = {
-  ESSENTIAL:     [true, true, true, true, true, false, false, false, false],
-  SMART:         [true, true, true, true, true, false, false, false, false],
-  PROFESSIONAL:  [true, true, true, true, true, true,  false, false, false],
-  BUSINESS:      [true, true, true, true, true, true,  true,  false, false],
-  PREMIUM:       [true, true, true, true, true, true,  true,  true,  false],
-  CORPORATE:     [true, true, true, true, true, true,  true,  true,  true],
-  ENTERPRISE:    [true, true, true, true, true, true,  true,  true,  true],
-}
+const addons = [
+  { name: 'Bilancio annuale', desc: 'Redazione e deposito del bilancio annuale della società.', price: '2.500 AED', unit: 'una tantum / anno' },
+  { name: 'Gestione visti', desc: 'Pratica o rinnovo visto, gestita per te.', price: 'da 1.800 AED', unit: 'una tantum' },
+  { name: 'Report ESR', desc: 'Economic Substance Regulations, dove richiesto.', price: 'da 1.500 AED', unit: 'una tantum / anno' },
+  { name: 'Consulenza CFC / Quadro RW', desc: 'Supporto sulla compliance fiscale italiana.', price: 'da 900 AED', unit: 'una tantum' },
+]
 
 export default function PacchettiPage() {
   return (
     <>
       <Navbar />
-      <main className="pt-28 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-cream mb-4">Pacchetti e Prezzi</h1>
-          <p className="text-gray-soft text-lg max-w-2xl mx-auto">Piani mensili ricorrenti in AED (Dirham emiratino). Nessun costo nascosto. Cancellabile con 30 giorni di preavviso.</p>
+      <main style={{ maxWidth: 1180, margin: '0 auto', padding: 'clamp(40px,5vw,64px) clamp(18px,4vw,40px) 80px' }}>
+
+        {/* Header */}
+        <div style={{ textAlign: 'center', marginBottom: 'clamp(32px,4vw,48px)' }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#a9885e', textTransform: 'uppercase', letterSpacing: '.1em', marginBottom: 12 }}>Tutti i pacchetti</div>
+          <h1 style={{ fontSize: 'clamp(30px,4vw,46px)', fontWeight: 800, letterSpacing: '-0.025em', margin: '0 0 12px' }}>Scegli il piano per la tua società</h1>
+          <p style={{ fontSize: 17, color: '#5b6570', margin: 0 }}>Prezzi mensili in AED, IVA 5% inclusa. Cambi piano quando vuoi.</p>
         </div>
 
-        {/* Tabella piani */}
-        <div className="overflow-x-auto mb-16">
-          <table className="w-full min-w-[900px]">
+        {/* Comparison table */}
+        <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch', border: '1px solid #e6dfd2', borderRadius: 18, background: '#fff' }}>
+          <table style={{ borderCollapse: 'collapse', width: '100%', minWidth: 920 }}>
             <thead>
               <tr>
-                <th className="text-left p-4 text-gray-soft text-sm font-medium w-48">Servizio incluso</th>
-                {PLANS.map((plan, i) => (
-                  <th key={plan.key} className="p-4 text-center" style={{ background: i === 2 ? 'rgba(201,168,76,0.08)' : 'transparent' }}>
-                    {i === 2 && <div className="text-xs text-gold font-bold mb-1">⭐ PIÙ SCELTO</div>}
-                    <div className="font-bold text-cream">{plan.label}</div>
-                    {plan.priceAED ? (
-                      <>
-                        <div className="text-gold font-bold text-lg">{formatAED(plan.priceAED)}</div>
-                        <div className="text-xs text-gray-soft">{formatEUR(plan.priceAED)}/mese</div>
-                      </>
-                    ) : (
-                      <div className="text-gold font-bold text-sm">Da pattuire</div>
-                    )}
-                    <div className="text-xs text-gray-soft mt-1">{plan.maxTransactions ? `≤ ${plan.maxTransactions} transaz.` : '> 500 transaz.'}</div>
-                  </th>
-                ))}
+                <th style={{ textAlign: 'left', padding: '22px 20px', verticalAlign: 'bottom', position: 'sticky', left: 0, background: '#fff', minWidth: 180, zIndex: 2 }}>
+                  <span style={{ fontSize: 13, fontWeight: 600, color: '#8a93a0' }}>Confronta i piani</span>
+                </th>
+                {planNames.map((name, i) => {
+                  const pop = name === 'PROFESSIONAL'
+                  return (
+                    <th key={name} style={{ padding: '20px 16px', verticalAlign: 'bottom', borderLeft: '1px solid #f0ebe0', background: pop ? '#faf6ee' : '#fff', minWidth: 138 }}>
+                      {pop && (
+                        <div style={{ display: 'inline-block', background: '#a9885e', color: '#fff', fontSize: 11, fontWeight: 700, padding: '3px 9px', borderRadius: 999, marginBottom: 8, letterSpacing: '.03em' }}>Più scelto</div>
+                      )}
+                      <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '.05em', color: '#1d2b3a' }}>{name}</div>
+                      <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-0.02em', marginTop: 6 }}>{planPrices[i]}</div>
+                      <div style={{ fontSize: 11.5, color: '#8a93a0', fontWeight: 500 }}>{planUnits[i]}</div>
+                    </th>
+                  )
+                })}
               </tr>
             </thead>
             <tbody>
-              {features.map((feat, fi) => (
-                <tr key={feat} style={{ borderTop: '1px solid rgba(201,168,76,0.08)' }}>
-                  <td className="p-4 text-sm text-gray-soft">{feat}</td>
-                  {PLANS.map((plan, pi) => (
-                    <td key={plan.key} className="p-4 text-center" style={{ background: pi === 2 ? 'rgba(201,168,76,0.04)' : 'transparent' }}>
-                      {planFeatureMap[plan.key][fi] ? (
-                        <CheckCircle size={16} className="text-gold mx-auto" />
-                      ) : (
-                        <span className="text-gray-soft text-lg">—</span>
-                      )}
-                    </td>
-                  ))}
+              {tableRows.map(row => (
+                <tr key={row.label} style={{ borderTop: '1px solid #f0ebe0' }}>
+                  <td style={{ padding: '16px 20px', fontSize: 14, fontWeight: 600, color: '#3a4550', position: 'sticky', left: 0, background: '#fff', zIndex: 1 }}>{row.label}</td>
+                  {row.vals.map((v, i) => {
+                    const pop = planNames[i] === 'PROFESSIONAL'
+                    const isCheck = v === Y
+                    const isNo = v === N
+                    return (
+                      <td key={i} style={{ padding: '16px 16px', textAlign: 'center', borderLeft: '1px solid #f0ebe0', fontSize: 13.5, fontWeight: isCheck || isNo ? 700 : 600, color: isNo ? '#c2bbac' : isCheck ? '#2f8a5b' : '#3a4550', background: pop ? '#faf6ee' : '#fff' }}>
+                        {v}
+                      </td>
+                    )
+                  })}
                 </tr>
               ))}
-              <tr style={{ borderTop: '1px solid rgba(201,168,76,0.15)' }}>
-                <td className="p-4" />
-                {PLANS.map((plan, i) => (
-                  <td key={plan.key} className="p-4 text-center" style={{ background: i === 2 ? 'rgba(201,168,76,0.04)' : 'transparent' }}>
-                    <Link href="/configuratore" className="inline-block px-4 py-2 rounded-lg font-semibold text-sm transition-all hover:opacity-90 whitespace-nowrap" style={{ background: i === 2 ? 'linear-gradient(135deg, #a9885e, #C9A84C)' : 'rgba(201,168,76,0.15)', color: i === 2 ? '#0A1628' : '#C9A84C' }}>
-                      {plan.key === 'ENTERPRISE' ? 'Contattaci' : `Attiva ${plan.label}`}
-                    </Link>
-                  </td>
-                ))}
+              <tr style={{ borderTop: '1px solid #f0ebe0' }}>
+                <td style={{ padding: '18px 20px', position: 'sticky', left: 0, background: '#fff', zIndex: 1 }} />
+                {planNames.map((name, i) => {
+                  const pop = name === 'PROFESSIONAL'
+                  const isEnt = name === 'ENTERPRISE'
+                  return (
+                    <td key={name} style={{ padding: '18px 12px', textAlign: 'center', borderLeft: '1px solid #f0ebe0', background: pop ? '#faf6ee' : '#fff' }}>
+                      <Link href="/configuratore" style={{ display: 'block', background: isEnt ? '#fff' : pop ? '#1d2b3a' : '#efe7d8', color: isEnt ? '#1d2b3a' : pop ? '#fff' : '#1d2b3a', border: isEnt ? '1.5px solid #d8cfbf' : 'none', fontSize: 13, fontWeight: 600, padding: '9px 14px', borderRadius: 9, textDecoration: 'none', textAlign: 'center' }}>
+                        {isEnt ? 'Contattaci' : 'Scegli'}
+                      </Link>
+                    </td>
+                  )
+                })}
               </tr>
             </tbody>
           </table>
         </div>
 
-        {/* Add-on */}
-        <div className="mb-16">
-          <h2 className="text-2xl font-bold text-cream mb-6">Servizi aggiuntivi (Add-on)</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {ADDONS.map(addon => (
-              <div key={addon.key} className="p-5 rounded-xl" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(201,168,76,0.12)' }}>
-                <div className="font-semibold text-cream mb-1">{addon.label}</div>
-                <div className="text-gold font-bold text-lg">{addon.priceLabel}</div>
-                {addon.oneTime && <div className="text-xs text-gray-soft mt-1">Servizio una-tantum</div>}
+        {/* VAT notice */}
+        <div style={{ display: 'flex', gap: 12, background: '#fbf9f3', border: '1px solid #e3d6bd', borderRadius: 12, padding: '14px 18px', marginTop: 16 }}>
+          <span style={{ flexShrink: 0, color: '#b8860b', marginTop: 1 }}>⚠</span>
+          <p style={{ fontSize: 13.5, lineHeight: 1.55, color: '#7a6234', margin: 0 }}>
+            Il piano <strong>ESSENTIAL (500 AED)</strong> è valido solo sotto la soglia VAT di 375.000 AED. Superata la soglia, il piano parte da <strong>SMART (800 AED)</strong>, con dichiarazione VAT sempre inclusa.
+          </p>
+        </div>
+
+        {/* Una tantum */}
+        <div style={{ marginTop: 'clamp(36px,5vw,56px)' }}>
+          <h2 style={{ fontSize: 'clamp(22px,2.6vw,30px)', fontWeight: 800, letterSpacing: '-0.02em', margin: '0 0 6px' }}>Servizi una tantum</h2>
+          <p style={{ fontSize: 15.5, color: '#5b6570', margin: '0 0 24px' }}>Servizi annuali una tantum, non in abbonamento. Li attivi solo quando ti servono.</p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(240px,1fr))', gap: 16 }}>
+            {addons.map(a => (
+              <div key={a.name} style={{ background: '#fff', border: '1px solid #e6dfd2', borderRadius: 14, padding: 22 }}>
+                <div style={{ fontSize: 16, fontWeight: 700, marginBottom: 6 }}>{a.name}</div>
+                <div style={{ fontSize: 13.5, lineHeight: 1.5, color: '#5b6570', marginBottom: 14 }}>{a.desc}</div>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, flexWrap: 'wrap' }}>
+                  <span style={{ fontSize: 17, fontWeight: 800, color: '#a9885e' }}>{a.price}</span>
+                  <span style={{ fontSize: 12.5, fontWeight: 600, color: '#9a8a72' }}>{a.unit}</span>
+                </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* CTA */}
-        <div className="text-center rounded-2xl p-10" style={{ background: 'linear-gradient(135deg, rgba(169,136,94,0.12), rgba(201,168,76,0.08))', border: '1px solid rgba(201,168,76,0.25)' }}>
-          <h2 className="text-2xl font-bold text-cream mb-3">Non sai quale piano scegliere?</h2>
-          <p className="text-gray-soft mb-6">Il configuratore ti guida in 5 minuti e costruisce il piano esatto per la tua situazione.</p>
-          <Link href="/configuratore" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-navy transition-all hover:opacity-90" style={{ background: 'linear-gradient(135deg, #a9885e, #C9A84C)' }}>
-            Vai al configuratore <ArrowRight size={18} />
-          </Link>
-        </div>
       </main>
       <Footer />
     </>

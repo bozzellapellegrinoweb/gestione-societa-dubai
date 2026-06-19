@@ -1,41 +1,46 @@
 @import "tailwindcss";
 
 :root {
-  --navy: #0A1628;
-  --navy-light: #1d2b3a;
-  --gold: #C9A84C;
-  --gold-light: #d4b870;
-  --gold-muted: #a9885e;
   --cream: #f5f2ec;
+  --cream-card: #faf8f3;
   --white: #ffffff;
-  --gray-light: #F5F6F8;
-  --gray: #8a9ab0;
+  --navy: #1d2b3a;
+  --navy-dark: #16212d;
+  --gold: #a9885e;
+  --gold-light: #c2a677;
+  --gold-bg: #efe7d8;
+  --border: #e6dfd2;
+  --text-main: #1d2b3a;
+  --text-secondary: #5b6570;
+  --text-muted: #8a93a0;
+  --text-label: #7a6234;
 }
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--navy);
-  color: var(--cream);
+  background: var(--cream);
+  color: var(--text-main);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
 @layer utilities {
   .text-gold { color: var(--gold); }
-  .text-gold-muted { color: var(--gold-muted); }
-  .text-cream { color: var(--cream); }
-  .text-gray-soft { color: var(--gray); }
-  .bg-navy { background-color: var(--navy); }
-  .bg-navy-light { background-color: var(--navy-light); }
-  .bg-gold { background-color: var(--gold); }
-  .border-gold { border-color: var(--gold); }
-  .border-gold\/20 { border-color: rgba(201,168,76,0.2); }
-  .border-gold\/40 { border-color: rgba(201,168,76,0.4); }
-  .card-dark {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(201,168,76,0.15);
+  .text-navy { color: var(--navy); }
+  .text-secondary { color: var(--text-secondary); }
+  .text-muted { color: var(--text-muted); }
+  .bg-cream { background-color: var(--cream); }
+  .border-light { border-color: var(--border); }
+  .card-light {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+  }
+  .card-cream {
+    background: var(--cream-card);
+    border: 1px solid var(--border);
     border-radius: 1rem;
   }
 }

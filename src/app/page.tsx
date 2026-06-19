@@ -1,191 +1,235 @@
 import Link from 'next/link'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
-import { CheckCircle, ArrowRight, Star, Shield, Globe, Phone } from 'lucide-react'
-import { PLANS } from '@/lib/pricing'
-import { formatAED, formatEUR } from '@/lib/utils'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'societa-dubai.it — Gestione contabile per società a Dubai in italiano',
+  description: 'Contabilità, Corporate Tax UAE, VAT e compliance per società Free Zone e Mainland negli Emirati. 100% in italiano. Powered by PB TAX International.',
+}
+
+const trustBadges = ['450+ società gestite', '5 anni a Dubai', 'Commercialisti italiani', 'Pagamento sicuro']
+
+const comeFunziona = [
+  { n: '1', title: 'Configura', desc: 'Rispondi a 10 domande sulla tua società. Bastano 3 minuti.' },
+  { n: '2', title: 'Scegli il piano', desc: 'Vedi il costo esatto per la tua situazione, senza sorprese.' },
+  { n: '3', title: 'Affidati a noi', desc: 'Paga online e siamo operativi in 48 ore.' },
+]
+
+type Plan = { name: string; price: string; features: string[]; cta: string; popular: boolean }
+const homePlans: Plan[] = [
+  {
+    popular: false, name: 'Essential', price: '500',
+    features: ['Contabilità fino a 25 transazioni/mese', 'Corporate Tax Return annuale', 'Comunicazione in italiano', 'Report trimestrale'],
+    cta: 'Scegli Essential',
+  },
+  {
+    popular: true, name: 'Professional', price: '1.200',
+    features: ['Contabilità fino a 100 transazioni/mese', 'Corporate Tax Return annuale', 'Account manager dedicato', 'Reportistica mensile'],
+    cta: 'Scegli Professional',
+  },
+  {
+    popular: false, name: 'Corporate', price: '2.000',
+    features: ['Contabilità fino a 500 transazioni/mese', 'Corporate Tax + VAT Return', 'Gestione visti inclusa', 'Consulenza Italia-UAE prioritaria'],
+    cta: 'Scegli Corporate',
+  },
+]
+
+const testimonials = [
+  { quote: 'Avere tutta la contabilità della mia società DMCC seguita in italiano ha cambiato tutto. Rispondono sempre.', name: 'Luca Ferraro', role: 'E-commerce · DMCC', initials: 'LF' },
+  { quote: 'Mi hanno guidato sulla Corporate Tax senza che dovessi capire nulla di burocrazia emiratina. Professionali e diretti.', name: 'Giulia Bianchi', role: 'Consulenza · IFZA', initials: 'GB' },
+  { quote: 'Vivo ancora in Italia e gestiscono loro la mia società a Dubai. Mi hanno spiegato bene anche il quadro RW.', name: 'Marco De Santis', role: 'Trading · RAKEZ', initials: 'MD' },
+]
 
 const faqs = [
-  { q: 'Quanto costa un commercialista a Dubai?', a: 'I nostri piani partono da 500 AED/mese (~125€) per società con fino a 25 transazioni mensili. Il costo varia in base al volume di attività e ai servizi richiesti.' },
-  { q: 'Devo essere residente a Dubai per usare il servizio?', a: 'No. Gestiamo società di imprenditori italiani sia residenti negli Emirati che ancora residenti in Italia. In entrambi i casi esistono obblighi specifici che ti aiutiamo a gestire.' },
-  { q: "Cos'è la Corporate Tax UAE?", a: "Dal 1° giugno 2023, tutte le società negli Emirati sono soggette a una Corporate Tax del 9% sul reddito imponibile oltre 375.000 AED. È inclusa in tutti i nostri piani." },
-  { q: 'Gestite anche la VAT (IVA emiratina)?', a: 'Sì. Se la tua società è registrata VAT (TRN), gestiamo la preparazione e presentazione dei VAT Return. Se non sei ancora registrato ma superi la soglia obbligatoria, ti aiutiamo con l\'abilitazione TRN.' },
-  { q: "Come funziona l'onboarding?", a: 'Dopo il pagamento ricevi un link sicuro per caricare i documenti necessari (Trade License, passaporto, MOA, estratti conto). Il nostro team verifica tutto entro 48 ore lavorative.' },
-  { q: 'Gestite free zone e mainland?', a: 'Sì. Operiamo per società Free Zone (IFZA, DMCC, RAKEZ, Meydan, UAQ e altre), Mainland (LLC) e anche Offshore con valutazione iniziale personalizzata.' },
-  { q: 'Come comunicate con i clienti?', a: '100% in italiano. Hai un account manager dedicato raggiungibile via email e WhatsApp. Nessuna burocrazia in inglese o arabo.' },
-  { q: 'Posso cambiare piano in futuro?', a: 'Sì, puoi upgradarti o downgradarti in qualsiasi momento con 30 giorni di preavviso.' },
+  { q: 'Cosa si intende per transazione?', a: 'Una transazione è ogni movimento contabile registrato: una fattura emessa, una spesa, un incasso o un pagamento. Il piano si basa sul numero medio mensile di queste operazioni.' },
+  { q: 'La Corporate Tax UAE è obbligatoria per la mia società?', a: 'Dal 2023 la Corporate Tax al 9% si applica agli utili sopra una soglia. Anche le società in free zone devono presentare la dichiarazione annuale, pur potendo beneficiare di aliquote agevolate. Ce ne occupiamo noi.' },
+  { q: 'Posso restare in Italia e avere la mia società gestita da voi?', a: 'Sì. Molti nostri clienti risiedono in Italia. In questi casi valutiamo insieme gli obblighi italiani (CFC, quadro RW) per tenere tutto in regola su entrambi i fronti.' },
+  { q: 'Come funziona il pagamento ricorrente?', a: 'Scegli il piano e attivi un pagamento mensile sicuro con carta. Nessun vincolo: puoi cambiare piano o sospendere quando vuoi, dandoci preavviso.' },
+  { q: 'Quando siete operativi dopo il pagamento?', a: "Entro 48 ore dall'attivazione assegniamo il tuo account manager e iniziamo a impostare la contabilità. Da lì sei seguito ogni mese." },
 ]
 
 export default function HomePage() {
-  const displayPlans = PLANS.slice(0, 3)
-
   return (
     <>
       <Navbar />
 
-      {/* Hero */}
-      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="text-center max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6" style={{ background: 'rgba(201,168,76,0.1)', border: '1px solid rgba(201,168,76,0.3)', color: '#C9A84C' }}>
-            <Star size={14} fill="currentColor" /> 450+ aziende gestite · 5 anni a Dubai
-          </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-cream leading-tight mb-6">
-            La gestione della tua società a Dubai,{' '}
-            <span className="text-gold">finalmente in italiano.</span>
-          </h1>
-          <p className="text-xl text-gray-soft leading-relaxed mb-10 max-w-2xl mx-auto">
-            Contabilità, Corporate Tax, VAT e compliance per società Free Zone e Mainland negli Emirati. Tutto in italiano, con un commercialista dedicato. Powered by PB TAX International.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/configuratore" className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-navy text-lg transition-all hover:opacity-90" style={{ background: 'linear-gradient(135deg, #a9885e, #C9A84C)' }}>
-              Scopri il tuo piano <ArrowRight size={20} />
-            </Link>
-            <Link href="https://wa.me/971585025012" target="_blank" className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-cream text-lg border transition-all hover:bg-white/5" style={{ borderColor: 'rgba(201,168,76,0.3)' }}>
-              <Phone size={18} /> Parla con noi su WhatsApp
-            </Link>
-          </div>
-        </div>
+      <div style={{ minHeight: '100vh' }}>
 
-        <div className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto text-center">
-          {[
-            { icon: '🏢', label: '450+ aziende', sub: 'gestite con successo' },
-            { icon: '🇮🇹', label: '100% italiano', sub: 'nessuna barriera linguistica' },
-            { icon: '⚡', label: '48h onboarding', sub: 'attivazione rapida' },
-            { icon: '🔒', label: 'Compliance UAE', sub: 'sempre aggiornata' },
-          ].map((b) => (
-            <div key={b.label} className="p-4 rounded-xl" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(201,168,76,0.12)' }}>
-              <div className="text-2xl mb-1">{b.icon}</div>
-              <div className="font-bold text-gold text-sm">{b.label}</div>
-              <div className="text-xs text-gray-soft mt-0.5">{b.sub}</div>
-            </div>
-          ))}
-        </div>
-      </section>
+        {/* ============ HERO ============ */}
+        <section style={{ maxWidth: 1180, margin: '0 auto', padding: 'clamp(40px,7vw,84px) clamp(18px,4vw,40px) clamp(30px,4vw,48px)' }}>
+          <div style={{ display: 'flex', gap: 'clamp(32px,5vw,64px)', flexWrap: 'wrap', alignItems: 'center' }}>
 
-      {/* Come funziona */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-cream mb-4">Come funziona</h2>
-          <p className="text-gray-soft">Dal configuratore alla gestione completa in 3 semplici passi</p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[
-            { n: '01', title: 'Configura', desc: 'Rispondi a 10 domande sulla tua società. Il nostro tool costruisce automaticamente il piano su misura per te.', icon: '⚙️' },
-            { n: '02', title: 'Paga', desc: 'Attiva il tuo piano con pagamento sicuro via MAMO Pay. Subscription mensile, cancellabile in qualsiasi momento.', icon: '💳' },
-            { n: '03', title: 'Affidati a noi', desc: 'Carica i documenti, ti assegniamo un account manager italiano dedicato. Pensiamo a tutto noi.', icon: '🤝' },
-          ].map((s) => (
-            <div key={s.n} className="p-6 rounded-2xl" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(201,168,76,0.12)' }}>
-              <div className="text-4xl mb-3">{s.icon}</div>
-              <div className="text-gold font-bold text-sm mb-1">STEP {s.n}</div>
-              <h3 className="text-xl font-bold text-cream mb-2">{s.title}</h3>
-              <p className="text-gray-soft text-sm leading-relaxed">{s.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Piani preview */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-cream mb-4">Piani e prezzi</h2>
-          <p className="text-gray-soft">Piani mensili ricorrenti in AED. Nessun costo nascosto.</p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          {displayPlans.map((plan, i) => (
-            <div key={plan.key} className="p-6 rounded-2xl" style={{ background: i === 1 ? 'rgba(201,168,76,0.08)' : 'rgba(255,255,255,0.04)', border: `1px solid ${i === 1 ? 'rgba(201,168,76,0.5)' : 'rgba(201,168,76,0.12)'}` }}>
-              {i === 1 && <div className="text-xs font-bold text-gold mb-3 uppercase tracking-wider">⭐ Più scelto</div>}
-              <div className="text-lg font-bold text-cream mb-1">{plan.label}</div>
-              <div className="text-3xl font-bold text-gold mb-1">{formatAED(plan.priceAED!)}</div>
-              <div className="text-xs text-gray-soft mb-4">{formatEUR(plan.priceAED!)} · /mese</div>
-              <div className="text-sm text-gray-soft mb-4">{plan.description}</div>
-              <ul className="space-y-1.5 mb-6">
-                {plan.features.slice(0, 4).map((f) => (
-                  <li key={f} className="flex items-start gap-2 text-sm text-cream">
-                    <CheckCircle size={14} className="text-gold mt-0.5 shrink-0" />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <Link href="/configuratore" className="block text-center px-4 py-2.5 rounded-lg font-semibold text-sm transition-all hover:opacity-90" style={{ background: i === 1 ? 'linear-gradient(135deg, #a9885e, #C9A84C)' : 'rgba(201,168,76,0.15)', color: i === 1 ? '#0A1628' : '#C9A84C' }}>
-                Inizia con {plan.label}
-              </Link>
-            </div>
-          ))}
-        </div>
-        <div className="text-center">
-          <Link href="/pacchetti" className="inline-flex items-center gap-2 text-gold hover:opacity-80 transition-opacity font-semibold">
-            Vedi tutti i pacchetti <ArrowRight size={16} />
-          </Link>
-        </div>
-      </section>
-
-      {/* Chi siamo */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="rounded-2xl p-8 md:p-12" style={{ background: 'rgba(201,168,76,0.06)', border: '1px solid rgba(201,168,76,0.2)' }}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-            <div>
-              <div className="text-gold text-sm font-bold uppercase tracking-wider mb-3">PB TAX International</div>
-              <h2 className="text-3xl font-bold text-cream mb-4">Dietro societa-dubai.it c&apos;è il team di PB TAX</h2>
-              <p className="text-gray-soft leading-relaxed mb-4">
-                Avv. Pellegrino Bozzella e il suo team operano dal cuore di Dubai (Platinum Tower, JLT) dal 2019. Oltre 450 aziende italiane gestite negli Emirati.
+            {/* Left: headline */}
+            <div style={{ flex: '1 1 440px', minWidth: 300 }}>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#efe7d8', border: '1px solid #e3d6bd', color: '#7a6234', fontSize: 13, fontWeight: 600, padding: '6px 14px', borderRadius: 999, marginBottom: 22 }}>
+                Un servizio PB TAX International · Dubai
+              </div>
+              <h1 style={{ fontSize: 'clamp(34px,5.2vw,56px)', lineHeight: 1.05, letterSpacing: '-0.03em', fontWeight: 800, margin: '0 0 20px' }}>
+                La gestione della tua società a Dubai, <span style={{ color: '#a9885e' }}>finalmente in italiano.</span>
+              </h1>
+              <p style={{ fontSize: 'clamp(16px,1.6vw,19px)', lineHeight: 1.6, color: '#5b6570', margin: '0 0 30px', maxWidth: 560 }}>
+                Contabilità, Corporate Tax UAE, VAT e compliance — tutto gestito da professionisti italiani a Dubai. Scopri il piano giusto per te in 3 minuti.
               </p>
-              <ul className="space-y-2">
-                {['Commercialisti iscritti UAE', 'Esperti in diritto societario DMCC', 'Partner con le principali Free Zone', 'Comunicazione sempre in italiano'].map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-sm text-cream">
-                    <Shield size={14} className="text-gold" /> {item}
-                  </li>
-                ))}
-              </ul>
+              <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center' }}>
+                <Link href="/configuratore" style={{ background: '#1d2b3a', color: '#fff', fontSize: 16, fontWeight: 600, padding: '16px 26px', borderRadius: 11, boxShadow: '0 4px 14px rgba(29,43,58,.22)', textDecoration: 'none', display: 'inline-block' }}>
+                  Calcola il tuo piano →
+                </Link>
+                <Link href="/pacchetti" style={{ background: 'none', fontSize: 16, fontWeight: 600, color: '#1d2b3a', padding: '16px 8px', textDecoration: 'underline', textDecorationColor: '#cdbfa6', textUnderlineOffset: 4 }}>
+                  Vedi i pacchetti
+                </Link>
+              </div>
             </div>
-            <div className="space-y-4">
-              {[
-                { quote: '"Finalmente un commercialista a Dubai che risponde in italiano e capisce la normativa sia UAE che italiana."', author: 'Marco T., imprenditore e-commerce, IFZA' },
-                { quote: '"Ho attivato il piano Professional in 10 minuti. L\'onboarding è stato semplice e il team ha gestito tutto."', author: 'Chiara M., consulente, DMCC Free Zone' },
-              ].map((t) => (
-                <div key={t.author} className="p-5 rounded-xl" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(201,168,76,0.1)' }}>
-                  <div className="flex gap-1 mb-2">{[...Array(5)].map((_, i) => <Star key={i} size={12} className="text-gold" fill="currentColor" />)}</div>
-                  <p className="text-sm text-cream italic mb-2">{t.quote}</p>
-                  <p className="text-xs text-gray-soft">{t.author}</p>
+
+            {/* Right: pricing card */}
+            <div style={{ flex: '1 1 360px', minWidth: 280 }}>
+              <div style={{ background: '#fff', border: '1px solid #e6dfd2', borderRadius: 20, padding: 26, boxShadow: '0 18px 40px -22px rgba(29,43,58,.35)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 18 }}>
+                  <span style={{ fontSize: 13, fontWeight: 600, color: '#8a93a0', textTransform: 'uppercase', letterSpacing: '.08em' }}>A partire da</span>
+                  <span style={{ background: '#efe7d8', color: '#7a6234', fontSize: 12, fontWeight: 700, padding: '4px 10px', borderRadius: 999 }}>PIANO ESSENTIAL</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 4 }}>
+                  <span style={{ fontSize: 44, fontWeight: 800, letterSpacing: '-0.03em' }}>500</span>
+                  <span style={{ fontSize: 18, fontWeight: 600, color: '#5b6570' }}>AED / mese</span>
+                </div>
+                <div style={{ fontSize: 13, color: '#8a93a0', marginBottom: 20 }}>IVA 5% inclusa · fino a 25 transazioni</div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
+                  {['Contabilità mensile', 'Corporate Tax Return annuale', 'Comunicazione in italiano'].map(f => (
+                    <div key={f} style={{ display: 'flex', gap: 10, alignItems: 'center', fontSize: 14.5, color: '#3a4550' }}>
+                      <span style={{ color: '#2f8a5b', fontWeight: 700 }}>✓</span>{f}
+                    </div>
+                  ))}
+                </div>
+                <div style={{ fontSize: 12.5, lineHeight: 1.5, color: '#8a93a0', marginTop: 16, paddingTop: 14, borderTop: '1px dashed #e6dfd2' }}>
+                  Valido sotto la soglia VAT di 375.000 AED. Oltre la soglia si parte da <strong style={{ color: '#3a4550' }}>800 AED/mese</strong> con dichiarazione VAT inclusa.
+                </div>
+                <Link href="/configuratore" style={{ display: 'block', width: '100%', marginTop: 18, background: '#efe7d8', color: '#1d2b3a', fontSize: 15, fontWeight: 600, padding: 13, borderRadius: 10, textDecoration: 'none', textAlign: 'center' }}>
+                  Calcola il tuo piano →
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Trust badges */}
+          <div style={{ display: 'flex', gap: 'clamp(14px,3vw,40px)', flexWrap: 'wrap', marginTop: 'clamp(36px,5vw,56px)', paddingTop: 28, borderTop: '1px solid #e6dfd2' }}>
+            {trustBadges.map(b => (
+              <div key={b} style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
+                <span style={{ width: 7, height: 7, borderRadius: 2, background: '#a9885e', transform: 'rotate(45deg)', display: 'inline-block' }}></span>
+                <span style={{ fontSize: 14.5, fontWeight: 600, color: '#3a4550' }}>{b}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ============ COME FUNZIONA ============ */}
+        <section style={{ background: '#fff', borderTop: '1px solid #e6dfd2', borderBottom: '1px solid #e6dfd2' }}>
+          <div style={{ maxWidth: 1180, margin: '0 auto', padding: 'clamp(48px,6vw,80px) clamp(18px,4vw,40px)' }}>
+            <div style={{ textAlign: 'center', marginBottom: 'clamp(36px,5vw,56px)' }}>
+              <div style={{ fontSize: 13, fontWeight: 700, color: '#a9885e', textTransform: 'uppercase', letterSpacing: '.1em', marginBottom: 12 }}>Come funziona</div>
+              <h2 style={{ fontSize: 'clamp(28px,3.4vw,40px)', fontWeight: 800, letterSpacing: '-0.02em', margin: 0 }}>Operativi in 48 ore, in tre passi</h2>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(260px,1fr))', gap: 'clamp(18px,2.5vw,28px)' }}>
+              {comeFunziona.map(s => (
+                <div key={s.n} style={{ background: '#faf8f3', border: '1px solid #ece5d8', borderRadius: 16, padding: '30px 26px' }}>
+                  <div style={{ width: 46, height: 46, borderRadius: 12, background: '#1d2b3a', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 19, fontWeight: 700, marginBottom: 20 }}>{s.n}</div>
+                  <div style={{ fontSize: 20, fontWeight: 700, marginBottom: 8 }}>{s.title}</div>
+                  <div style={{ fontSize: 15, lineHeight: 1.55, color: '#5b6570' }}>{s.desc}</div>
                 </div>
               ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* FAQ */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-cream mb-4">Domande frequenti</h2>
-        </div>
-        <div className="space-y-4">
-          {faqs.map((faq) => (
-            <div key={faq.q} className="p-5 rounded-xl" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(201,168,76,0.1)' }}>
-              <h3 className="font-semibold text-cream mb-2">{faq.q}</h3>
-              <p className="text-gray-soft text-sm leading-relaxed">{faq.a}</p>
+        {/* ============ PRICING PREVIEW ============ */}
+        <section style={{ maxWidth: 1180, margin: '0 auto', padding: 'clamp(48px,6vw,80px) clamp(18px,4vw,40px)' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: 16, marginBottom: 'clamp(28px,4vw,44px)' }}>
+            <div>
+              <div style={{ fontSize: 13, fontWeight: 700, color: '#a9885e', textTransform: 'uppercase', letterSpacing: '.1em', marginBottom: 12 }}>I pacchetti</div>
+              <h2 style={{ fontSize: 'clamp(28px,3.4vw,40px)', fontWeight: 800, letterSpacing: '-0.02em', margin: 0 }}>Prezzi chiari, IVA 5% inclusa</h2>
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA finale */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-center">
-        <div className="rounded-2xl p-10 md:p-16" style={{ background: 'linear-gradient(135deg, rgba(169,136,94,0.15), rgba(201,168,76,0.1))', border: '1px solid rgba(201,168,76,0.3)' }}>
-          <Globe size={40} className="text-gold mx-auto mb-4" />
-          <h2 className="text-3xl md:text-4xl font-bold text-cream mb-4">Pronto a mettere in ordine la tua società a Dubai?</h2>
-          <p className="text-gray-soft text-lg mb-8">Il configuratore ti guida in 5 minuti. Zero call, zero attese. Attivazione immediata.</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/configuratore" className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-navy text-lg transition-all hover:opacity-90" style={{ background: 'linear-gradient(135deg, #a9885e, #C9A84C)' }}>
-              Inizia il configuratore <ArrowRight size={20} />
-            </Link>
-            <Link href="https://wa.me/971585025012" target="_blank" className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-cream text-lg border transition-all hover:bg-white/5" style={{ borderColor: 'rgba(201,168,76,0.3)' }}>
-              💬 Scrivici su WhatsApp
+            <Link href="/pacchetti" style={{ fontSize: 15, fontWeight: 600, color: '#1d2b3a', textDecoration: 'underline', textDecorationColor: '#cdbfa6', textUnderlineOffset: 4, padding: '8px 0' }}>
+              Vedi tutti i piani →
             </Link>
           </div>
-        </div>
-      </section>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: 'clamp(18px,2vw,24px)' }}>
+            {homePlans.map(p => (
+              <div key={p.name} style={{ position: 'relative', background: p.popular ? '#1d2b3a' : '#fff', border: p.popular ? '1.5px solid #1d2b3a' : '1px solid #e6dfd2', borderRadius: 18, padding: '30px 26px', display: 'flex', flexDirection: 'column', boxShadow: p.popular ? '0 22px 44px -24px rgba(29,43,58,.55)' : '0 1px 2px rgba(0,0,0,.03)' }}>
+                {p.popular && (
+                  <span style={{ position: 'absolute', top: -12, left: 26, background: '#a9885e', color: '#fff', fontSize: 12, fontWeight: 700, padding: '5px 13px', borderRadius: 999, letterSpacing: '.02em' }}>Più scelto</span>
+                )}
+                <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', color: p.popular ? '#c2a677' : '#a9885e', marginBottom: 14 }}>{p.name}</div>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 7 }}>
+                  <span style={{ fontSize: 40, fontWeight: 800, letterSpacing: '-0.03em', color: p.popular ? '#fff' : '#1d2b3a' }}>{p.price}</span>
+                  <span style={{ fontSize: 15, fontWeight: 600, color: p.popular ? '#9aa6b3' : '#8a93a0' }}>AED/mese</span>
+                </div>
+                <div style={{ fontSize: 13, color: p.popular ? '#9aa6b3' : '#8a93a0', marginBottom: 22, marginTop: 3 }}>IVA 5% inclusa</div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 26, flex: 1 }}>
+                  {p.features.map(f => (
+                    <div key={f} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', fontSize: 14.5, lineHeight: 1.45, color: p.popular ? '#dbe1e8' : '#3a4550' }}>
+                      <span style={{ color: p.popular ? '#7fd0a3' : '#2f8a5b', fontWeight: 700, flexShrink: 0 }}>✓</span>{f}
+                    </div>
+                  ))}
+                </div>
+                <Link href="/configuratore" style={{ display: 'block', width: '100%', background: p.popular ? '#a9885e' : '#efe7d8', color: p.popular ? '#fff' : '#1d2b3a', border: 'none', fontSize: 15, fontWeight: 600, padding: 13, borderRadius: 10, textDecoration: 'none', textAlign: 'center' }}>
+                  {p.cta}
+                </Link>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ============ TESTIMONIALS ============ */}
+        <section style={{ background: '#1d2b3a', color: '#fff' }}>
+          <div style={{ maxWidth: 1180, margin: '0 auto', padding: 'clamp(48px,6vw,80px) clamp(18px,4vw,40px)' }}>
+            <div style={{ textAlign: 'center', marginBottom: 'clamp(36px,5vw,52px)' }}>
+              <div style={{ fontSize: 13, fontWeight: 700, color: '#c2a677', textTransform: 'uppercase', letterSpacing: '.1em', marginBottom: 12 }}>Dicono di noi</div>
+              <h2 style={{ fontSize: 'clamp(28px,3.4vw,40px)', fontWeight: 800, letterSpacing: '-0.02em', margin: 0 }}>Imprenditori italiani, già operativi a Dubai</h2>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: 'clamp(18px,2vw,24px)' }}>
+              {testimonials.map(t => (
+                <div key={t.name} style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 18, padding: 28 }}>
+                  <div style={{ fontSize: 15.5, lineHeight: 1.6, color: '#e7ebef', marginBottom: 22 }}>&ldquo;{t.quote}&rdquo;</div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                    <div style={{ width: 42, height: 42, borderRadius: '50%', background: '#a9885e', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 15 }}>{t.initials}</div>
+                    <div>
+                      <div style={{ fontSize: 14.5, fontWeight: 600 }}>{t.name}</div>
+                      <div style={{ fontSize: 13, color: '#9aa6b3' }}>{t.role}</div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ============ FAQ ============ */}
+        <FaqSection faqs={faqs} />
+
+      </div>
 
       <Footer />
     </>
+  )
+}
+
+function FaqSection({ faqs }: { faqs: { q: string; a: string }[] }) {
+  return (
+    <section style={{ maxWidth: 820, margin: '0 auto', padding: 'clamp(48px,6vw,80px) clamp(18px,4vw,40px)' }}>
+      <div style={{ textAlign: 'center', marginBottom: 'clamp(32px,4vw,44px)' }}>
+        <div style={{ fontSize: 13, fontWeight: 700, color: '#a9885e', textTransform: 'uppercase', letterSpacing: '.1em', marginBottom: 12 }}>Domande frequenti</div>
+        <h2 style={{ fontSize: 'clamp(28px,3.4vw,40px)', fontWeight: 800, letterSpacing: '-0.02em', margin: 0 }}>Le risposte chiare, prima di iniziare</h2>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+        {faqs.map((f) => (
+          <details key={f.q} style={{ background: '#fff', border: '1px solid #e6dfd2', borderRadius: 14, overflow: 'hidden' }}>
+            <summary style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, textAlign: 'left', cursor: 'pointer', padding: '20px 22px', fontSize: 16, fontWeight: 600, color: '#1d2b3a', listStyle: 'none' }}>
+              {f.q}
+              <span style={{ fontSize: 22, color: '#a9885e', flexShrink: 0, lineHeight: 1 }}>+</span>
+            </summary>
+            <div style={{ padding: '0 22px 22px', fontSize: 15, lineHeight: 1.62, color: '#5b6570' }}>{f.a}</div>
+          </details>
+        ))}
+      </div>
+    </section>
   )
 }
