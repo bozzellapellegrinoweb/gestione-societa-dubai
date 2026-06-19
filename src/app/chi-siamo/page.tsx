@@ -1,7 +1,6 @@
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
-import { Shield, Globe, Users, Award } from 'lucide-react'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -9,41 +8,78 @@ export const metadata: Metadata = {
   description: 'PB TAX International Tax Consultants FZCO. Avv. Pellegrino Bozzella, fondatore di InDubai.it. 450+ aziende italiane gestite a Dubai dal 2019.',
 }
 
+const stats = [
+  { n: '450+', label: 'Aziende gestite' },
+  { n: '5+', label: 'Anni a Dubai' },
+  { n: '100%', label: 'In italiano' },
+  { n: '48h', label: 'Tempo di attivazione' },
+]
+
+const strengths = [
+  { title: '450+ aziende gestite', desc: 'Società Free Zone, Mainland e Offshore di imprenditori italiani negli Emirati.' },
+  { title: 'Due sistemi fiscali, un unico team', desc: 'Gestiamo la compliance UAE e monitoriamo gli impatti fiscali italiani (CFC, quadro RW, IVAFE).' },
+  { title: 'Partner ufficiale Free Zone', desc: 'Rapporti diretti con IFZA, DMCC, RAKEZ, Meydan e altre autorità di registrazione.' },
+  { title: 'Corporate Tax & VAT UAE', desc: 'Specializzati nella normativa fiscale emiratina dal 2023. Corporate Tax Return, VAT Filing, AML compliance.' },
+]
+
+const companyData = [
+  ['Ragione sociale', 'PB TAX International Tax Consultants FZCO'],
+  ['TRN (VAT)', '105333005400001'],
+  ['Sede operativa', 'Platinum Tower Unit 2503, JLT, Dubai, UAE'],
+  ['Sito principale', 'InDubai.it'],
+]
+
 export default function ChiSiamoPage() {
   return (
     <>
       <Navbar />
-      <main className="pt-28 pb-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-        <div className="text-center mb-12">
-          <div className="text-gold text-sm font-bold uppercase tracking-wider mb-3">PB TAX International</div>
-          <h1 className="text-4xl font-bold text-cream mb-4">Il team dietro societa-dubai.it</h1>
-          <p className="text-gray-soft text-lg max-w-2xl mx-auto">Dal 2019 al fianco degli imprenditori italiani negli Emirati Arabi Uniti. 450+ società gestite. Un team che parla la tua lingua.</p>
+      <main style={{ maxWidth: 1000, margin: '0 auto', padding: 'clamp(40px,5vw,64px) clamp(18px,4vw,40px) 80px' }}>
+
+        {/* Header */}
+        <div style={{ textAlign: 'center', marginBottom: 'clamp(36px,5vw,56px)' }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#a9885e', textTransform: 'uppercase', letterSpacing: '.1em', marginBottom: 12 }}>PB TAX International</div>
+          <h1 style={{ fontSize: 'clamp(30px,4vw,46px)', fontWeight: 800, letterSpacing: '-0.025em', margin: '0 0 14px' }}>Il team dietro societa-dubai.it</h1>
+          <p style={{ fontSize: 17, color: '#5b6570', margin: '0 auto', maxWidth: 600 }}>Dal 2019 al fianco degli imprenditori italiani negli Emirati Arabi Uniti. 450+ società gestite. Un team che parla la tua lingua.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-          <div className="p-8 rounded-2xl" style={{ background: 'rgba(201,168,76,0.06)', border: '1px solid rgba(201,168,76,0.2)' }}>
-            <h2 className="text-2xl font-bold text-cream mb-2">Avv. Pellegrino Bozzella</h2>
-            <div className="text-gold text-sm font-semibold mb-4">Fondatore & CEO · PB TAX International · InDubai.it</div>
-            <p className="text-gray-soft leading-relaxed mb-4">
+        {/* Stats */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(140px,1fr))', gap: 16, marginBottom: 'clamp(36px,5vw,56px)' }}>
+          {stats.map(s => (
+            <div key={s.label} style={{ background: '#fff', border: '1px solid #e6dfd2', borderRadius: 16, padding: '24px 20px', textAlign: 'center' }}>
+              <div style={{ fontSize: 32, fontWeight: 800, color: '#1d2b3a', letterSpacing: '-0.02em' }}>{s.n}</div>
+              <div style={{ fontSize: 13, fontWeight: 600, color: '#8a93a0', marginTop: 4 }}>{s.label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Founder + Strengths */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))', gap: 28, marginBottom: 'clamp(36px,5vw,56px)' }}>
+
+          {/* Founder card */}
+          <div style={{ background: '#fff', border: '1px solid #e6dfd2', borderRadius: 20, padding: 'clamp(24px,3vw,36px)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 20 }}>
+              <div style={{ width: 56, height: 56, borderRadius: '50%', background: '#a9885e', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 20 }}>PB</div>
+              <div>
+                <div style={{ fontSize: 20, fontWeight: 800, color: '#1d2b3a' }}>Avv. Pellegrino Bozzella</div>
+                <div style={{ fontSize: 13, fontWeight: 600, color: '#a9885e' }}>Fondatore & CEO · PB TAX International</div>
+              </div>
+            </div>
+            <p style={{ fontSize: 15, lineHeight: 1.65, color: '#5b6570', margin: '0 0 16px' }}>
               Avvocato italiano con specializzazione in diritto societario UAE e fiscalità internazionale. Residente a Dubai dal 2019, ha fondato PB TAX International per rispondere a una necessità concreta: gli imprenditori italiani a Dubai hanno bisogno di un professionista che capisca entrambi i sistemi fiscali.
             </p>
-            <p className="text-gray-soft leading-relaxed">
-              Opera dalla Platinum Tower al JLT (Jumeirah Lake Towers), il cuore business di Dubai. Fondatore anche di <a href="https://www.indubai.it" target="_blank" rel="noopener noreferrer" style={{ color: '#a9885e', textDecoration: 'none', fontWeight: 600 }}>InDubai.it</a>, la principale risorsa italiana per chi vuole fare impresa negli Emirati.
+            <p style={{ fontSize: 15, lineHeight: 1.65, color: '#5b6570', margin: 0 }}>
+              Opera dalla Platinum Tower al JLT (Jumeirah Lake Towers), il cuore business di Dubai. Fondatore anche di <a href="https://www.indubai.it" target="_blank" rel="noopener noreferrer" style={{ color: '#a9885e', fontWeight: 600, textDecoration: 'none' }}>InDubai.it</a>, la principale risorsa italiana per chi vuole fare impresa negli Emirati.
             </p>
           </div>
 
-          <div className="space-y-4">
-            {[
-              { icon: <Users className="text-gold" size={20} />, title: '450+ aziende gestite', desc: 'Società Free Zone, Mainland e Offshore di imprenditori italiani negli Emirati.' },
-              { icon: <Globe className="text-gold" size={20} />, title: 'Due sistemi fiscali, un unico team', desc: 'Gestiamo la compliance UAE e monitoriamo gli impatti fiscali italiani (CFC, quadro RW, IVAFE).' },
-              { icon: <Shield className="text-gold" size={20} />, title: 'Partner ufficiale Free Zone', desc: 'Rapporti diretti con IFZA, DMCC, RAKEZ, Meydan e altre autorità di registrazione.' },
-              { icon: <Award className="text-gold" size={20} />, title: 'Corporate Tax & VAT UAE', desc: 'Specializzati nella normativa fiscale emiratina dal 2023. Corporate Tax Return, VAT Filing, AML compliance.' },
-            ].map(item => (
-              <div key={item.title} className="p-5 rounded-xl flex gap-4" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(201,168,76,0.1)' }}>
-                <div className="shrink-0 mt-0.5">{item.icon}</div>
+          {/* Strengths */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+            {strengths.map(item => (
+              <div key={item.title} style={{ background: '#fff', border: '1px solid #e6dfd2', borderRadius: 14, padding: '20px 22px', display: 'flex', gap: 14, alignItems: 'flex-start' }}>
+                <span style={{ flexShrink: 0, width: 8, height: 8, borderRadius: 2, background: '#a9885e', transform: 'rotate(45deg)', marginTop: 7, display: 'inline-block' }} />
                 <div>
-                  <div className="font-semibold text-cream mb-1">{item.title}</div>
-                  <div className="text-gray-soft text-sm">{item.desc}</div>
+                  <div style={{ fontSize: 15, fontWeight: 700, color: '#1d2b3a', marginBottom: 4 }}>{item.title}</div>
+                  <div style={{ fontSize: 14, color: '#5b6570', lineHeight: 1.5 }}>{item.desc}</div>
                 </div>
               </div>
             ))}
@@ -51,41 +87,38 @@ export default function ChiSiamoPage() {
         </div>
 
         {/* Lo studio madre */}
-        <div className="mb-16 p-8 rounded-2xl" style={{ background: 'rgba(169,136,94,0.06)', border: '1px solid rgba(169,136,94,0.18)' }}>
-          <h2 className="text-2xl font-bold text-cream mb-3">PB TAX — lo studio madre</h2>
-          <p className="text-gray-soft leading-relaxed mb-4">
-            PB TAX International Tax Consultants FZCO è lo studio professionale fondato da Avv. Pellegrino Bozzella a Dubai. Sotto questo studio nascono tutti i progetti del gruppo: <strong style={{ color: '#c8c0b4' }}>societa-dubai.it</strong> per la gestione contabile digitale delle società UAE, e <strong style={{ color: '#c8c0b4' }}>InDubai.it</strong> come hub informativo per gli imprenditori italiani negli Emirati.
+        <div style={{ background: '#faf8f3', border: '1px solid #e6dfd2', borderRadius: 20, padding: 'clamp(24px,3vw,36px)', marginBottom: 'clamp(36px,5vw,56px)' }}>
+          <h2 style={{ fontSize: 'clamp(22px,2.6vw,28px)', fontWeight: 800, margin: '0 0 14px', color: '#1d2b3a' }}>PB TAX — lo studio madre</h2>
+          <p style={{ fontSize: 15, lineHeight: 1.65, color: '#5b6570', margin: '0 0 16px' }}>
+            PB TAX International Tax Consultants FZCO è lo studio professionale fondato da Avv. Pellegrino Bozzella a Dubai. Sotto questo studio nascono tutti i progetti del gruppo: <strong style={{ color: '#1d2b3a' }}>societa-dubai.it</strong> per la gestione contabile digitale delle società UAE, e <strong style={{ color: '#1d2b3a' }}>InDubai.it</strong> come hub informativo per gli imprenditori italiani negli Emirati.
           </p>
-          <p className="text-gray-soft leading-relaxed">
+          <p style={{ fontSize: 15, lineHeight: 1.65, color: '#5b6570', margin: 0 }}>
             Ogni servizio nasce dall&apos;esperienza diretta sul campo: anni di lavoro fianco a fianco con consulenti fiscali e imprenditori italiani che hanno scelto Dubai come base operativa.
           </p>
         </div>
 
-        <div className="mb-16 p-8 rounded-2xl" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(201,168,76,0.1)' }}>
-          <h2 className="text-2xl font-bold text-cream mb-6">Dati aziendali</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-            {[
-              ['Ragione sociale', 'PB TAX International Tax Consultants FZCO'],
-              ['TRN (VAT)', '105333005400001'],
-              ['Sede operativa', 'Platinum Tower Unit 2503, JLT, Dubai, UAE'],
-              ['Sito principale', 'InDubai.it'],
-            ].map(([k, v]) => (
+        {/* Dati aziendali */}
+        <div style={{ background: '#fff', border: '1px solid #e6dfd2', borderRadius: 20, padding: 'clamp(24px,3vw,36px)', marginBottom: 'clamp(36px,5vw,56px)' }}>
+          <h2 style={{ fontSize: 'clamp(22px,2.6vw,28px)', fontWeight: 800, margin: '0 0 20px', color: '#1d2b3a' }}>Dati aziendali</h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(200px,1fr))', gap: 20 }}>
+            {companyData.map(([k, v]) => (
               <div key={k}>
-                <div className="text-gray-soft text-xs uppercase tracking-wider mb-1">{k}</div>
-                <div className="text-cream font-medium">{v}</div>
+                <div style={{ fontSize: 12, fontWeight: 600, color: '#8a93a0', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: 6 }}>{k}</div>
+                <div style={{ fontSize: 15, fontWeight: 600, color: '#1d2b3a' }}>{v}</div>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="text-center rounded-2xl p-10" style={{ background: 'linear-gradient(135deg, rgba(169,136,94,0.12), rgba(201,168,76,0.08))', border: '1px solid rgba(201,168,76,0.25)' }}>
-          <h2 className="text-2xl font-bold text-cream mb-3">Pronto a lavorare con noi?</h2>
-          <p className="text-gray-soft mb-6">Configura il tuo piano in 5 minuti o scrivici direttamente su WhatsApp.</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/configuratore" className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-navy transition-all hover:opacity-90" style={{ background: 'linear-gradient(135deg, #a9885e, #C9A84C)' }}>
+        {/* CTA */}
+        <div style={{ background: '#1d2b3a', borderRadius: 20, padding: 'clamp(30px,4vw,48px)', textAlign: 'center' }}>
+          <h2 style={{ fontSize: 'clamp(22px,3vw,30px)', fontWeight: 800, color: '#fff', margin: '0 0 10px' }}>Pronto a lavorare con noi?</h2>
+          <p style={{ fontSize: 16, color: '#9aa6b3', margin: '0 0 24px' }}>Configura il tuo piano in 3 minuti o scrivici direttamente su WhatsApp.</p>
+          <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Link href="/configuratore" style={{ background: '#a9885e', color: '#fff', fontSize: 16, fontWeight: 700, padding: '14px 28px', borderRadius: 12, textDecoration: 'none' }}>
               Vai al configuratore →
             </Link>
-            <Link href="https://wa.me/971585025012" target="_blank" className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-cream border transition-all hover:bg-white/5" style={{ borderColor: 'rgba(201,168,76,0.3)' }}>
+            <Link href="https://wa.me/971585025012" target="_blank" style={{ background: 'transparent', color: '#fff', fontSize: 16, fontWeight: 600, padding: '14px 28px', borderRadius: 12, textDecoration: 'none', border: '1.5px solid rgba(255,255,255,0.2)' }}>
               Scrivici su WhatsApp
             </Link>
           </div>

@@ -137,7 +137,20 @@ export default function ConfiguratorWizard() {
   function pick(i: number) { setAnswers(prev => ({ ...prev, [step]: i })) }
 
   function goNext() {
-    if (step >= TOTAL_STEPS) { setDone(true); return }
+    if (step >= TOTAL_STEPS) {
+      setDone(true)
+      const plan = getPlan(answers[3] ?? 2)
+      fetch('/api/configurator', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          session_data: answers,
+          plan_suggested: plan.key,
+          amount_aed: plan.price ? parseInt(plan.price.replace('.', '')) : null,
+        }),
+      }).catch(() => {})
+      return
+    }
     setStep(s => s + 1)
     setTipOpen(false)
     if (typeof window !== 'undefined') window.scrollTo(0, 0)

@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useParams } from 'next/navigation'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
-import { Upload, CheckCircle, X, File } from 'lucide-react'
+import Link from 'next/link'
 
 const REQUIRED_DOCS = [
   { key: 'trade_license', label: 'Trade License / Certificate of Incorporation', required: true },
@@ -63,15 +63,13 @@ export default function OnboardingPage() {
     return (
       <>
         <Navbar />
-        <main className="pt-28 pb-20 px-4 flex items-center justify-center min-h-screen">
-          <div className="max-w-lg mx-auto text-center">
-            <div className="text-6xl mb-6">✅</div>
-            <h1 className="text-3xl font-bold text-cream mb-4">Documenti ricevuti!</h1>
-            <p className="text-gray-soft mb-6">Grazie! Il team PB TAX ha ricevuto i tuoi documenti e li verificherà entro 48 ore lavorative. Riceverai una email di conferma e il tuo account manager ti contatterà direttamente.</p>
-            <a href="https://wa.me/971585025012" target="_blank" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold border transition-all hover:bg-white/5" style={{ borderColor: 'rgba(201,168,76,0.3)', color: '#C9A84C' }}>
-              💬 Scrivici su WhatsApp per domande
-            </a>
-          </div>
+        <main style={{ maxWidth: 600, margin: '0 auto', padding: 'clamp(60px,8vw,100px) clamp(18px,4vw,40px) 80px', textAlign: 'center' }}>
+          <div style={{ fontSize: 56, marginBottom: 20 }}>✅</div>
+          <h1 style={{ fontSize: 'clamp(26px,3.4vw,34px)', fontWeight: 800, margin: '0 0 12px', color: '#1d2b3a' }}>Documenti ricevuti!</h1>
+          <p style={{ fontSize: 16, lineHeight: 1.6, color: '#5b6570', margin: '0 0 28px' }}>Grazie! Il team PB TAX ha ricevuto i tuoi documenti e li verificherà entro 48 ore lavorative. Riceverai una email di conferma e il tuo account manager ti contatterà direttamente.</p>
+          <Link href="https://wa.me/971585025012" target="_blank" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#fff', color: '#1d8a4e', border: '1.5px solid #d6ddd6', fontSize: 15, fontWeight: 600, padding: '14px 24px', borderRadius: 12, textDecoration: 'none' }}>
+            Scrivici su WhatsApp per domande
+          </Link>
         </main>
         <Footer />
       </>
@@ -81,74 +79,71 @@ export default function OnboardingPage() {
   return (
     <>
       <Navbar />
-      <main className="pt-28 pb-20 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto">
-        <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-4" style={{ background: 'rgba(201,168,76,0.1)', border: '1px solid rgba(201,168,76,0.3)', color: '#C9A84C' }}>
-            🎉 Benvenuto in PB TAX
+      <main style={{ maxWidth: 700, margin: '0 auto', padding: 'clamp(40px,5vw,64px) clamp(18px,4vw,40px) 80px' }}>
+
+        <div style={{ textAlign: 'center', marginBottom: 32 }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#efe7d8', border: '1px solid #e3d6bd', color: '#7a6234', fontSize: 13, fontWeight: 600, padding: '6px 14px', borderRadius: 999, marginBottom: 16 }}>
+            Benvenuto in PB TAX
           </div>
-          <h1 className="text-3xl font-bold text-cream mb-3">Completa il tuo onboarding</h1>
-          <p className="text-gray-soft">Carica i documenti necessari per avviare la gestione della tua società. Upload sicuro e riservato.</p>
+          <h1 style={{ fontSize: 'clamp(26px,3.4vw,34px)', fontWeight: 800, margin: '0 0 10px', color: '#1d2b3a' }}>Completa il tuo onboarding</h1>
+          <p style={{ fontSize: 16, color: '#5b6570', margin: 0 }}>Carica i documenti necessari per avviare la gestione della tua società.</p>
         </div>
 
-        <div className="space-y-4 mb-8">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginBottom: 28 }}>
           {REQUIRED_DOCS.map(doc => (
-            <div key={doc.key} className="p-5 rounded-xl" style={{ background: 'rgba(255,255,255,0.04)', border: `1px solid ${files[doc.key] ? 'rgba(201,168,76,0.4)' : 'rgba(201,168,76,0.12)'}` }}>
-              <div className="flex justify-between items-start mb-3">
+            <div key={doc.key} style={{ background: '#fff', border: `1.5px solid ${files[doc.key] ? '#a9885e' : '#e6dfd2'}`, borderRadius: 14, padding: '18px 20px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: files[doc.key] ? 8 : 12 }}>
                 <div>
-                  <div className="font-semibold text-cream text-sm">{doc.label}</div>
-                  {!doc.required && <div className="text-xs text-gray-soft mt-0.5">Opzionale</div>}
+                  <div style={{ fontSize: 14, fontWeight: 700, color: '#1d2b3a' }}>{doc.label}</div>
+                  {!doc.required && <div style={{ fontSize: 12, color: '#8a93a0', marginTop: 2 }}>Opzionale</div>}
                 </div>
                 {files[doc.key] && (
-                  <button onClick={() => setFiles(f => { const n = { ...f }; delete n[doc.key]; return n })} className="text-gray-soft hover:text-cream">
-                    <X size={14} />
-                  </button>
+                  <button onClick={() => setFiles(f => { const n = { ...f }; delete n[doc.key]; return n })} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 16, color: '#8a93a0', padding: '0 4px' }}>✕</button>
                 )}
               </div>
               {files[doc.key] ? (
-                <div className="flex items-center gap-2 text-sm" style={{ color: '#C9A84C' }}>
-                  <CheckCircle size={14} />
-                  <span className="text-cream">{files[doc.key].name}</span>
-                  <span className="text-gray-soft">({(files[doc.key].size / 1024).toFixed(0)} KB)</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 14 }}>
+                  <span style={{ color: '#2f8a5b', fontWeight: 700 }}>✓</span>
+                  <span style={{ color: '#1d2b3a', fontWeight: 500 }}>{files[doc.key].name}</span>
+                  <span style={{ color: '#8a93a0', fontSize: 12 }}>({(files[doc.key].size / 1024).toFixed(0)} KB)</span>
                 </div>
               ) : (
                 <div
-                  className="border-2 border-dashed rounded-lg p-4 text-center cursor-pointer transition-all"
-                  style={{ borderColor: dragging === doc.key ? 'rgba(201,168,76,0.6)' : 'rgba(201,168,76,0.2)', background: dragging === doc.key ? 'rgba(201,168,76,0.05)' : 'transparent' }}
+                  style={{ border: `2px dashed ${dragging === doc.key ? '#a9885e' : '#e6dfd2'}`, borderRadius: 10, padding: '16px', textAlign: 'center', cursor: 'pointer', background: dragging === doc.key ? '#faf8f3' : 'transparent', transition: 'all .15s' }}
                   onDragOver={e => { e.preventDefault(); setDragging(doc.key) }}
                   onDragLeave={() => setDragging(null)}
                   onDrop={e => handleDrop(doc.key, e)}
                   onClick={() => { const inp = document.createElement('input'); inp.type = 'file'; inp.accept = '.pdf,.jpg,.jpeg,.png'; inp.onchange = (e) => { const f = (e.target as HTMLInputElement).files?.[0]; if (f) handleFile(doc.key, f) }; inp.click() }}
                 >
-                  <Upload size={20} className="text-gray-soft mx-auto mb-1" />
-                  <p className="text-xs text-gray-soft">Trascina qui o <span className="text-gold">clicca per caricare</span></p>
-                  <p className="text-xs text-gray-soft mt-0.5">PDF, JPG, PNG · max 10MB</p>
+                  <div style={{ fontSize: 13, color: '#8a93a0' }}>Trascina qui o <span style={{ color: '#a9885e', fontWeight: 600 }}>clicca per caricare</span></div>
+                  <div style={{ fontSize: 12, color: '#b0a898', marginTop: 4 }}>PDF, JPG, PNG · max 10MB</div>
                 </div>
               )}
             </div>
           ))}
         </div>
 
-        <div className="space-y-4 mb-8">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 28 }}>
           <div>
-            <label className="block text-sm text-gray-soft mb-2">Software contabile attualmente usato (opzionale)</label>
-            <input value={software} onChange={e => setSoftware(e.target.value)} placeholder="es. QuickBooks, Zoho Books, nessuno..." className="w-full px-4 py-3 rounded-xl text-cream placeholder-gray-soft outline-none" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(201,168,76,0.2)' }} />
+            <label style={{ display: 'block', fontSize: 13.5, fontWeight: 600, color: '#3a4550', marginBottom: 7 }}>Software contabile attualmente usato (opzionale)</label>
+            <input value={software} onChange={e => setSoftware(e.target.value)} placeholder="es. QuickBooks, Zoho Books, nessuno..." style={{ width: '100%', padding: '14px 16px', border: '1.5px solid #e6dfd2', borderRadius: 11, fontSize: 15, fontFamily: 'inherit', background: '#fff', color: '#1d2b3a', outline: 'none', boxSizing: 'border-box' }} />
           </div>
           <div>
-            <label className="block text-sm text-gray-soft mb-2">Note aggiuntive (opzionale)</label>
-            <textarea value={notes} onChange={e => setNotes(e.target.value)} rows={3} placeholder="Qualsiasi informazione utile al team PB TAX..." className="w-full px-4 py-3 rounded-xl text-cream placeholder-gray-soft outline-none resize-none" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(201,168,76,0.2)' }} />
+            <label style={{ display: 'block', fontSize: 13.5, fontWeight: 600, color: '#3a4550', marginBottom: 7 }}>Note aggiuntive (opzionale)</label>
+            <textarea value={notes} onChange={e => setNotes(e.target.value)} rows={3} placeholder="Qualsiasi informazione utile al team PB TAX..." style={{ width: '100%', padding: '14px 16px', border: '1.5px solid #e6dfd2', borderRadius: 11, fontSize: 15, fontFamily: 'inherit', background: '#fff', color: '#1d2b3a', outline: 'none', boxSizing: 'border-box', resize: 'none' }} />
           </div>
         </div>
 
-        <button onClick={handleSubmit} disabled={submitting} className="w-full py-4 rounded-xl font-bold text-navy text-lg transition-all hover:opacity-90 disabled:opacity-50" style={{ background: 'linear-gradient(135deg, #a9885e, #C9A84C)' }}>
+        <button onClick={handleSubmit} disabled={submitting} style={{ width: '100%', background: '#1d2b3a', color: '#fff', border: 'none', cursor: submitting ? 'wait' : 'pointer', fontSize: 17, fontWeight: 700, padding: 17, borderRadius: 13, boxShadow: '0 6px 18px rgba(29,43,58,.24)', font: 'inherit', opacity: submitting ? 0.6 : 1 }}>
           {submitting ? 'Invio in corso...' : 'Invia documenti al team PB TAX →'}
         </button>
 
-        <div className="mt-4 flex items-center justify-center gap-4 text-xs text-gray-soft">
-          <span>🔒 Upload cifrato</span>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: 20, marginTop: 16, fontSize: 12.5, color: '#8a93a0' }}>
+          <span>Upload sicuro</span>
           <span>·</span>
-          <span>📁 Storage privato per cliente</span>
+          <span>Storage privato</span>
           <span>·</span>
-          <span>✅ Risposta entro 48h</span>
+          <span>Risposta entro 48h</span>
         </div>
       </main>
       <Footer />
