@@ -1,8 +1,9 @@
-export type PlanKey = 'ESSENTIAL' | 'SMART' | 'PROFESSIONAL' | 'BUSINESS' | 'PREMIUM' | 'CORPORATE' | 'ENTERPRISE'
+export type PlanKey = 'BASIC' | 'ENTRY_LEVEL' | 'PRO' | 'SILVER' | 'GOLD' | 'PLATINUM' | 'DIAMOND'
 
 export interface Plan {
   key: PlanKey
   label: string
+  subtitle: string
   maxTransactions: number | null
   priceAED: number | null
   description: string
@@ -11,56 +12,63 @@ export interface Plan {
 
 export const PLANS: Plan[] = [
   {
-    key: 'ESSENTIAL',
-    label: 'Essential',
+    key: 'BASIC',
+    label: 'Basic',
+    subtitle: 'Tax Management & Compliance',
     maxTransactions: 25,
     priceAED: 500,
     description: 'Ideale per freelance, holding o società dormiente',
     features: ['Contabilità mensile (fino a 25 transazioni)', 'Corporate Tax Return annuale', 'Comunicazione 100% in italiano', 'Account manager dedicato', 'Reportistica mensile'],
   },
   {
-    key: 'SMART',
-    label: 'Smart',
+    key: 'ENTRY_LEVEL',
+    label: 'Entry Level',
+    subtitle: 'Tax & VAT Management',
     maxTransactions: 50,
     priceAED: 800,
     description: 'Ideale per servizi e e-commerce piccolo',
-    features: ['Contabilità mensile (fino a 50 transazioni)', 'Corporate Tax Return annuale', 'Comunicazione 100% in italiano', 'Account manager dedicato', 'Reportistica mensile'],
+    features: ['Contabilità mensile (fino a 50 transazioni)', 'Corporate Tax Return annuale', 'Dichiarazione VAT inclusa', 'Comunicazione 100% in italiano', 'Account manager dedicato', 'Reportistica mensile'],
   },
   {
-    key: 'PROFESSIONAL',
-    label: 'Professional',
+    key: 'PRO',
+    label: 'Pro',
+    subtitle: 'Full Accounting & Tax',
     maxTransactions: 100,
     priceAED: 1200,
     description: 'Standard per PMI operativa',
-    features: ['Contabilità mensile (fino a 100 transazioni)', 'Corporate Tax Return annuale', 'Comunicazione 100% in italiano', 'Account manager dedicato', 'Reportistica mensile', 'Verifica compliance annuale'],
+    features: ['Contabilità mensile (fino a 100 transazioni)', 'Corporate Tax Return annuale', 'Dichiarazione VAT inclusa', 'Comunicazione 100% in italiano', 'Account manager dedicato', 'Reportistica mensile', 'Verifica compliance annuale'],
   },
   {
-    key: 'BUSINESS',
-    label: 'Business',
+    key: 'SILVER',
+    label: 'Silver',
+    subtitle: 'Advanced Accounting & Advisory',
     maxTransactions: 150,
     priceAED: 1500,
     description: 'Trading attivo e più fornitori',
-    features: ['Contabilità mensile (fino a 150 transazioni)', 'Corporate Tax Return annuale', 'Comunicazione 100% in italiano', 'Account manager dedicato', 'Reportistica mensile', 'Verifica compliance annuale', 'Riconciliazione bancaria avanzata'],
+    features: ['Contabilità mensile (fino a 150 transazioni)', 'Corporate Tax Return annuale', 'Dichiarazione VAT inclusa', 'Comunicazione 100% in italiano', 'Account manager dedicato', 'Reportistica mensile', 'Verifica compliance annuale', 'Riconciliazione bancaria avanzata'],
   },
   {
-    key: 'PREMIUM',
-    label: 'Premium',
+    key: 'GOLD',
+    label: 'Gold',
+    subtitle: 'Premium Accounting & CFO Support',
     maxTransactions: 300,
     priceAED: 1800,
     description: 'Per operatività elevata',
-    features: ['Contabilità mensile (fino a 300 transazioni)', 'Corporate Tax Return annuale', 'Comunicazione 100% in italiano', 'Account manager dedicato', 'Reportistica mensile', 'Verifica compliance annuale', 'Riconciliazione bancaria avanzata', 'Budget & forecasting trimestrale'],
+    features: ['Contabilità mensile (fino a 300 transazioni)', 'Corporate Tax Return annuale', 'Dichiarazione VAT inclusa', 'Comunicazione 100% in italiano', 'Account manager dedicato', 'Reportistica mensile', 'Verifica compliance annuale', 'Riconciliazione bancaria avanzata', 'Budget & forecasting trimestrale'],
   },
   {
-    key: 'CORPORATE',
-    label: 'Corporate',
+    key: 'PLATINUM',
+    label: 'Platinum',
+    subtitle: 'Corporate Full Service',
     maxTransactions: 500,
     priceAED: 2000,
-    description: 'Grandi volumi — checkout automatico',
-    features: ['Contabilità mensile (fino a 500 transazioni)', 'Corporate Tax Return annuale', 'Comunicazione 100% in italiano', 'Account manager dedicato', 'Reportistica mensile', 'Verifica compliance annuale', 'Riconciliazione bancaria avanzata', 'Budget & forecasting trimestrale', 'CFO on-demand (2h/mese)'],
+    description: 'Grandi volumi — servizio completo',
+    features: ['Contabilità mensile (fino a 500 transazioni)', 'Corporate Tax Return annuale', 'Dichiarazione VAT inclusa', 'Comunicazione 100% in italiano', 'Account manager dedicato', 'Reportistica mensile', 'Verifica compliance annuale', 'Riconciliazione bancaria avanzata', 'Budget & forecasting trimestrale', 'CFO on-demand (2h/mese)'],
   },
   {
-    key: 'ENTERPRISE',
-    label: 'Enterprise',
+    key: 'DIAMOND',
+    label: 'Diamond',
+    subtitle: 'Custom Solution',
     maxTransactions: null,
     priceAED: null,
     description: 'Piano su misura per volumi oltre 500 transazioni/mese',
@@ -88,11 +96,11 @@ export const ADDONS: Addon[] = [
 ]
 
 export function getPlanByTransactions(transactions: number): Plan {
-  if (transactions <= 25) return PLANS[0]
-  if (transactions <= 50) return PLANS[1]
-  if (transactions <= 100) return PLANS[2]
-  if (transactions <= 150) return PLANS[3]
-  if (transactions <= 300) return PLANS[4]
-  if (transactions <= 500) return PLANS[5]
-  return PLANS[6]
+  if (transactions <= 25) return PLANS[0]  // Basic
+  if (transactions <= 50) return PLANS[1]  // Entry Level
+  if (transactions <= 100) return PLANS[2] // Pro
+  if (transactions <= 150) return PLANS[3] // Silver
+  if (transactions <= 300) return PLANS[4] // Gold
+  if (transactions <= 500) return PLANS[5] // Platinum
+  return PLANS[6]                          // Diamond
 }

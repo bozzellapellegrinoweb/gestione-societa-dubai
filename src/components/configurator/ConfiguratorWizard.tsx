@@ -4,7 +4,7 @@ import Link from 'next/link'
 import ResultCard from './ResultCard'
 
 type Option = { title: string; desc?: string; price?: string; icon?: string }
-type Step = { q: string; sub: string; cols?: number; tip?: boolean; alert?: boolean; form?: boolean; options: Option[] }
+type Step = { q: string; sub: string; cols?: number; tip?: boolean; alert?: boolean; options: Option[] }
 
 const STEPS: Step[] = [
   {
@@ -28,13 +28,13 @@ const STEPS: Step[] = [
   {
     q: 'Quante transazioni contabili stimi al mese?', sub: 'Da qui dipende il piano consigliato.', cols: 2, tip: true,
     options: [
-      { title: 'Fino a 25', desc: 'Piano ESSENTIAL', price: '500 AED/mese' },
-      { title: 'Fino a 50', desc: 'Piano SMART', price: '800 AED/mese' },
-      { title: 'Fino a 100', desc: 'Piano PROFESSIONAL', price: '1.200 AED/mese' },
-      { title: 'Fino a 150', desc: 'Piano BUSINESS', price: '1.500 AED/mese' },
-      { title: 'Fino a 300', desc: 'Piano PREMIUM', price: '1.800 AED/mese' },
-      { title: 'Fino a 500', desc: 'Piano CORPORATE', price: '2.000 AED/mese' },
-      { title: 'Oltre 500', desc: 'Piano ENTERPRISE', price: 'da definire' },
+      { title: 'Fino a 25', desc: 'Piano BASIC', price: '500 AED/mese' },
+      { title: 'Fino a 50', desc: 'Piano ENTRY LEVEL', price: '800 AED/mese' },
+      { title: 'Fino a 100', desc: 'Piano PRO', price: '1.200 AED/mese' },
+      { title: 'Fino a 150', desc: 'Piano SILVER', price: '1.500 AED/mese' },
+      { title: 'Fino a 300', desc: 'Piano GOLD', price: '1.800 AED/mese' },
+      { title: 'Fino a 500', desc: 'Piano PLATINUM', price: '2.000 AED/mese' },
+      { title: 'Oltre 500', desc: 'Piano DIAMOND', price: 'su misura' },
     ],
   },
   {
@@ -88,30 +88,30 @@ const STEPS: Step[] = [
       { title: 'Oltre 3 anni', desc: 'Consolidata' },
     ],
   },
-  {
-    q: 'Lasciaci i tuoi contatti', sub: 'Ti mostriamo il piano e restiamo a disposizione.', cols: 1, form: true,
-    options: [],
-  },
 ]
 
-const PLAN_KEYS = ['ESSENTIAL', 'SMART', 'PROFESSIONAL', 'BUSINESS', 'PREMIUM', 'CORPORATE', 'ENTERPRISE']
+const TOTAL_STEPS = STEPS.length
+
+const PLAN_KEYS = ['BASIC', 'ENTRY_LEVEL', 'PRO', 'SILVER', 'GOLD', 'PLATINUM', 'DIAMOND']
+const PLAN_LABELS = ['Basic', 'Entry Level', 'Pro', 'Silver', 'Gold', 'Platinum', 'Diamond']
+const PLAN_SUBTITLES = ['Tax Management & Compliance', 'Tax & VAT Management', 'Full Accounting & Tax', 'Advanced Accounting & Advisory', 'Premium Accounting & CFO Support', 'Corporate Full Service', 'Custom Solution']
 const PLAN_PRICES = ['500', '800', '1.200', '1.500', '1.800', '2.000', '']
 const PLAN_FEATURES: Record<string, string[]> = {
-  ESSENTIAL: ['Contabilità fino a 25 transazioni/mese', 'Corporate Tax Return annuale', 'Comunicazione 100% in italiano', 'Report trimestrale'],
-  SMART: ['Contabilità fino a 50 transazioni/mese', 'Corporate Tax Return annuale', 'Dichiarazione VAT inclusa', 'Consulenza Italia-UAE'],
-  PROFESSIONAL: ['Contabilità fino a 100 transazioni/mese', 'Corporate Tax Return annuale', 'Account manager dedicato', 'Reportistica mensile'],
-  BUSINESS: ['Contabilità fino a 150 transazioni/mese', 'Corporate Tax Return annuale', 'Gestione visti inclusa', 'Account manager dedicato'],
-  PREMIUM: ['Contabilità fino a 300 transazioni/mese', 'Corporate Tax + VAT Return', 'Gestione visti inclusa', 'Budget & forecasting trimestrale'],
-  CORPORATE: ['Contabilità fino a 500 transazioni/mese', 'Corporate Tax + VAT Return', 'Gestione visti inclusa', 'Consulenza Italia-UAE prioritaria'],
-  ENTERPRISE: ['Contabilità oltre 500 transazioni', 'Corporate Tax + VAT Return', 'CFO on-demand incluso', 'Supporto dedicato H24'],
+  BASIC: ['Contabilità fino a 25 transazioni/mese', 'Corporate Tax Return annuale', 'Comunicazione 100% in italiano', 'Report trimestrale'],
+  ENTRY_LEVEL: ['Contabilità fino a 50 transazioni/mese', 'Corporate Tax Return annuale', 'Dichiarazione VAT inclusa', 'Consulenza Italia-UAE'],
+  PRO: ['Contabilità fino a 100 transazioni/mese', 'Corporate Tax Return annuale', 'Account manager dedicato', 'Reportistica mensile'],
+  SILVER: ['Contabilità fino a 150 transazioni/mese', 'Corporate Tax Return annuale', 'Gestione visti inclusa', 'Account manager dedicato'],
+  GOLD: ['Contabilità fino a 300 transazioni/mese', 'Corporate Tax + VAT Return', 'Gestione visti inclusa', 'Budget & forecasting trimestrale'],
+  PLATINUM: ['Contabilità fino a 500 transazioni/mese', 'Corporate Tax + VAT Return', 'Gestione visti inclusa', 'Consulenza Italia-UAE prioritaria'],
+  DIAMOND: ['Contabilità oltre 500 transazioni', 'Corporate Tax + VAT Return', 'CFO on-demand incluso', 'Supporto dedicato H24'],
 }
 
-export type PlanResult = { key: string; price: string; features: string[] }
+export type PlanResult = { key: string; label: string; subtitle: string; price: string; features: string[] }
 
 function getPlan(step3ans: number): PlanResult {
   const idx = Math.min(step3ans, PLAN_KEYS.length - 1)
   const key = PLAN_KEYS[idx]
-  return { key, price: PLAN_PRICES[idx], features: PLAN_FEATURES[key] }
+  return { key, label: PLAN_LABELS[idx], subtitle: PLAN_SUBTITLES[idx], price: PLAN_PRICES[idx], features: PLAN_FEATURES[key] }
 }
 
 function Icon({ name }: { name: string }) {
@@ -128,17 +128,16 @@ export default function ConfiguratorWizard() {
   const [answers, setAnswers] = useState<Record<number, number>>({})
   const [tipOpen, setTipOpen] = useState(false)
   const [done, setDone] = useState(false)
-  const [contact, setContact] = useState({ name: '', email: '', whatsapp: '' })
 
   const sdef = STEPS[step - 1]
-  const pct = step * 10
+  const pct = Math.round((step / TOTAL_STEPS) * 100)
   const ans = answers[step]
-  const canNext = sdef.form ? (contact.name.length > 0 && contact.email.length > 0) : (ans !== undefined)
+  const canNext = ans !== undefined
 
   function pick(i: number) { setAnswers(prev => ({ ...prev, [step]: i })) }
 
   function goNext() {
-    if (step >= 10) { setDone(true); return }
+    if (step >= TOTAL_STEPS) { setDone(true); return }
     setStep(s => s + 1)
     setTipOpen(false)
     if (typeof window !== 'undefined') window.scrollTo(0, 0)
@@ -152,11 +151,11 @@ export default function ConfiguratorWizard() {
   }
 
   const plan = getPlan(answers[3] ?? 2)
-  const isEnterprise = answers[3] === 6
+  const isDiamond = answers[3] === 6
   const hasItaResidency = answers[7] === 0 || answers[7] === 2
 
   if (done) {
-    return <ResultCard plan={plan} isEnterprise={isEnterprise} hasItaResidency={hasItaResidency} contact={contact} onBack={() => setDone(false)} />
+    return <ResultCard plan={plan} isDiamond={isDiamond} hasItaResidency={hasItaResidency} onBack={() => setDone(false)} />
   }
 
   const gridCols = sdef.cols === 1 ? '1fr' : sdef.cols === 3 ? 'repeat(auto-fit,minmax(160px,1fr))' : 'repeat(auto-fit,minmax(260px,1fr))'
@@ -175,7 +174,7 @@ export default function ConfiguratorWizard() {
         </div>
         <div style={{ maxWidth: 760, margin: '0 auto', padding: '0 clamp(18px,4vw,32px) 16px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12.5, fontWeight: 600, color: '#8a93a0', marginBottom: 8 }}>
-            <span>Passo {step} di 10</span><span>{pct}% completato</span>
+            <span>Passo {step} di {TOTAL_STEPS}</span><span>{pct}% completato</span>
           </div>
           <div style={{ height: 6, background: '#e6dfd2', borderRadius: 999, overflow: 'hidden' }}>
             <div style={{ height: '100%', background: '#1d2b3a', borderRadius: 999, transition: 'width .35s ease', width: `${pct}%` }} />
@@ -201,32 +200,30 @@ export default function ConfiguratorWizard() {
             </div>
           )}
 
-          {!sdef.form && (
-            <div style={{ display: 'grid', gap: 14, gridTemplateColumns: gridCols }}>
-              {sdef.options.map((o, i) => {
-                const sel = ans === i
-                return (
-                  <button key={i} onClick={() => pick(i)} style={{ display: 'flex', gap: 14, alignItems: 'center', textAlign: 'left', padding: '18px', border: sel ? '1.5px solid #1d2b3a' : '1.5px solid #e6dfd2', borderRadius: 14, background: sel ? '#fbfaf7' : '#fff', cursor: 'pointer', width: '100%', boxShadow: sel ? '0 0 0 3px rgba(29,43,58,.10)' : 'none', transition: 'all .15s ease', font: 'inherit' }}>
-                    {o.icon && (
-                      <span style={{ flexShrink: 0, width: 44, height: 44, borderRadius: 11, background: '#f3eee4', border: '1px solid #e8e0d1', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#1d2b3a' }}>
-                        <Icon name={o.icon} />
-                      </span>
-                    )}
-                    <span style={{ flex: 1, minWidth: 0 }}>
-                      <span style={{ display: 'block', fontSize: 16, fontWeight: 700, color: '#1d2b3a' }}>{o.title}</span>
-                      {o.desc && <span style={{ display: 'block', fontSize: 13.5, color: '#7b838e', marginTop: 3, lineHeight: 1.4 }}>{o.desc}</span>}
+          <div style={{ display: 'grid', gap: 14, gridTemplateColumns: gridCols }}>
+            {sdef.options.map((o, i) => {
+              const sel = ans === i
+              return (
+                <button key={i} onClick={() => pick(i)} style={{ display: 'flex', gap: 14, alignItems: 'center', textAlign: 'left', padding: '18px', border: sel ? '1.5px solid #1d2b3a' : '1.5px solid #e6dfd2', borderRadius: 14, background: sel ? '#fbfaf7' : '#fff', cursor: 'pointer', width: '100%', boxShadow: sel ? '0 0 0 3px rgba(29,43,58,.10)' : 'none', transition: 'all .15s ease', font: 'inherit' }}>
+                  {o.icon && (
+                    <span style={{ flexShrink: 0, width: 44, height: 44, borderRadius: 11, background: '#f3eee4', border: '1px solid #e8e0d1', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#1d2b3a' }}>
+                      <Icon name={o.icon} />
                     </span>
-                    {o.price && (
-                      <span style={{ flexShrink: 0, background: '#efe7d8', color: '#7a6234', fontSize: 13, fontWeight: 700, padding: '5px 11px', borderRadius: 999, whiteSpace: 'nowrap' as const }}>{o.price}</span>
-                    )}
-                    {sel && (
-                      <span style={{ flexShrink: 0, width: 22, height: 22, borderRadius: '50%', background: '#1d2b3a', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700 }}>✓</span>
-                    )}
-                  </button>
-                )
-              })}
-            </div>
-          )}
+                  )}
+                  <span style={{ flex: 1, minWidth: 0 }}>
+                    <span style={{ display: 'block', fontSize: 16, fontWeight: 700, color: '#1d2b3a' }}>{o.title}</span>
+                    {o.desc && <span style={{ display: 'block', fontSize: 13.5, color: '#7b838e', marginTop: 3, lineHeight: 1.4 }}>{o.desc}</span>}
+                  </span>
+                  {o.price && (
+                    <span style={{ flexShrink: 0, background: '#efe7d8', color: '#7a6234', fontSize: 13, fontWeight: 700, padding: '5px 11px', borderRadius: 999, whiteSpace: 'nowrap' as const }}>{o.price}</span>
+                  )}
+                  {sel && (
+                    <span style={{ flexShrink: 0, width: 22, height: 22, borderRadius: '50%', background: '#1d2b3a', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700 }}>✓</span>
+                  )}
+                </button>
+              )
+            })}
+          </div>
 
           {sdef.alert && (
             <div style={{ display: 'flex', gap: 14, background: '#fdf2d6', border: '1px solid #ecc95f', borderRadius: 14, padding: '18px 20px', marginTop: 22 }}>
@@ -238,27 +235,6 @@ export default function ConfiguratorWizard() {
             </div>
           )}
 
-          {sdef.form && (
-            <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 16, maxWidth: 480 }}>
-              {[
-                { label: 'Nome e cognome', key: 'name', placeholder: 'Mario Rossi', type: 'text' },
-                { label: 'Email', key: 'email', placeholder: 'mario@email.com', type: 'email' },
-                { label: 'WhatsApp', key: 'whatsapp', placeholder: '+39 ...', type: 'tel' },
-              ].map(field => (
-                <label key={field.key} style={{ display: 'block' }}>
-                  <span style={{ display: 'block', fontSize: 13.5, fontWeight: 600, color: '#3a4550', marginBottom: 7 }}>{field.label}</span>
-                  <input
-                    type={field.type}
-                    placeholder={field.placeholder}
-                    value={contact[field.key as keyof typeof contact]}
-                    onChange={e => setContact(prev => ({ ...prev, [field.key]: e.target.value }))}
-                    style={{ width: '100%', padding: '14px 16px', border: '1.5px solid #e6dfd2', borderRadius: 11, fontSize: 15, fontFamily: 'inherit', background: '#fff', color: '#1d2b3a', outline: 'none', boxSizing: 'border-box' as const }}
-                  />
-                </label>
-              ))}
-            </div>
-          )}
-
           <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginTop: 'clamp(28px,4vw,40px)' }}>
             {step > 1 && (
               <button onClick={goBack} style={{ background: 'none', cursor: 'pointer', fontSize: 15, fontWeight: 600, padding: '14px 18px', borderRadius: 11, border: '1.5px solid #d8cfbf', color: '#5b6570', font: 'inherit' }}>
@@ -266,7 +242,7 @@ export default function ConfiguratorWizard() {
               </button>
             )}
             <button onClick={goNext} disabled={!canNext} style={{ marginLeft: 'auto', background: '#1d2b3a', color: '#fff', border: 'none', cursor: canNext ? 'pointer' : 'not-allowed', fontSize: 16, fontWeight: 600, padding: '15px 28px', borderRadius: 11, boxShadow: '0 4px 14px rgba(29,43,58,.2)', font: 'inherit', opacity: canNext ? 1 : 0.45 }}>
-              {step >= 10 ? 'Vedi il tuo piano →' : 'Avanti →'}
+              {step >= TOTAL_STEPS ? 'Vedi il tuo piano →' : 'Avanti →'}
             </button>
           </div>
         </div>

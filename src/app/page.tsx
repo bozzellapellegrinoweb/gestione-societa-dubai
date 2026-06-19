@@ -16,22 +16,22 @@ const comeFunziona = [
   { n: '3', title: 'Affidati a noi', desc: 'Paga online e siamo operativi in 48 ore.' },
 ]
 
-type Plan = { name: string; price: string; features: string[]; cta: string; popular: boolean }
+type Plan = { name: string; subtitle: string; price: string; features: string[]; cta: string; popular: boolean }
 const homePlans: Plan[] = [
   {
-    popular: false, name: 'Essential', price: '500',
+    popular: false, name: 'Basic', subtitle: 'Tax Management & Compliance', price: '500',
     features: ['Contabilità fino a 25 transazioni/mese', 'Corporate Tax Return annuale', 'Comunicazione in italiano', 'Report trimestrale'],
-    cta: 'Scegli Essential',
+    cta: 'Scegli Basic',
   },
   {
-    popular: true, name: 'Professional', price: '1.200',
+    popular: true, name: 'Pro', subtitle: 'Full Accounting & Tax', price: '1.200',
     features: ['Contabilità fino a 100 transazioni/mese', 'Corporate Tax Return annuale', 'Account manager dedicato', 'Reportistica mensile'],
-    cta: 'Scegli Professional',
+    cta: 'Scegli Pro',
   },
   {
-    popular: false, name: 'Corporate', price: '2.000',
+    popular: false, name: 'Platinum', subtitle: 'Corporate Full Service', price: '2.000',
     features: ['Contabilità fino a 500 transazioni/mese', 'Corporate Tax + VAT Return', 'Gestione visti inclusa', 'Consulenza Italia-UAE prioritaria'],
-    cta: 'Scegli Corporate',
+    cta: 'Scegli Platinum',
   },
 ]
 
@@ -86,7 +86,7 @@ export default function HomePage() {
               <div style={{ background: '#fff', border: '1px solid #e6dfd2', borderRadius: 20, padding: 26, boxShadow: '0 18px 40px -22px rgba(29,43,58,.35)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 18 }}>
                   <span style={{ fontSize: 13, fontWeight: 600, color: '#8a93a0', textTransform: 'uppercase', letterSpacing: '.08em' }}>A partire da</span>
-                  <span style={{ background: '#efe7d8', color: '#7a6234', fontSize: 12, fontWeight: 700, padding: '4px 10px', borderRadius: 999 }}>PIANO ESSENTIAL</span>
+                  <span style={{ background: '#efe7d8', color: '#7a6234', fontSize: 12, fontWeight: 700, padding: '4px 10px', borderRadius: 999 }}>PIANO BASIC</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 4 }}>
                   <span style={{ fontSize: 44, fontWeight: 800, letterSpacing: '-0.03em' }}>500</span>
@@ -101,7 +101,7 @@ export default function HomePage() {
                   ))}
                 </div>
                 <div style={{ fontSize: 12.5, lineHeight: 1.5, color: '#8a93a0', marginTop: 16, paddingTop: 14, borderTop: '1px dashed #e6dfd2' }}>
-                  Valido sotto la soglia VAT di 375.000 AED. Oltre la soglia si parte da <strong style={{ color: '#3a4550' }}>800 AED/mese</strong> con dichiarazione VAT inclusa.
+                  Valido sotto la soglia VAT di 375.000 AED. Oltre la soglia si parte dal piano <strong style={{ color: '#3a4550' }}>Entry Level a 800 AED/mese</strong> con dichiarazione VAT inclusa.
                 </div>
                 <Link href="/configuratore" style={{ display: 'block', width: '100%', marginTop: 18, background: '#efe7d8', color: '#1d2b3a', fontSize: 15, fontWeight: 600, padding: 13, borderRadius: 10, textDecoration: 'none', textAlign: 'center' }}>
                   Calcola il tuo piano →
@@ -157,7 +157,8 @@ export default function HomePage() {
                 {p.popular && (
                   <span style={{ position: 'absolute', top: -12, left: 26, background: '#a9885e', color: '#fff', fontSize: 12, fontWeight: 700, padding: '5px 13px', borderRadius: 999, letterSpacing: '.02em' }}>Più scelto</span>
                 )}
-                <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', color: p.popular ? '#c2a677' : '#a9885e', marginBottom: 14 }}>{p.name}</div>
+                <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', color: p.popular ? '#c2a677' : '#a9885e', marginBottom: 4 }}>{p.name}</div>
+                <div style={{ fontSize: 12, color: p.popular ? '#9aa6b3' : '#8a93a0', marginBottom: 14 }}>{p.subtitle}</div>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: 7 }}>
                   <span style={{ fontSize: 40, fontWeight: 800, letterSpacing: '-0.03em', color: p.popular ? '#fff' : '#1d2b3a' }}>{p.price}</span>
                   <span style={{ fontSize: 15, fontWeight: 600, color: p.popular ? '#9aa6b3' : '#8a93a0' }}>AED/mese</span>
