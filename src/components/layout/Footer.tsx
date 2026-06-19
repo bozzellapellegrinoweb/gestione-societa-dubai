@@ -20,8 +20,8 @@ export default function Footer() {
               <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 11, fontSize: 14 }}>
                 <Link href="/pacchetti" style={{ color: '#aab4c0', textDecoration: 'none' }}>Pacchetti</Link>
                 <Link href="/configuratore" style={{ color: '#aab4c0', textDecoration: 'none' }}>Configuratore</Link>
-                <Link href="/pacchetti" style={{ color: '#aab4c0', textDecoration: 'none' }}>Corporate Tax UAE</Link>
-                <Link href="/pacchetti" style={{ color: '#aab4c0', textDecoration: 'none' }}>VAT &amp; Compliance</Link>
+                <Link href="/pacchetti#corporate-tax" style={{ color: '#aab4c0', textDecoration: 'none' }}>Corporate Tax UAE</Link>
+                <Link href="/pacchetti#vat" style={{ color: '#aab4c0', textDecoration: 'none' }}>VAT &amp; Compliance</Link>
               </div>
             </div>
             <div>
@@ -30,7 +30,7 @@ export default function Footer() {
                 <Link href="/chi-siamo" style={{ color: '#aab4c0', textDecoration: 'none' }}>Chi siamo</Link>
                 <Link href="/chi-siamo" style={{ color: '#aab4c0', textDecoration: 'none' }}>Contatti</Link>
                 <Link href="https://wa.me/971585025012" target="_blank" style={{ color: '#aab4c0', textDecoration: 'none' }}>WhatsApp</Link>
-                <Link href="/chi-siamo" style={{ color: '#aab4c0', textDecoration: 'none' }}>Blog</Link>
+                <Link href="https://www.indubai.it/blog" target="_blank" style={{ color: '#aab4c0', textDecoration: 'none' }}>Blog</Link>
               </div>
             </div>
           </div>

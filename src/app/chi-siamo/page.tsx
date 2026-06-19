@@ -6,7 +6,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Chi siamo — PB TAX International · societa-dubai.it',
-  description: 'PB TAX International Tax Consultants FZCO. Avv. Pellegrino Bozzella. 450+ aziende italiane gestite a Dubai dal 2019. Platinum Tower, JLT, Dubai.',
+  description: 'PB TAX International Tax Consultants FZCO. Avv. Pellegrino Bozzella, fondatore di InDubai.it. 450+ aziende italiane gestite a Dubai dal 2019.',
 }
 
 export default function ChiSiamoPage() {
@@ -22,14 +22,13 @@ export default function ChiSiamoPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           <div className="p-8 rounded-2xl" style={{ background: 'rgba(201,168,76,0.06)', border: '1px solid rgba(201,168,76,0.2)' }}>
-            <div className="text-4xl mb-4">👨‍💼</div>
             <h2 className="text-2xl font-bold text-cream mb-2">Avv. Pellegrino Bozzella</h2>
-            <div className="text-gold text-sm font-semibold mb-4">Fondatore & CEO · PB TAX International</div>
+            <div className="text-gold text-sm font-semibold mb-4">Fondatore & CEO · PB TAX International · InDubai.it</div>
             <p className="text-gray-soft leading-relaxed mb-4">
               Avvocato italiano con specializzazione in diritto societario UAE e fiscalità internazionale. Residente a Dubai dal 2019, ha fondato PB TAX International per rispondere a una necessità concreta: gli imprenditori italiani a Dubai hanno bisogno di un professionista che capisca entrambi i sistemi fiscali.
             </p>
             <p className="text-gray-soft leading-relaxed">
-              Titolare della DMCC License No. DMCC-996944, opera dalla Platinum Tower al JLT (Jumeirah Lake Towers), il cuore business di Dubai.
+              Opera dalla Platinum Tower al JLT (Jumeirah Lake Towers), il cuore business di Dubai. Fondatore anche di <a href="https://www.indubai.it" target="_blank" rel="noopener noreferrer" style={{ color: '#a9885e', textDecoration: 'none', fontWeight: 600 }}>InDubai.it</a>, la principale risorsa italiana per chi vuole fare impresa negli Emirati.
             </p>
           </div>
 
@@ -51,15 +50,24 @@ export default function ChiSiamoPage() {
           </div>
         </div>
 
+        {/* Lo studio madre */}
+        <div className="mb-16 p-8 rounded-2xl" style={{ background: 'rgba(169,136,94,0.06)', border: '1px solid rgba(169,136,94,0.18)' }}>
+          <h2 className="text-2xl font-bold text-cream mb-3">PB TAX — lo studio madre</h2>
+          <p className="text-gray-soft leading-relaxed mb-4">
+            PB TAX International Tax Consultants FZCO è lo studio professionale fondato da Avv. Pellegrino Bozzella a Dubai. Sotto questo studio nascono tutti i progetti del gruppo: <strong style={{ color: '#c8c0b4' }}>societa-dubai.it</strong> per la gestione contabile digitale delle società UAE, e <strong style={{ color: '#c8c0b4' }}>InDubai.it</strong> come hub informativo per gli imprenditori italiani negli Emirati.
+          </p>
+          <p className="text-gray-soft leading-relaxed">
+            Ogni servizio nasce dall&apos;esperienza diretta sul campo: anni di lavoro fianco a fianco con consulenti fiscali e imprenditori italiani che hanno scelto Dubai come base operativa.
+          </p>
+        </div>
+
         <div className="mb-16 p-8 rounded-2xl" style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(201,168,76,0.1)' }}>
           <h2 className="text-2xl font-bold text-cream mb-6">Dati aziendali</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
             {[
               ['Ragione sociale', 'PB TAX International Tax Consultants FZCO'],
-              ['DMCC License', 'DMCC-996944'],
               ['TRN (VAT)', '105333005400001'],
               ['Sede operativa', 'Platinum Tower Unit 2503, JLT, Dubai, UAE'],
-              ['WhatsApp', '+971 585025012'],
               ['Sito principale', 'InDubai.it'],
             ].map(([k, v]) => (
               <div key={k}>
@@ -78,7 +86,7 @@ export default function ChiSiamoPage() {
               Vai al configuratore →
             </Link>
             <Link href="https://wa.me/971585025012" target="_blank" className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-cream border transition-all hover:bg-white/5" style={{ borderColor: 'rgba(201,168,76,0.3)' }}>
-              💬 WhatsApp diretto
+              Scrivici su WhatsApp
             </Link>
           </div>
         </div>

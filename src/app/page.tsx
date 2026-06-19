@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: 'Contabilità, Corporate Tax UAE, VAT e compliance per società Free Zone e Mainland negli Emirati. 100% in italiano. Powered by PB TAX International.',
 }
 
-const trustBadges = ['450+ società gestite', '5 anni a Dubai', 'Commercialisti italiani', 'Pagamento sicuro']
+const trustBadges = ['450+ società gestite', '5 anni a Dubai', 'Consulenti fiscali italiani', 'Pagamento sicuro']
 
 const comeFunziona = [
   { n: '1', title: 'Configura', desc: 'Rispondi a 10 domande sulla tua società. Bastano 3 minuti.' },

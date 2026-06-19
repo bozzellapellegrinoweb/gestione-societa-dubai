@@ -10,45 +10,45 @@ export default function PrivacyPage() {
       <Navbar />
       <main className="pt-28 pb-20 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto">
         <h1 className="text-3xl font-bold text-cream mb-2">Privacy Policy</h1>
-        <p className="text-gray-soft mb-8 text-sm">Ultimo aggiornamento: Giugno 2026</p>
+        <p className="text-gray-soft mb-8 text-sm">Last updated: June 2026</p>
         <div className="space-y-6 text-gray-soft text-sm leading-relaxed">
           <div>
-            <h2 className="text-lg font-semibold text-cream mb-2">1. Titolare del trattamento</h2>
-            <p>PB TAX International Tax Consultants FZCO — Platinum Tower Unit 2503, JLT, Dubai, UAE. Email: info@pbtax.ae · WhatsApp: +971 585025012</p>
+            <h2 className="text-lg font-semibold text-cream mb-2">1. Data Controller</h2>
+            <p>PB TAX International Tax Consultants FZCO — Platinum Tower Unit 2503, JLT, Dubai, UAE. Email: info@pbtax.ae</p>
           </div>
           <div>
-            <h2 className="text-lg font-semibold text-cream mb-2">2. Dati raccolti</h2>
-            <p>Raccogliamo dati forniti direttamente dall&apos;utente tramite il configuratore (nome, email, telefono, dati societari), documenti caricati durante l&apos;onboarding, e dati di navigazione anonimi per analytics. Non raccogliamo dati sensibili ai sensi del GDPR art. 9.</p>
+            <h2 className="text-lg font-semibold text-cream mb-2">2. Data Collected</h2>
+            <p>We collect data provided directly by the user through the configurator (name, email, phone, company details), documents uploaded during onboarding, and anonymous browsing data for analytics. We do not collect special category data within the meaning of GDPR Art. 9.</p>
           </div>
           <div>
-            <h2 className="text-lg font-semibold text-cream mb-2">3. Finalità del trattamento</h2>
+            <h2 className="text-lg font-semibold text-cream mb-2">3. Purposes of Processing</h2>
             <ul className="list-disc pl-5 space-y-1">
-              <li>Erogazione dei servizi contabili e fiscali richiesti</li>
-              <li>Gestione della relazione contrattuale</li>
-              <li>Comunicazioni commerciali (previo consenso esplicito)</li>
-              <li>Adempimento di obblighi di legge UAE e italiani</li>
-              <li>Analytics del sito per miglioramento del servizio</li>
+              <li>Provision of accounting and tax services requested</li>
+              <li>Management of the contractual relationship</li>
+              <li>Commercial communications (subject to explicit consent)</li>
+              <li>Compliance with UAE and Italian legal obligations</li>
+              <li>Website analytics to improve the service</li>
             </ul>
           </div>
           <div>
-            <h2 className="text-lg font-semibold text-cream mb-2">4. Base giuridica (GDPR)</h2>
-            <p>Esecuzione del contratto (art. 6.1.b), consenso (art. 6.1.a), legittimo interesse (art. 6.1.f), obbligo legale (art. 6.1.c).</p>
+            <h2 className="text-lg font-semibold text-cream mb-2">4. Legal Basis (GDPR)</h2>
+            <p>Performance of a contract (Art. 6.1.b), consent (Art. 6.1.a), legitimate interests (Art. 6.1.f), legal obligation (Art. 6.1.c).</p>
           </div>
           <div>
-            <h2 className="text-lg font-semibold text-cream mb-2">5. Conservazione dei dati</h2>
-            <p>I dati contrattuali sono conservati per 10 anni ai sensi della normativa UAE e italiana. I documenti caricati sono conservati per la durata del rapporto contrattuale + 7 anni. I dati di configuratori non convertiti sono conservati per 12 mesi.</p>
+            <h2 className="text-lg font-semibold text-cream mb-2">5. Data Retention</h2>
+            <p>Contractual data is retained for 10 years in accordance with UAE and Italian regulations. Uploaded documents are retained for the duration of the contractual relationship plus 7 years. Data from configurator sessions that did not result in a contract is retained for 12 months.</p>
           </div>
           <div>
-            <h2 className="text-lg font-semibold text-cream mb-2">6. Trasferimento dati extra-UE</h2>
-            <p>I dati sono elaborati su server Supabase (EU region) e possono essere trasferiti negli UAE per l&apos;erogazione dei servizi, nel rispetto delle garanzie previste dal GDPR e dalla UAE PDPL (Personal Data Protection Law).</p>
+            <h2 className="text-lg font-semibold text-cream mb-2">6. International Data Transfers</h2>
+            <p>Data is processed on Supabase servers (EU region) and may be transferred to the UAE for service delivery, in compliance with the safeguards provided by the GDPR and the UAE Personal Data Protection Law (PDPL).</p>
           </div>
           <div>
-            <h2 className="text-lg font-semibold text-cream mb-2">7. Diritti dell&apos;interessato</h2>
-            <p>Hai il diritto di accesso, rettifica, cancellazione, portabilità, limitazione del trattamento e opposizione. Per esercitare i tuoi diritti scrivi a: privacy@societa-dubai.it o tramite WhatsApp.</p>
+            <h2 className="text-lg font-semibold text-cream mb-2">7. Your Rights</h2>
+            <p>You have the right to access, rectify, erase, port, restrict processing of, and object to the processing of your personal data. To exercise your rights, contact us at: privacy@societa-dubai.it or via WhatsApp.</p>
           </div>
           <div>
-            <h2 className="text-lg font-semibold text-cream mb-2">8. Cookie</h2>
-            <p>Utilizziamo cookie tecnici necessari al funzionamento del sito e cookie analytics (Google Analytics 4) previo consenso. Non utilizziamo cookie di profilazione commerciale di terze parti.</p>
+            <h2 className="text-lg font-semibold text-cream mb-2">8. Cookies</h2>
+            <p>We use technically necessary cookies for the website to function and analytics cookies (Google Analytics 4) subject to your consent. We do not use third-party commercial profiling cookies.</p>
           </div>
         </div>
       </main>

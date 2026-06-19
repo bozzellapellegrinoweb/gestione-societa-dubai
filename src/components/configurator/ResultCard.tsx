@@ -141,9 +141,6 @@ export default function ResultCard({ plan, isEnterprise, hasItaResidency, contac
               Hai domande? Scrivici su WhatsApp
             </Link>
 
-            <p style={{ fontSize: 12.5, color: '#9a8a72', textAlign: 'center' as const, marginTop: 14, lineHeight: 1.5 }}>
-              I prezzi sono orientativi. Il preventivo definitivo sarà confermato da PB TAX.
-            </p>
           </div>
         </div>
 

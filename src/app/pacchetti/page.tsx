@@ -25,9 +25,9 @@ const tableRows: TableRow[] = [
 
 const addons = [
   { name: 'Bilancio annuale', desc: 'Redazione e deposito del bilancio annuale della società.', price: '2.500 AED', unit: 'una tantum / anno' },
-  { name: 'Gestione visti', desc: 'Pratica o rinnovo visto, gestita per te.', price: 'da 1.800 AED', unit: 'una tantum' },
-  { name: 'Report ESR', desc: 'Economic Substance Regulations, dove richiesto.', price: 'da 1.500 AED', unit: 'una tantum / anno' },
-  { name: 'Consulenza CFC / Quadro RW', desc: 'Supporto sulla compliance fiscale italiana.', price: 'da 900 AED', unit: 'una tantum' },
+  { name: 'Gestione visti', desc: 'Pratica o rinnovo visto, gestita per te.', price: 'Da definire', unit: 'su richiesta' },
+  { name: 'Report ESR', desc: 'Economic Substance Regulations, dove richiesto.', price: 'Da definire', unit: 'su richiesta' },
+  { name: 'Consulenza CFC / Quadro RW', desc: 'Supporto sulla compliance fiscale italiana.', price: 'Da definire', unit: 'su richiesta' },
 ]
 
 export default function PacchettiPage() {
