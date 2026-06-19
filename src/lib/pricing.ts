@@ -1,0 +1,98 @@
+export type PlanKey = 'ESSENTIAL' | 'SMART' | 'PROFESSIONAL' | 'BUSINESS' | 'PREMIUM' | 'CORPORATE' | 'ENTERPRISE'
+
+export interface Plan {
+  key: PlanKey
+  label: string
+  maxTransactions: number | null
+  priceAED: number | null
+  description: string
+  features: string[]
+}
+
+export const PLANS: Plan[] = [
+  {
+    key: 'ESSENTIAL',
+    label: 'Essential',
+    maxTransactions: 25,
+    priceAED: 500,
+    description: 'Ideale per freelance, holding o società dormiente',
+    features: ['Contabilità mensile (fino a 25 transazioni)', 'Corporate Tax Return annuale', 'Comunicazione 100% in italiano', 'Account manager dedicato', 'Reportistica mensile'],
+  },
+  {
+    key: 'SMART',
+    label: 'Smart',
+    maxTransactions: 50,
+    priceAED: 800,
+    description: 'Ideale per servizi e e-commerce piccolo',
+    features: ['Contabilità mensile (fino a 50 transazioni)', 'Corporate Tax Return annuale', 'Comunicazione 100% in italiano', 'Account manager dedicato', 'Reportistica mensile'],
+  },
+  {
+    key: 'PROFESSIONAL',
+    label: 'Professional',
+    maxTransactions: 100,
+    priceAED: 1200,
+    description: 'Standard per PMI operativa',
+    features: ['Contabilità mensile (fino a 100 transazioni)', 'Corporate Tax Return annuale', 'Comunicazione 100% in italiano', 'Account manager dedicato', 'Reportistica mensile', 'Verifica compliance annuale'],
+  },
+  {
+    key: 'BUSINESS',
+    label: 'Business',
+    maxTransactions: 150,
+    priceAED: 1500,
+    description: 'Trading attivo e più fornitori',
+    features: ['Contabilità mensile (fino a 150 transazioni)', 'Corporate Tax Return annuale', 'Comunicazione 100% in italiano', 'Account manager dedicato', 'Reportistica mensile', 'Verifica compliance annuale', 'Riconciliazione bancaria avanzata'],
+  },
+  {
+    key: 'PREMIUM',
+    label: 'Premium',
+    maxTransactions: 300,
+    priceAED: 1800,
+    description: 'Per operatività elevata',
+    features: ['Contabilità mensile (fino a 300 transazioni)', 'Corporate Tax Return annuale', 'Comunicazione 100% in italiano', 'Account manager dedicato', 'Reportistica mensile', 'Verifica compliance annuale', 'Riconciliazione bancaria avanzata', 'Budget & forecasting trimestrale'],
+  },
+  {
+    key: 'CORPORATE',
+    label: 'Corporate',
+    maxTransactions: 500,
+    priceAED: 2000,
+    description: 'Grandi volumi — checkout automatico',
+    features: ['Contabilità mensile (fino a 500 transazioni)', 'Corporate Tax Return annuale', 'Comunicazione 100% in italiano', 'Account manager dedicato', 'Reportistica mensile', 'Verifica compliance annuale', 'Riconciliazione bancaria avanzata', 'Budget & forecasting trimestrale', 'CFO on-demand (2h/mese)'],
+  },
+  {
+    key: 'ENTERPRISE',
+    label: 'Enterprise',
+    maxTransactions: null,
+    priceAED: null,
+    description: 'Piano su misura per volumi oltre 500 transazioni/mese',
+    features: ['Piano completamente personalizzato', 'Team dedicato', 'Reportistica avanzata', 'CFO on-demand', 'SLA garantito', 'Supporto prioritario'],
+  },
+]
+
+export interface Addon {
+  key: string
+  label: string
+  priceAED: number | null
+  priceLabel: string
+  oneTime: boolean
+}
+
+export const ADDONS: Addon[] = [
+  { key: 'vat_filing', label: 'VAT Filing annuale', priceAED: 2500, priceLabel: '2.500 AED/anno', oneTime: true },
+  { key: 'audit', label: 'Audit certificato con Auditor', priceAED: 5000, priceLabel: '5.000 AED', oneTime: true },
+  { key: 'trn', label: 'Abilitazione TRN (registrazione VAT)', priceAED: 2200, priceLabel: '2.200 AED', oneTime: true },
+  { key: 'aml', label: 'Compliance AML / Anti-riciclaggio', priceAED: null, priceLabel: '3.000–8.000 AED (preventivo)', oneTime: true },
+  { key: 'legal', label: 'Contratti commerciali e legali', priceAED: null, priceLabel: 'Su preventivo', oneTime: true },
+  { key: 'it_uae', label: 'Consulenza fiscale Italia-UAE coordinata', priceAED: null, priceLabel: 'Su preventivo', oneTime: true },
+  { key: 'visti', label: 'Gestione visti e PRO services', priceAED: null, priceLabel: 'Su preventivo', oneTime: true },
+  { key: 'conto', label: 'Apertura/assistenza conto corrente UAE', priceAED: null, priceLabel: 'Su preventivo', oneTime: true },
+]
+
+export function getPlanByTransactions(transactions: number): Plan {
+  if (transactions <= 25) return PLANS[0]
+  if (transactions <= 50) return PLANS[1]
+  if (transactions <= 100) return PLANS[2]
+  if (transactions <= 150) return PLANS[3]
+  if (transactions <= 300) return PLANS[4]
+  if (transactions <= 500) return PLANS[5]
+  return PLANS[6]
+}
