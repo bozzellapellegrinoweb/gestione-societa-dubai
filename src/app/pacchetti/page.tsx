@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: 'Confronta tutti i piani di gestione contabile per società a Dubai. Da 500 AED/mese. Free Zone, Mainland, Offshore.',
 }
 
-const planNames = ['ESSENTIAL', 'SMART', 'PROFESSIONAL', 'BUSINESS', 'PREMIUM', 'CORPORATE', 'ENTERPRISE']
+const planNames = ['BASIC', 'ENTRY LEVEL', 'PRO', 'SILVER', 'GOLD', 'PLATINUM', 'DIAMOND']
 const planPrices = ['500', '800', '1.200', '1.500', '1.800', '2.000', 'Su misura']
 const planUnits = ['AED/mese', 'AED/mese', 'AED/mese', 'AED/mese', 'AED/mese', 'AED/mese', '']
 
@@ -52,7 +52,7 @@ export default function PacchettiPage() {
                   <span style={{ fontSize: 13, fontWeight: 600, color: '#8a93a0' }}>Confronta i piani</span>
                 </th>
                 {planNames.map((name, i) => {
-                  const pop = name === 'PROFESSIONAL'
+                  const pop = name === 'PRO'
                   return (
                     <th key={name} style={{ padding: '20px 16px', verticalAlign: 'bottom', borderLeft: '1px solid #f0ebe0', background: pop ? '#faf6ee' : '#fff', minWidth: 138 }}>
                       {pop && (
@@ -85,8 +85,8 @@ export default function PacchettiPage() {
               <tr style={{ borderTop: '1px solid #f0ebe0' }}>
                 <td style={{ padding: '18px 20px', position: 'sticky', left: 0, background: '#fff', zIndex: 1 }} />
                 {planNames.map((name, i) => {
-                  const pop = name === 'PROFESSIONAL'
-                  const isEnt = name === 'ENTERPRISE'
+                  const pop = name === 'PRO'
+                  const isEnt = name === 'DIAMOND'
                   return (
                     <td key={name} style={{ padding: '18px 12px', textAlign: 'center', borderLeft: '1px solid #f0ebe0', background: pop ? '#faf6ee' : '#fff' }}>
                       <Link href="/configuratore" style={{ display: 'block', background: isEnt ? '#fff' : pop ? '#1d2b3a' : '#efe7d8', color: isEnt ? '#1d2b3a' : pop ? '#fff' : '#1d2b3a', border: isEnt ? '1.5px solid #d8cfbf' : 'none', fontSize: 13, fontWeight: 600, padding: '9px 14px', borderRadius: 9, textDecoration: 'none', textAlign: 'center' }}>
@@ -104,7 +104,7 @@ export default function PacchettiPage() {
         <div style={{ display: 'flex', gap: 12, background: '#fbf9f3', border: '1px solid #e3d6bd', borderRadius: 12, padding: '14px 18px', marginTop: 16 }}>
           <span style={{ flexShrink: 0, color: '#b8860b', marginTop: 1 }}>⚠</span>
           <p style={{ fontSize: 13.5, lineHeight: 1.55, color: '#7a6234', margin: 0 }}>
-            Il piano <strong>ESSENTIAL (500 AED)</strong> è valido solo sotto la soglia VAT di 375.000 AED. Superata la soglia, il piano parte da <strong>SMART (800 AED)</strong>, con dichiarazione VAT sempre inclusa.
+            Il piano <strong>BASIC (500 AED)</strong> è valido solo sotto la soglia VAT di 375.000 AED. Superata la soglia, il piano parte da <strong>ENTRY LEVEL (800 AED)</strong>, con dichiarazione VAT sempre inclusa.
           </p>
         </div>
 

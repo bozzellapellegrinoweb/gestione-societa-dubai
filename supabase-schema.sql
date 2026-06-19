@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS clients (
 CREATE TABLE IF NOT EXISTS contracts (
   id              uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   client_id       uuid REFERENCES clients(id),
-  plan            text NOT NULL, -- ESSENTIAL | SMART | PROFESSIONAL | BUSINESS | PREMIUM | CORPORATE | ENTERPRISE
+  plan            text NOT NULL, -- BASIC | ENTRY_LEVEL | PRO | SILVER | GOLD | PLATINUM | DIAMOND
   amount_aed      integer,
   addons          jsonb DEFAULT '[]',
   status          text DEFAULT 'pending', -- pending | active | paused | cancelled | onboarding_complete

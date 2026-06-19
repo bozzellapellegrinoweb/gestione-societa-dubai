@@ -33,7 +33,7 @@ export default function DashboardPage() {
         {/* Stato contratto */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           {[
-            { label: 'Piano attivo', value: 'Piano Professional', sub: '1.200 AED/mese' },
+            { label: 'Piano attivo', value: 'Piano Pro', sub: '1.200 AED/mese' },
             { label: 'Stato contratto', value: 'Attivo ✅', sub: 'Dal 01/06/2026' },
             { label: 'Prossimo rinnovo', value: '01/07/2026', sub: 'Pagamento automatico' },
           ].map(stat => (
