@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
 
     const mamoPayload = {
       title: `Piano ${plan.label} · ${plan.subtitle}`,
-      description: `societa-dubai.it — ${plan.description}. Contabilità società Dubai, ${plan.maxTransactions} transazioni/mese.`,
+      description: `PB TAX International — ${plan.description}. Contabilità società Dubai, ${plan.maxTransactions} transazioni/mese.`,
       capacity: 1,
       is_widget: false,
       enable_tabby: false,

@@ -4,7 +4,7 @@ import Footer from '@/components/layout/Footer'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'societa-dubai.it — Gestione contabile per società a Dubai in italiano',
+  title: 'PB TAX International — Gestione contabile per società a Dubai',
   description: 'Contabilità, Corporate Tax UAE, VAT e compliance per società Free Zone e Mainland negli Emirati. 100% in italiano. Powered by PB TAX International.',
 }
 

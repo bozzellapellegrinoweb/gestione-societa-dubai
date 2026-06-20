@@ -4,7 +4,7 @@ import Footer from '@/components/layout/Footer'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Pacchetti e Prezzi — Contabilità Dubai · societa-dubai.it',
+  title: 'Pacchetti e Prezzi — Contabilità Dubai · PB TAX International',
   description: 'Confronta tutti i piani di gestione contabile per società a Dubai. Da 500 AED/mese. Free Zone, Mainland, Offshore.',
 }
 

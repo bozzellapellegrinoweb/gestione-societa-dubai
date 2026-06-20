@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Configuratore — Trova il tuo piano · societa-dubai.it',
+  title: 'Configuratore — Trova il tuo piano · PB TAX International',
   description: 'Rispondi a 9 domande sulla tua società a Dubai e scopri il piano giusto per te in 3 minuti.',
 }
 

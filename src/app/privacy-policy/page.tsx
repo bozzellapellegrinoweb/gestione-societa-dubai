@@ -2,7 +2,7 @@ import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import type { Metadata } from 'next'
 
-export const metadata: Metadata = { title: 'Privacy Policy · societa-dubai.it' }
+export const metadata: Metadata = { title: 'Privacy Policy · PB TAX International' }
 
 const sections = [
   { title: '1. Data Controller', body: 'PB TAX International Tax Consultants FZCO — Platinum Tower Unit 2503, JLT, Dubai, UAE. Email: info@pbtax.ae' },
@@ -11,7 +11,7 @@ const sections = [
   { title: '4. Legal Basis (GDPR)', body: 'Performance of a contract (Art. 6.1.b), consent (Art. 6.1.a), legitimate interests (Art. 6.1.f), legal obligation (Art. 6.1.c).' },
   { title: '5. Data Retention', body: 'Contractual data is retained for 10 years in accordance with UAE and Italian regulations. Uploaded documents are retained for the duration of the contractual relationship plus 7 years. Data from configurator sessions that did not result in a contract is retained for 12 months.' },
   { title: '6. International Data Transfers', body: 'Data is processed on Supabase servers (EU region) and may be transferred to the UAE for service delivery, in compliance with the safeguards provided by the GDPR and the UAE Personal Data Protection Law (PDPL).' },
-  { title: '7. Your Rights', body: 'You have the right to access, rectify, erase, port, restrict processing of, and object to the processing of your personal data. To exercise your rights, contact us at: privacy@societa-dubai.it or via WhatsApp.' },
+  { title: '7. Your Rights', body: 'You have the right to access, rectify, erase, port, restrict processing of, and object to the processing of your personal data. To exercise your rights, contact us at: privacy@pbtax.ae or via WhatsApp.' },
   { title: '8. Cookies', body: 'We use technically necessary cookies for the website to function and analytics cookies (Google Analytics 4) subject to your consent. We do not use third-party commercial profiling cookies.' },
 ]
 
