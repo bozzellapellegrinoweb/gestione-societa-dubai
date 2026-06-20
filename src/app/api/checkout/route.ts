@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
 
     const mamoPayload: Record<string, unknown> = {
       title: `Piano ${plan.label} · ${plan.subtitle}`,
-      description: `PB TAX International — ${plan.description}. Contabilità società Dubai, ${plan.maxTransactions} transazioni/mese.`,
+      description: `${plan.description} — ${plan.maxTransactions} tx/mese`.substring(0, 75),
       active: true,
       enable_tabby: false,
       enable_message: false,
