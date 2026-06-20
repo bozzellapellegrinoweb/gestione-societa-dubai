@@ -62,6 +62,14 @@ export async function GET() {
       },
       body: JSON.stringify({
         url: `${siteUrl}/api/webhooks/mamopay`,
+        enabled_events: [
+          'charge.succeeded',
+          'charge.failed',
+          'charge.refunded',
+          'subscription.succeeded',
+          'subscription.failed',
+        ],
+        auth_header: process.env.MAMOPAY_WEBHOOK_SECRET || undefined,
       }),
       signal: AbortSignal.timeout(15000),
     })
