@@ -3,7 +3,7 @@ import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 
-export const metadata: Metadata = { title: 'Area Cliente · societa-dubai.it' }
+export const metadata: Metadata = { title: 'Area Cliente · PB TAX International' }
 
 export default function DashboardPage() {
   return (

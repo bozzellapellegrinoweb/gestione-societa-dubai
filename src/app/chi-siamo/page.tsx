@@ -4,7 +4,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Chi siamo — PB TAX International · societa-dubai.it',
+  title: 'Chi siamo — PB TAX International',
   description: 'PB TAX International Tax Consultants FZCO. Avv. Pellegrino Bozzella, fondatore di InDubai.it. 450+ aziende italiane gestite a Dubai dal 2019.',
 }
 
@@ -38,7 +38,7 @@ export default function ChiSiamoPage() {
         {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: 'clamp(36px,5vw,56px)' }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#a9885e', textTransform: 'uppercase', letterSpacing: '.1em', marginBottom: 12 }}>PB TAX International</div>
-          <h1 style={{ fontSize: 'clamp(30px,4vw,46px)', fontWeight: 800, letterSpacing: '-0.025em', margin: '0 0 14px' }}>Il team dietro societa-dubai.it</h1>
+          <h1 style={{ fontSize: 'clamp(30px,4vw,46px)', fontWeight: 800, letterSpacing: '-0.025em', margin: '0 0 14px' }}>Il team di PB TAX International</h1>
           <p style={{ fontSize: 17, color: '#5b6570', margin: '0 auto', maxWidth: 600 }}>Dal 2019 al fianco degli imprenditori italiani negli Emirati Arabi Uniti. 450+ società gestite. Un team che parla la tua lingua.</p>
         </div>
 
@@ -90,7 +90,7 @@ export default function ChiSiamoPage() {
         <div style={{ background: '#faf8f3', border: '1px solid #e6dfd2', borderRadius: 20, padding: 'clamp(24px,3vw,36px)', marginBottom: 'clamp(36px,5vw,56px)' }}>
           <h2 style={{ fontSize: 'clamp(22px,2.6vw,28px)', fontWeight: 800, margin: '0 0 14px', color: '#1d2b3a' }}>PB TAX — lo studio madre</h2>
           <p style={{ fontSize: 15, lineHeight: 1.65, color: '#5b6570', margin: '0 0 16px' }}>
-            PB TAX International Tax Consultants FZCO è lo studio professionale fondato da Avv. Pellegrino Bozzella a Dubai. Sotto questo studio nascono tutti i progetti del gruppo: <strong style={{ color: '#1d2b3a' }}>societa-dubai.it</strong> per la gestione contabile digitale delle società UAE, e <strong style={{ color: '#1d2b3a' }}>InDubai.it</strong> come hub informativo per gli imprenditori italiani negli Emirati.
+            PB TAX International Tax Consultants FZCO è lo studio professionale fondato da Avv. Pellegrino Bozzella a Dubai. Sotto questo studio nascono tutti i progetti del gruppo: la gestione contabile digitale delle società UAE e <strong style={{ color: '#1d2b3a' }}>InDubai.it</strong> come hub informativo per gli imprenditori italiani negli Emirati.
           </p>
           <p style={{ fontSize: 15, lineHeight: 1.65, color: '#5b6570', margin: 0 }}>
             Ogni servizio nasce dall&apos;esperienza diretta sul campo: anni di lavoro fianco a fianco con consulenti fiscali e imprenditori italiani che hanno scelto Dubai come base operativa.

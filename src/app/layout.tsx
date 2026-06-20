@@ -5,14 +5,14 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
 export const metadata: Metadata = {
-  title: 'societa-dubai.it — Gestione contabile per società a Dubai in italiano',
-  description: 'Commercialista italiano a Dubai. Contabilità, Corporate Tax, VAT, gestione visti per società Free Zone e Mainland negli Emirati Arabi Uniti. Powered by PB TAX International.',
+  title: 'PB TAX International — Gestione contabile per società a Dubai',
+  description: 'Commercialista italiano a Dubai. Contabilità, Corporate Tax, VAT, gestione visti per società Free Zone e Mainland negli Emirati Arabi Uniti. PB TAX International Tax Consultants.',
   keywords: 'contabilità Dubai, commercialista italiano Dubai, gestione società Dubai, corporate tax Dubai, VAT Dubai italiano',
   openGraph: {
-    title: 'societa-dubai.it — La gestione della tua società a Dubai, finalmente in italiano',
-    description: 'Contabilità, Corporate Tax, VAT e compliance per società negli Emirati Arabi Uniti. Powered by PB TAX International.',
+    title: 'PB TAX International — La gestione della tua società a Dubai, team italiano',
+    description: 'Contabilità, Corporate Tax, VAT e compliance per società negli Emirati Arabi Uniti. PB TAX International Tax Consultants.',
     url: 'https://societa-dubai.it',
-    siteName: 'societa-dubai.it',
+    siteName: 'PB TAX International',
     locale: 'it_IT',
     type: 'website',
   },

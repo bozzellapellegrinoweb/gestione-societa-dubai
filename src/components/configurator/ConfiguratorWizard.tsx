@@ -180,8 +180,7 @@ export default function ConfiguratorWizard() {
       <div style={{ borderBottom: '1px solid #e6dfd2', background: 'rgba(245,242,236,0.9)', backdropFilter: 'blur(10px)', position: 'sticky', top: 0, zIndex: 10 }}>
         <div style={{ maxWidth: 760, margin: '0 auto', padding: '16px clamp(18px,4vw,32px)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16 }}>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, flexWrap: 'wrap' as const }}>
-            <span style={{ fontSize: 16, fontWeight: 700, color: '#1d2b3a' }}>societa-dubai.it</span>
-            <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: '.04em', color: '#9a8a72', textTransform: 'uppercase' as const }}>by PB TAX</span>
+            <span style={{ fontSize: 16, fontWeight: 700, color: '#1d2b3a' }}>PB TAX International</span>
           </div>
           <Link href="/" style={{ fontSize: 14, fontWeight: 500, color: '#8a93a0', textDecoration: 'none' }}>Esci ✕</Link>
         </div>
