@@ -67,7 +67,7 @@ export default function OnboardingPage() {
           <div style={{ fontSize: 56, marginBottom: 20 }}>✅</div>
           <h1 style={{ fontSize: 'clamp(26px,3.4vw,34px)', fontWeight: 800, margin: '0 0 12px', color: '#1d2b3a' }}>Documenti ricevuti!</h1>
           <p style={{ fontSize: 16, lineHeight: 1.6, color: '#5b6570', margin: '0 0 28px' }}>Grazie! Il team PB TAX ha ricevuto i tuoi documenti e li verificherà entro 48 ore lavorative. Riceverai una email di conferma e il tuo account manager ti contatterà direttamente.</p>
-          <Link href="https://wa.me/971585025012" target="_blank" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#fff', color: '#1d8a4e', border: '1.5px solid #d6ddd6', fontSize: 15, fontWeight: 600, padding: '14px 24px', borderRadius: 12, textDecoration: 'none' }}>
+          <Link href="https://wa.me/971585971575" target="_blank" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#fff', color: '#1d8a4e', border: '1.5px solid #d6ddd6', fontSize: 15, fontWeight: 600, padding: '14px 24px', borderRadius: 12, textDecoration: 'none' }}>
             Scrivici su WhatsApp per domande
           </Link>
         </main>

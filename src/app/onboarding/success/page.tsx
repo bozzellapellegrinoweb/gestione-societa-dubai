@@ -40,7 +40,7 @@ export default function SuccessPage() {
           <Link href="/" style={{ background: '#1d2b3a', color: '#fff', fontSize: 16, fontWeight: 600, padding: '14px 28px', borderRadius: 12, textDecoration: 'none' }}>
             Torna alla home
           </Link>
-          <Link href="https://wa.me/971585025012" target="_blank" style={{ background: '#fff', color: '#1d8a4e', border: '1.5px solid #d6ddd6', fontSize: 16, fontWeight: 600, padding: '14px 28px', borderRadius: 12, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+          <Link href="https://wa.me/971585971575" target="_blank" style={{ background: '#fff', color: '#1d8a4e', border: '1.5px solid #d6ddd6', fontSize: 16, fontWeight: 600, padding: '14px 28px', borderRadius: 12, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8 }}>
             Scrivici su WhatsApp
           </Link>
         </div>

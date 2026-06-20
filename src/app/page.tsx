@@ -20,17 +20,17 @@ type Plan = { name: string; subtitle: string; price: string; features: string[];
 const homePlans: Plan[] = [
   {
     popular: false, name: 'Basic', subtitle: 'Tax Management & Compliance', price: '500',
-    features: ['Contabilità fino a 25 transazioni/mese', 'Corporate Tax Return annuale', 'Comunicazione in italiano', 'Report trimestrale'],
+    features: ['Contabilità fino a 25 transazioni/mese', 'Corporate Tax Return annuale', 'Gruppo WhatsApp operativo', 'Aggiornamenti legali inclusi'],
     cta: 'Scegli Basic',
   },
   {
     popular: true, name: 'Pro', subtitle: 'Full Accounting & Tax', price: '1.200',
-    features: ['Contabilità fino a 100 transazioni/mese', 'Corporate Tax Return annuale', 'Account manager dedicato', 'Reportistica mensile'],
+    features: ['Contabilità fino a 100 transazioni/mese', 'Corporate Tax Return annuale', 'Account manager dedicato', 'Gruppo WhatsApp operativo', 'Aggiornamenti legali inclusi'],
     cta: 'Scegli Pro',
   },
   {
     popular: false, name: 'Platinum', subtitle: 'Corporate Full Service', price: '2.000',
-    features: ['Contabilità fino a 500 transazioni/mese', 'Corporate Tax + VAT Return', 'Gestione visti inclusa', 'Consulenza Italia-UAE prioritaria'],
+    features: ['Contabilità fino a 500 transazioni/mese', 'Corporate Tax + VAT Return', 'Gestione visti inclusa', 'Gruppo WhatsApp operativo', 'Aggiornamenti legali inclusi'],
     cta: 'Scegli Platinum',
   },
 ]
@@ -66,7 +66,7 @@ export default function HomePage() {
                 Un servizio PB TAX International · Dubai
               </div>
               <h1 style={{ fontSize: 'clamp(34px,5.2vw,56px)', lineHeight: 1.05, letterSpacing: '-0.03em', fontWeight: 800, margin: '0 0 20px' }}>
-                La gestione della tua società a Dubai, <span style={{ color: '#a9885e' }}>finalmente in italiano.</span>
+                La gestione della tua società a Dubai, <span style={{ color: '#a9885e' }}>affidata a chi ci vive ogni giorno.</span>
               </h1>
               <p style={{ fontSize: 'clamp(16px,1.6vw,19px)', lineHeight: 1.6, color: '#5b6570', margin: '0 0 30px', maxWidth: 560 }}>
                 Contabilità, Corporate Tax UAE, VAT e compliance — tutto gestito da professionisti italiani a Dubai. Scopri il piano giusto per te in 3 minuti.

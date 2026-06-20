@@ -29,7 +29,7 @@ export default function ResultCard({ plan, isDiamond, hasItaResidency, onBack }:
       } else if (data.error) {
         setError(data.error)
       } else {
-        window.open('https://wa.me/971585025012', '_blank')
+        window.open('https://wa.me/971585971575', '_blank')
       }
     } catch {
       setError('Errore di connessione. Riprova o contattaci su WhatsApp.')
@@ -72,7 +72,7 @@ export default function ResultCard({ plan, isDiamond, hasItaResidency, onBack }:
                 <div style={{ fontSize: 14, color: '#5b6570', lineHeight: 1.55, marginTop: 20, paddingTop: 18, borderTop: '1px dashed #e6dfd2' }}>
                   Il tuo account manager ti contatterà entro 24 ore per definire il piano e il prezzo.
                 </div>
-                <Link href="https://wa.me/971585025012" target="_blank" style={{ display: 'block', width: '100%', marginTop: 18, background: '#1d2b3a', color: '#fff', fontSize: 16, fontWeight: 700, padding: 16, borderRadius: 12, textDecoration: 'none', textAlign: 'center' as const, boxSizing: 'border-box' as const }}>
+                <Link href="https://wa.me/971585971575" target="_blank" style={{ display: 'block', width: '100%', marginTop: 18, background: '#1d2b3a', color: '#fff', fontSize: 16, fontWeight: 700, padding: 16, borderRadius: 12, textDecoration: 'none', textAlign: 'center' as const, boxSizing: 'border-box' as const }}>
                   Scrivici su WhatsApp →
                 </Link>
               </div>
@@ -159,7 +159,7 @@ export default function ResultCard({ plan, isDiamond, hasItaResidency, onBack }:
             </div>
 
             <Link
-              href="https://wa.me/971585025012"
+              href="https://wa.me/971585971575"
               target="_blank"
               style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 9, width: '100%', marginTop: 14, background: '#fff', color: '#1d8a4e', border: '1.5px solid #d6ddd6', fontSize: 15, fontWeight: 600, padding: 14, borderRadius: 13, textDecoration: 'none' }}
             >

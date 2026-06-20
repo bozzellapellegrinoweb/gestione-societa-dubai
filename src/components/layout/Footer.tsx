@@ -11,7 +11,7 @@ export default function Footer() {
               <span style={{ fontSize: 11.5, fontWeight: 600, letterSpacing: '.04em', color: '#a9885e', textTransform: 'uppercase' as const, display: 'block', marginTop: 4 }}>by PB TAX International</span>
             </div>
             <p style={{ fontSize: 14, lineHeight: 1.6, color: '#8a96a3', margin: 0 }}>
-              La gestione della tua società UAE, in italiano. Un servizio PB TAX International Tax Consultants — Dubai.
+              Un servizio PB TAX International Tax Consultants — Dubai. Fondato dall&apos;Avv. Pellegrino Bozzella, fondatore anche di <a href="https://www.indubai.it" target="_blank" rel="noopener noreferrer" style={{ color: '#a9885e', textDecoration: 'none' }}>InDubai.it</a>.
             </p>
           </div>
           <div style={{ display: 'flex', gap: 'clamp(28px,5vw,64px)', flexWrap: 'wrap' as const }}>
@@ -29,7 +29,7 @@ export default function Footer() {
               <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 11, fontSize: 14 }}>
                 <Link href="/chi-siamo" style={{ color: '#aab4c0', textDecoration: 'none' }}>Chi siamo</Link>
                 <Link href="/chi-siamo" style={{ color: '#aab4c0', textDecoration: 'none' }}>Contatti</Link>
-                <Link href="https://wa.me/971585025012" target="_blank" style={{ color: '#aab4c0', textDecoration: 'none' }}>WhatsApp</Link>
+                <Link href="https://wa.me/971585971575" target="_blank" style={{ color: '#aab4c0', textDecoration: 'none' }}>WhatsApp</Link>
                 <Link href="https://www.indubai.it/blog" target="_blank" style={{ color: '#aab4c0', textDecoration: 'none' }}>Blog</Link>
               </div>
             </div>

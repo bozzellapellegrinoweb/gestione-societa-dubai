@@ -18,7 +18,7 @@ export const PLANS: Plan[] = [
     maxTransactions: 25,
     priceAED: 500,
     description: 'Ideale per freelance, holding o società dormiente',
-    features: ['Contabilità mensile (fino a 25 transazioni)', 'Corporate Tax Return annuale', 'Comunicazione 100% in italiano', 'Account manager dedicato', 'Reportistica mensile'],
+    features: ['Contabilità mensile (fino a 25 transazioni)', 'Corporate Tax Return annuale', 'Comunicazione 100% in italiano', 'Account manager dedicato', 'Reportistica mensile', 'Gruppo WhatsApp operativo', 'Aggiornamenti legali inclusi'],
   },
   {
     key: 'ENTRY_LEVEL',
@@ -27,7 +27,7 @@ export const PLANS: Plan[] = [
     maxTransactions: 50,
     priceAED: 800,
     description: 'Ideale per servizi e e-commerce piccolo',
-    features: ['Contabilità mensile (fino a 50 transazioni)', 'Corporate Tax Return annuale', 'Dichiarazione VAT inclusa', 'Comunicazione 100% in italiano', 'Account manager dedicato', 'Reportistica mensile'],
+    features: ['Contabilità mensile (fino a 50 transazioni)', 'Corporate Tax Return annuale', 'Dichiarazione VAT inclusa', 'Comunicazione 100% in italiano', 'Account manager dedicato', 'Reportistica mensile', 'Gruppo WhatsApp operativo', 'Aggiornamenti legali inclusi'],
   },
   {
     key: 'PRO',
@@ -36,7 +36,7 @@ export const PLANS: Plan[] = [
     maxTransactions: 100,
     priceAED: 1200,
     description: 'Standard per PMI operativa',
-    features: ['Contabilità mensile (fino a 100 transazioni)', 'Corporate Tax Return annuale', 'Dichiarazione VAT inclusa', 'Comunicazione 100% in italiano', 'Account manager dedicato', 'Reportistica mensile', 'Verifica compliance annuale'],
+    features: ['Contabilità mensile (fino a 100 transazioni)', 'Corporate Tax Return annuale', 'Dichiarazione VAT inclusa', 'Comunicazione 100% in italiano', 'Account manager dedicato', 'Reportistica mensile', 'Verifica compliance annuale', 'Gruppo WhatsApp operativo', 'Aggiornamenti legali inclusi'],
   },
   {
     key: 'SILVER',
@@ -45,7 +45,7 @@ export const PLANS: Plan[] = [
     maxTransactions: 150,
     priceAED: 1500,
     description: 'Trading attivo e più fornitori',
-    features: ['Contabilità mensile (fino a 150 transazioni)', 'Corporate Tax Return annuale', 'Dichiarazione VAT inclusa', 'Comunicazione 100% in italiano', 'Account manager dedicato', 'Reportistica mensile', 'Verifica compliance annuale', 'Riconciliazione bancaria avanzata'],
+    features: ['Contabilità mensile (fino a 150 transazioni)', 'Corporate Tax Return annuale', 'Dichiarazione VAT inclusa', 'Comunicazione 100% in italiano', 'Account manager dedicato', 'Reportistica mensile', 'Verifica compliance annuale', 'Riconciliazione bancaria avanzata', 'Gruppo WhatsApp operativo', 'Aggiornamenti legali inclusi'],
   },
   {
     key: 'GOLD',
@@ -54,7 +54,7 @@ export const PLANS: Plan[] = [
     maxTransactions: 300,
     priceAED: 1800,
     description: 'Per operatività elevata',
-    features: ['Contabilità mensile (fino a 300 transazioni)', 'Corporate Tax Return annuale', 'Dichiarazione VAT inclusa', 'Comunicazione 100% in italiano', 'Account manager dedicato', 'Reportistica mensile', 'Verifica compliance annuale', 'Riconciliazione bancaria avanzata', 'Budget & forecasting trimestrale'],
+    features: ['Contabilità mensile (fino a 300 transazioni)', 'Corporate Tax Return annuale', 'Dichiarazione VAT inclusa', 'Comunicazione 100% in italiano', 'Account manager dedicato', 'Reportistica mensile', 'Verifica compliance annuale', 'Riconciliazione bancaria avanzata', 'Budget & forecasting trimestrale', 'Gruppo WhatsApp operativo', 'Aggiornamenti legali inclusi'],
   },
   {
     key: 'PLATINUM',
@@ -63,7 +63,7 @@ export const PLANS: Plan[] = [
     maxTransactions: 500,
     priceAED: 2000,
     description: 'Grandi volumi — servizio completo',
-    features: ['Contabilità mensile (fino a 500 transazioni)', 'Corporate Tax Return annuale', 'Dichiarazione VAT inclusa', 'Comunicazione 100% in italiano', 'Account manager dedicato', 'Reportistica mensile', 'Verifica compliance annuale', 'Riconciliazione bancaria avanzata', 'Budget & forecasting trimestrale', 'CFO on-demand (2h/mese)'],
+    features: ['Contabilità mensile (fino a 500 transazioni)', 'Corporate Tax Return annuale', 'Dichiarazione VAT inclusa', 'Comunicazione 100% in italiano', 'Account manager dedicato', 'Reportistica mensile', 'Verifica compliance annuale', 'Riconciliazione bancaria avanzata', 'Budget & forecasting trimestrale', 'CFO on-demand (2h/mese)', 'Gruppo WhatsApp operativo', 'Aggiornamenti legali inclusi'],
   },
   {
     key: 'DIAMOND',
@@ -72,7 +72,7 @@ export const PLANS: Plan[] = [
     maxTransactions: null,
     priceAED: null,
     description: 'Piano su misura per volumi oltre 500 transazioni/mese',
-    features: ['Piano completamente personalizzato', 'Team dedicato', 'Reportistica avanzata', 'CFO on-demand', 'SLA garantito', 'Supporto prioritario'],
+    features: ['Piano completamente personalizzato', 'Team dedicato', 'Reportistica avanzata', 'CFO on-demand', 'SLA garantito', 'Supporto prioritario', 'Gruppo WhatsApp operativo', 'Aggiornamenti legali inclusi'],
   },
 ]
 

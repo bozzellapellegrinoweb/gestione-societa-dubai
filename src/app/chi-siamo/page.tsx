@@ -118,7 +118,7 @@ export default function ChiSiamoPage() {
             <Link href="/configuratore" style={{ background: '#a9885e', color: '#fff', fontSize: 16, fontWeight: 700, padding: '14px 28px', borderRadius: 12, textDecoration: 'none' }}>
               Vai al configuratore →
             </Link>
-            <Link href="https://wa.me/971585025012" target="_blank" style={{ background: 'transparent', color: '#fff', fontSize: 16, fontWeight: 600, padding: '14px 28px', borderRadius: 12, textDecoration: 'none', border: '1.5px solid rgba(255,255,255,0.2)' }}>
+            <Link href="https://wa.me/971585971575" target="_blank" style={{ background: 'transparent', color: '#fff', fontSize: 16, fontWeight: 600, padding: '14px 28px', borderRadius: 12, textDecoration: 'none', border: '1.5px solid rgba(255,255,255,0.2)' }}>
               Scrivici su WhatsApp
             </Link>
           </div>
