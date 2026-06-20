@@ -17,7 +17,7 @@ export default function Navbar() {
           </span>
         </Link>
 
-        <nav style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginLeft: 'auto', alignItems: 'center' }} className="hidden md:flex">
+        <nav className="navbar-desktop" style={{ gap: 6, flexWrap: 'wrap', marginLeft: 'auto', alignItems: 'center' }}>
           <Link href="/" style={{ background: 'none', fontSize: 14.5, fontWeight: 500, color: '#4a5560', padding: '8px 12px', borderRadius: 8, textDecoration: 'none' }}>Home</Link>
           <Link href="/pacchetti" style={{ background: 'none', fontSize: 14.5, fontWeight: 500, color: '#4a5560', padding: '8px 12px', borderRadius: 8, textDecoration: 'none' }}>Pacchetti</Link>
           <Link href="/chi-siamo" style={{ background: 'none', fontSize: 14.5, fontWeight: 500, color: '#4a5560', padding: '8px 12px', borderRadius: 8, textDecoration: 'none' }}>Chi siamo</Link>
@@ -26,7 +26,7 @@ export default function Navbar() {
           </Link>
         </nav>
 
-        <button className="md:hidden" onClick={() => setOpen(!open)} style={{ marginLeft: 'auto', background: 'none', border: 'none', cursor: 'pointer', color: '#1d2b3a', flexShrink: 0, padding: 6 }}>
+        <button className="navbar-hamburger" onClick={() => setOpen(!open)} style={{ marginLeft: 'auto', background: 'none', border: 'none', cursor: 'pointer', color: '#1d2b3a', flexShrink: 0, padding: 6 }}>
           {open ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
