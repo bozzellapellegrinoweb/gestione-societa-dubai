@@ -8,12 +8,12 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header style={{ position: 'sticky', top: 0, zIndex: 50, background: 'rgba(236,230,219,0.92)', backdropFilter: 'blur(12px)', borderBottom: '1px solid #e6dfd2' }}>
-      <div style={{ maxWidth: 1180, margin: '0 auto', padding: '12px clamp(18px,4vw,40px)', display: 'flex', alignItems: 'center', gap: 18, flexWrap: 'wrap' }}>
-        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none' }}>
-          <Image src="/pbtax-logo.png" alt="PB TAX International" width={120} height={45} priority style={{ height: 40, width: 'auto' }} />
-          <span style={{ borderLeft: '1px solid #ddd4c4', paddingLeft: 12, display: 'flex', alignItems: 'center' }}>
-            <Image src="/indubai-logo.png" alt="InDubai.it" width={90} height={33} style={{ height: 28, width: 'auto' }} />
+    <header style={{ position: 'sticky', top: 0, zIndex: 50, background: 'rgba(236,234,231,0.92)', backdropFilter: 'blur(12px)', borderBottom: '1px solid #e6dfd2' }}>
+      <div style={{ maxWidth: 1180, margin: '0 auto', padding: '10px clamp(14px,4vw,40px)', display: 'flex', alignItems: 'center', gap: 10 }}>
+        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', minWidth: 0, flexShrink: 1 }}>
+          <Image src="/pbtax-logo.png" alt="PB TAX International" width={120} height={45} priority className="navbar-logo-pb" />
+          <span style={{ borderLeft: '1px solid #ddd4c4', paddingLeft: 10, display: 'flex', alignItems: 'center', flexShrink: 0 }}>
+            <Image src="/indubai-logo.png" alt="InDubai.it" width={90} height={33} className="navbar-logo-indubai" />
           </span>
         </Link>
 
@@ -26,13 +26,13 @@ export default function Navbar() {
           </Link>
         </nav>
 
-        <button className="md:hidden" onClick={() => setOpen(!open)} style={{ marginLeft: 'auto', background: 'none', border: 'none', cursor: 'pointer', color: '#1d2b3a' }}>
+        <button className="md:hidden" onClick={() => setOpen(!open)} style={{ marginLeft: 'auto', background: 'none', border: 'none', cursor: 'pointer', color: '#1d2b3a', flexShrink: 0, padding: 6 }}>
           {open ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
       {open && (
-        <div style={{ padding: '0 18px 16px', display: 'flex', flexDirection: 'column', gap: 4, background: 'rgba(245,242,236,0.98)', borderTop: '1px solid #e6dfd2' }}>
+        <div style={{ padding: '0 18px 16px', display: 'flex', flexDirection: 'column', gap: 4, background: 'rgba(236,234,231,0.98)', borderTop: '1px solid #e6dfd2' }}>
           <Link href="/" style={{ fontSize: 15, fontWeight: 500, color: '#1d2b3a', padding: '12px 4px', borderBottom: '1px solid #e6dfd2', textDecoration: 'none' }} onClick={() => setOpen(false)}>Home</Link>
           <Link href="/pacchetti" style={{ fontSize: 15, fontWeight: 500, color: '#1d2b3a', padding: '12px 4px', borderBottom: '1px solid #e6dfd2', textDecoration: 'none' }} onClick={() => setOpen(false)}>Pacchetti</Link>
           <Link href="/chi-siamo" style={{ fontSize: 15, fontWeight: 500, color: '#1d2b3a', padding: '12px 4px', borderBottom: '1px solid #e6dfd2', textDecoration: 'none' }} onClick={() => setOpen(false)}>Chi siamo</Link>
