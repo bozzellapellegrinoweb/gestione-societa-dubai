@@ -123,6 +123,12 @@ function Icon({ name }: { name: string }) {
   return null
 }
 
+function gtagEvent(name: string, params?: Record<string, string | number>) {
+  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+    window.gtag('event', name, params)
+  }
+}
+
 export default function ConfiguratorWizard() {
   const [step, setStep] = useState(1)
   const [answers, setAnswers] = useState<Record<number, number>>({})
@@ -134,12 +140,18 @@ export default function ConfiguratorWizard() {
   const ans = answers[step]
   const canNext = ans !== undefined
 
-  function pick(i: number) { setAnswers(prev => ({ ...prev, [step]: i })) }
+  function pick(i: number) {
+    if (step === 1 && Object.keys(answers).length === 0) {
+      gtagEvent('begin_configurator')
+    }
+    setAnswers(prev => ({ ...prev, [step]: i }))
+  }
 
   function goNext() {
     if (step >= TOTAL_STEPS) {
       setDone(true)
       const plan = getPlan(answers[3] ?? 2)
+      gtagEvent('configurator_complete', { plan_name: plan.label, plan_value: plan.price ? parseInt(plan.price.replace('.', '')) : 0 })
       fetch('/api/configurator', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

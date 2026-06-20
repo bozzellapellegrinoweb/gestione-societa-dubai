@@ -1,6 +1,7 @@
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
+import Script from 'next/script'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = { title: 'Pagamento completato · PB TAX International' }
@@ -9,6 +10,9 @@ export default function SuccessPage() {
   return (
     <>
       <Navbar />
+      <Script id="track-success" strategy="afterInteractive">{`
+        if(typeof gtag==='function'){gtag('event','conversion_success',{send_to:'G-GLJ6SEB12P'})}
+      `}</Script>
       <main style={{ maxWidth: 620, margin: '0 auto', padding: 'clamp(60px,8vw,100px) clamp(18px,4vw,40px) 80px', textAlign: 'center' }}>
         <div style={{ width: 72, height: 72, borderRadius: '50%', background: '#e8f3ec', color: '#2f8a5b', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 32, fontWeight: 700, margin: '0 auto 24px' }}>✓</div>
         <h1 style={{ fontSize: 'clamp(28px,3.6vw,38px)', fontWeight: 800, margin: '0 0 14px', color: '#1d2b3a' }}>Pagamento completato!</h1>

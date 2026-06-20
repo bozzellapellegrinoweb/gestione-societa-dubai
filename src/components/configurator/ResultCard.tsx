@@ -17,6 +17,13 @@ export default function ResultCard({ plan, isDiamond, hasItaResidency, onBack }:
   async function handleCheckout() {
     setLoading(true)
     setError('')
+    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+      window.gtag('event', 'begin_checkout', {
+        currency: 'AED',
+        value: plan.price ? parseInt(plan.price.replace('.', '')) : 0,
+        items: [{ item_name: `Piano ${plan.label}`, price: plan.price ? parseInt(plan.price.replace('.', '')) : 0 }],
+      })
+    }
     try {
       const res = await fetch('/api/checkout', {
         method: 'POST',

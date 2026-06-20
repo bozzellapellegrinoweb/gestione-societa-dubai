@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { sendWelcomeEmail, sendNewClientNotification, sendPaymentFailedNotification } from '@/lib/email'
+import { trackPurchase, trackPaymentFailed } from '@/lib/ga'
 
 export async function POST(req: NextRequest) {
   const body = await req.text()
@@ -79,6 +80,8 @@ export async function POST(req: NextRequest) {
       } catch (e) {
         console.error('Email send error:', e)
       }
+
+      await trackPurchase(customerEmail, planLabel, amountAED)
     }
   }
 
@@ -95,6 +98,8 @@ export async function POST(req: NextRequest) {
       } catch (e) {
         console.error('Email send error:', e)
       }
+
+      await trackPaymentFailed(customerEmail, planLabel)
     }
   }
 
