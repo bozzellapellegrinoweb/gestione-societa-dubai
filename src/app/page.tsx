@@ -62,17 +62,17 @@ export default function HomePage() {
 
             {/* Left: headline */}
             <div style={{ flex: '1 1 440px', minWidth: 300 }}>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#efe7d8', border: '1px solid #e3d6bd', color: '#7a6234', fontSize: 13, fontWeight: 600, padding: '6px 14px', borderRadius: 999, marginBottom: 22 }}>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#efe7d8', border: '1px solid #e3d6bd', color: '#7a6234', fontSize: 13, fontWeight: 600, padding: '6px 14px', borderRadius: 999, marginBottom: 'clamp(18px,3vw,22px)' }}>
                 Un servizio PB TAX International · Dubai
               </div>
-              <h1 style={{ fontSize: 'clamp(34px,5.2vw,56px)', lineHeight: 1.05, letterSpacing: '-0.03em', fontWeight: 800, margin: '0 0 20px' }}>
+              <h1 style={{ fontSize: 'clamp(40px,5.2vw,56px)', lineHeight: 1.08, letterSpacing: '-0.03em', fontWeight: 800, margin: '0 0 22px' }}>
                 La gestione della tua società a Dubai, <span style={{ color: '#a9885e' }}>team italiano.</span>
               </h1>
-              <p style={{ fontSize: 'clamp(16px,1.6vw,19px)', lineHeight: 1.6, color: '#5b6570', margin: '0 0 30px', maxWidth: 560 }}>
+              <p style={{ fontSize: 'clamp(17px,1.6vw,19px)', lineHeight: 1.6, color: '#5b6570', margin: '0 0 32px', maxWidth: 560 }}>
                 Contabilità, Corporate Tax UAE, VAT e compliance — tutto gestito da professionisti italiani a Dubai. Scopri il piano giusto per te in 3 minuti.
               </p>
               <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center' }}>
-                <Link href="/configuratore" style={{ background: '#1d2b3a', color: '#fff', fontSize: 16, fontWeight: 600, padding: '16px 26px', borderRadius: 11, boxShadow: '0 4px 14px rgba(29,43,58,.22)', textDecoration: 'none', display: 'inline-block' }}>
+                <Link href="/configuratore" style={{ background: '#1d2b3a', color: '#fff', fontSize: 17, fontWeight: 600, padding: '17px 28px', borderRadius: 11, boxShadow: '0 4px 14px rgba(29,43,58,.22)', textDecoration: 'none', display: 'inline-block' }}>
                   Calcola il tuo piano →
                 </Link>
                 <Link href="/pacchetti" style={{ background: 'none', fontSize: 16, fontWeight: 600, color: '#1d2b3a', padding: '16px 8px', textDecoration: 'underline', textDecorationColor: '#cdbfa6', textUnderlineOffset: 4 }}>
@@ -83,16 +83,16 @@ export default function HomePage() {
 
             {/* Right: pricing card */}
             <div style={{ flex: '1 1 360px', minWidth: 280 }}>
-              <div style={{ background: '#fff', border: '1px solid #e6dfd2', borderRadius: 20, padding: 26, boxShadow: '0 18px 40px -22px rgba(29,43,58,.35)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 18 }}>
+              <div style={{ background: '#fff', border: '1px solid #e6dfd2', borderRadius: 20, padding: 'clamp(22px,3vw,26px)', boxShadow: '0 18px 40px -22px rgba(29,43,58,.35)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
                   <span style={{ fontSize: 13, fontWeight: 600, color: '#8a93a0', textTransform: 'uppercase', letterSpacing: '.08em' }}>A partire da</span>
                   <span style={{ background: '#efe7d8', color: '#7a6234', fontSize: 12, fontWeight: 700, padding: '4px 10px', borderRadius: 999 }}>PIANO BASIC</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 4 }}>
-                  <span style={{ fontSize: 44, fontWeight: 800, letterSpacing: '-0.03em' }}>500</span>
-                  <span style={{ fontSize: 18, fontWeight: 600, color: '#5b6570' }}>AED / mese</span>
+                  <span style={{ fontSize: 'clamp(38px,5vw,44px)', fontWeight: 800, letterSpacing: '-0.03em' }}>500</span>
+                  <span style={{ fontSize: 17, fontWeight: 600, color: '#5b6570' }}>AED / mese</span>
                 </div>
-                <div style={{ fontSize: 13, color: '#8a93a0', marginBottom: 20 }}>IVA 5% inclusa · fino a 25 transazioni</div>
+                <div style={{ fontSize: 13, color: '#8a93a0', marginBottom: 18 }}>IVA 5% inclusa · fino a 25 transazioni</div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
                   {['Contabilità mensile', 'Corporate Tax Return annuale', 'Comunicazione in italiano'].map(f => (
                     <div key={f} style={{ display: 'flex', gap: 10, alignItems: 'center', fontSize: 14.5, color: '#3a4550' }}>
