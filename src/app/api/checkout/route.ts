@@ -35,6 +35,7 @@ export async function POST(req: NextRequest) {
       link_type: 'standalone',
       subscription: {
         frequency: 'monthly',
+        frequency_interval: 1,
       },
       custom_data: {
         piano: planKey,

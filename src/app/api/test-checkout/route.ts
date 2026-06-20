@@ -23,6 +23,7 @@ export async function GET() {
     link_type: 'standalone',
     subscription: {
       frequency: 'monthly',
+      frequency_interval: 1,
     },
     custom_data: {
       piano: 'BASIC',
