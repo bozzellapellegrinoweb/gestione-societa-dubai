@@ -15,8 +15,8 @@ export default function SuccessPage() {
         <p style={{ fontSize: 17, lineHeight: 1.6, color: '#5b6570', margin: '0 0 12px' }}>
           Grazie per aver scelto PB TAX International. Il tuo piano è stato attivato con successo.
         </p>
-        <p style={{ fontSize: 15, lineHeight: 1.6, color: '#8a93a0', margin: '0 0 36px' }}>
-          Riceverai una email di conferma con i dettagli del tuo piano. Il tuo account manager ti contatterà entro 48 ore per avviare l&apos;onboarding.
+        <p style={{ fontSize: 15.5, lineHeight: 1.6, color: '#3a4550', margin: '0 0 36px', fontWeight: 500 }}>
+          Un membro del nostro team ti scriverà entro 48 ore per fissare una <strong>video call di onboarding</strong> in cui ti guideremo nell&apos;attivazione completa del servizio.
         </p>
 
         <div style={{ background: '#faf8f3', border: '1px solid #e6dfd2', borderRadius: 16, padding: '24px', marginBottom: 28, textAlign: 'left' }}>
@@ -24,8 +24,8 @@ export default function SuccessPage() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
             {[
               { n: '1', text: 'Riceverai una email di conferma con i dettagli del piano' },
-              { n: '2', text: 'Il tuo account manager ti contatterà entro 48h' },
-              { n: '3', text: 'Ti guideremo nel caricamento dei documenti necessari' },
+              { n: '2', text: 'Il tuo account manager ti contatterà entro 48h per fissare la video call di onboarding' },
+              { n: '3', text: 'Durante la call ti guideremo nel caricamento dei documenti necessari' },
               { n: '4', text: 'Inizio gestione contabile entro 5 giorni lavorativi' },
             ].map(step => (
               <div key={step.n} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>

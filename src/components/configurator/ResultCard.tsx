@@ -69,7 +69,7 @@ export default function ResultCard({ plan, isDiamond, hasItaResidency, onBack }:
                   ))}
                 </div>
                 <div style={{ fontSize: 14, color: '#5b6570', lineHeight: 1.55, marginTop: 20, paddingTop: 18, borderTop: '1px dashed #e6dfd2' }}>
-                  Il tuo account manager ti contatterà entro 24 ore per definire il piano e il prezzo.
+                  Un membro del team ti scriverà entro 48h per fissare una <strong>video call di onboarding</strong> e definire insieme il piano su misura.
                 </div>
                 <Link href="https://wa.me/971585971575" target="_blank" style={{ display: 'block', width: '100%', marginTop: 18, background: '#1d2b3a', color: '#fff', fontSize: 16, fontWeight: 700, padding: 16, borderRadius: 12, textDecoration: 'none', textAlign: 'center' as const, boxSizing: 'border-box' as const }}>
                   Scrivici su WhatsApp →
@@ -150,7 +150,10 @@ export default function ResultCard({ plan, isDiamond, hasItaResidency, onBack }:
               {loading ? 'Generazione link di pagamento...' : `Abbonati al Piano ${plan.label} →`}
             </button>
 
-            <div style={{ fontSize: 12.5, color: '#8a93a0', textAlign: 'center' as const, marginTop: 12, lineHeight: 1.5 }}>
+            <div style={{ fontSize: 13, color: '#3a4550', textAlign: 'center' as const, marginTop: 14, lineHeight: 1.55, background: '#e8f3ec', border: '1px solid #b8dcc8', borderRadius: 10, padding: '12px 16px' }}>
+              Dopo l&apos;attivazione, un membro del team ti scriverà entro 48h per fissare una <strong>video call di onboarding</strong>.
+            </div>
+            <div style={{ fontSize: 12.5, color: '#8a93a0', textAlign: 'center' as const, marginTop: 10, lineHeight: 1.5 }}>
               Abbonamento sicuro tramite MAMO Pay · Addebito mensile automatico · Cancelli quando vuoi
             </div>
 
