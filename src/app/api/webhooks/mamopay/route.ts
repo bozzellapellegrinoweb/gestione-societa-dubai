@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
+import { sendWelcomeEmail, sendNewClientNotification, sendPaymentFailedNotification } from '@/lib/email'
 
 export async function POST(req: NextRequest) {
   const body = await req.text()
@@ -24,9 +25,11 @@ export async function POST(req: NextRequest) {
   const eventType = (charge.event_type || charge.type) as string | undefined
   const customData = charge.custom_data as Record<string, string> | undefined
   const planKey = customData?.piano
+  const planLabel = customData?.piano_label || planKey || 'N/A'
   const customerDetails = charge.customer_details as Record<string, string> | undefined
   const customerEmail = customerDetails?.email
-  const customerName = customerDetails?.name
+  const customerName = customerDetails?.name || 'Cliente'
+  const amountAED = charge.amount as number || 0
 
   console.log('MAMO webhook:', eventType, planKey, customerEmail)
 
@@ -46,7 +49,7 @@ export async function POST(req: NextRequest) {
         .from('clients')
         .upsert({
           email: customerEmail,
-          full_name: customerName || 'N/A',
+          full_name: customerName,
           company_type: customData?.company_type,
         }, { onConflict: 'email' })
         .select()
@@ -56,7 +59,7 @@ export async function POST(req: NextRequest) {
         await supabase.from('contracts').insert({
           client_id: client.id,
           plan: planKey,
-          amount_aed: charge.amount,
+          amount_aed: amountAED,
           status: 'active',
           mamopay_plan_id: charge.payment_link_id || charge.id,
           mamopay_sub_id: charge.subscription_id || charge.id,
@@ -69,6 +72,13 @@ export async function POST(req: NextRequest) {
           .update({ converted: true })
           .eq('client_email', customerEmail)
       }
+
+      try {
+        await sendWelcomeEmail(customerEmail, customerName, planLabel, amountAED)
+        await sendNewClientNotification(customerName, customerEmail, planLabel, amountAED)
+      } catch (e) {
+        console.error('Email send error:', e)
+      }
     }
   }
 
@@ -79,6 +89,12 @@ export async function POST(req: NextRequest) {
         .update({ status: 'paused' })
         .eq('plan', planKey)
         .eq('status', 'active')
+
+      try {
+        await sendPaymentFailedNotification(customerEmail, planLabel)
+      } catch (e) {
+        console.error('Email send error:', e)
+      }
     }
   }
 
