@@ -148,19 +148,21 @@ export default function ResultCard({ plan, isDiamond, hasItaResidency, onBack }:
               </div>
             )}
 
+            {/* Messaggio pre-acquisto */}
+            <div style={{ fontSize: 14.5, color: '#1d6b3a', textAlign: 'center' as const, marginTop: 26, lineHeight: 1.55, background: '#e8f3ec', border: '1px solid #b8dcc8', borderRadius: 12, padding: '16px 20px' }}>
+              Acquista il pacchetto e <strong>entro 48h organizzeremo una call di onboarding</strong>. Nessun vincolo.
+            </div>
+
             {/* CTA: Acquista */}
             <button
               onClick={handleCheckout}
               disabled={loading}
-              style={{ width: '100%', marginTop: 28, background: '#1d2b3a', color: '#fff', border: 'none', cursor: loading ? 'wait' : 'pointer', fontSize: 17, fontWeight: 700, padding: 17, borderRadius: 13, boxShadow: '0 6px 18px rgba(29,43,58,.24)', font: 'inherit', opacity: loading ? 0.7 : 1, transition: 'opacity .2s' }}
+              style={{ width: '100%', marginTop: 16, background: '#1d2b3a', color: '#fff', border: 'none', cursor: loading ? 'wait' : 'pointer', fontSize: 17, fontWeight: 700, padding: 17, borderRadius: 13, boxShadow: '0 6px 18px rgba(29,43,58,.24)', font: 'inherit', opacity: loading ? 0.7 : 1, transition: 'opacity .2s' }}
             >
               {loading ? 'Generazione link di pagamento...' : `Abbonati al Piano ${plan.label} →`}
             </button>
 
-            <div style={{ fontSize: 13, color: '#3a4550', textAlign: 'center' as const, marginTop: 14, lineHeight: 1.55, background: '#e8f3ec', border: '1px solid #b8dcc8', borderRadius: 10, padding: '12px 16px' }}>
-              Dopo l&apos;attivazione, un membro del team ti scriverà entro 48h per fissare una <strong>video call di onboarding</strong>.
-            </div>
-            <div style={{ fontSize: 12.5, color: '#8a93a0', textAlign: 'center' as const, marginTop: 10, lineHeight: 1.5 }}>
+            <div style={{ fontSize: 12.5, color: '#8a93a0', textAlign: 'center' as const, marginTop: 12, lineHeight: 1.5 }}>
               Abbonamento sicuro tramite MAMO Pay · Addebito mensile automatico · Cancelli quando vuoi
             </div>
 
