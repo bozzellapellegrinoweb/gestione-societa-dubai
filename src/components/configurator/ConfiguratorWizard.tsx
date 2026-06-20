@@ -97,13 +97,13 @@ const PLAN_LABELS = ['Basic', 'Entry Level', 'Pro', 'Silver', 'Gold', 'Platinum'
 const PLAN_SUBTITLES = ['Tax Management & Compliance', 'Tax & VAT Management', 'Full Accounting & Tax', 'Advanced Accounting & Advisory', 'Premium Accounting & CFO Support', 'Corporate Full Service', 'Custom Solution']
 const PLAN_PRICES = ['500', '800', '1.200', '1.500', '1.800', '2.000', '']
 const PLAN_FEATURES: Record<string, string[]> = {
-  BASIC: ['Contabilità fino a 25 transazioni/mese', 'Corporate Tax Return annuale', 'Comunicazione 100% in italiano', 'Report trimestrale'],
-  ENTRY_LEVEL: ['Contabilità fino a 50 transazioni/mese', 'Corporate Tax Return annuale', 'Dichiarazione VAT inclusa', 'Consulenza Italia-UAE'],
-  PRO: ['Contabilità fino a 100 transazioni/mese', 'Corporate Tax Return annuale', 'Account manager dedicato', 'Reportistica mensile'],
-  SILVER: ['Contabilità fino a 150 transazioni/mese', 'Corporate Tax Return annuale', 'Gestione visti inclusa', 'Account manager dedicato'],
-  GOLD: ['Contabilità fino a 300 transazioni/mese', 'Corporate Tax + VAT Return', 'Gestione visti inclusa', 'Budget & forecasting trimestrale'],
-  PLATINUM: ['Contabilità fino a 500 transazioni/mese', 'Corporate Tax + VAT Return', 'Gestione visti inclusa', 'Consulenza Italia-UAE prioritaria'],
-  DIAMOND: ['Contabilità oltre 500 transazioni', 'Corporate Tax + VAT Return', 'CFO on-demand incluso', 'Supporto dedicato H24'],
+  BASIC: ['Contabilità fino a 25 transazioni/mese', 'Corporate Tax Return annuale', 'Comunicazione 100% in italiano', 'Report trimestrale', 'Gruppo WhatsApp operativo', 'Aggiornamenti legali inclusi'],
+  ENTRY_LEVEL: ['Contabilità fino a 50 transazioni/mese', 'Corporate Tax Return annuale', 'Dichiarazione VAT inclusa', 'Consulenza Italia-UAE', 'Gruppo WhatsApp operativo', 'Aggiornamenti legali inclusi'],
+  PRO: ['Contabilità fino a 100 transazioni/mese', 'Corporate Tax Return annuale', 'Account manager dedicato', 'Reportistica mensile', 'Gruppo WhatsApp operativo', 'Aggiornamenti legali inclusi'],
+  SILVER: ['Contabilità fino a 150 transazioni/mese', 'Corporate Tax Return annuale', 'Gestione visti inclusa', 'Account manager dedicato', 'Gruppo WhatsApp operativo', 'Aggiornamenti legali inclusi'],
+  GOLD: ['Contabilità fino a 300 transazioni/mese', 'Corporate Tax + VAT Return', 'Gestione visti inclusa', 'Budget & forecasting trimestrale', 'Gruppo WhatsApp operativo', 'Aggiornamenti legali inclusi'],
+  PLATINUM: ['Contabilità fino a 500 transazioni/mese', 'Corporate Tax + VAT Return', 'Gestione visti inclusa', 'Consulenza Italia-UAE prioritaria', 'Gruppo WhatsApp operativo', 'Aggiornamenti legali inclusi'],
+  DIAMOND: ['Contabilità oltre 500 transazioni', 'Corporate Tax + VAT Return', 'CFO on-demand incluso', 'Supporto dedicato H24', 'Gruppo WhatsApp operativo', 'Aggiornamenti legali inclusi'],
 }
 
 export type PlanResult = { key: string; label: string; subtitle: string; price: string; features: string[] }
