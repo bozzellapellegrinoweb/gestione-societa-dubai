@@ -27,19 +27,32 @@ body {
 }
 
 .navbar-logo-pb {
-  height: 40px;
-  width: auto;
+  height: 40px !important;
+  width: auto !important;
 }
 .navbar-logo-indubai {
-  height: 28px;
-  width: auto;
+  height: 28px !important;
+  width: auto !important;
 }
-@media (max-width: 480px) {
+.navbar-desktop {
+  display: flex !important;
+}
+.navbar-hamburger {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .navbar-desktop {
+    display: none !important;
+  }
+  .navbar-hamburger {
+    display: block !important;
+  }
   .navbar-logo-pb {
-    height: 30px;
+    height: 28px !important;
   }
   .navbar-logo-indubai {
-    height: 20px;
+    height: 18px !important;
   }
 }
 
