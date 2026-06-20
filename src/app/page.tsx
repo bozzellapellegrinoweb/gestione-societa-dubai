@@ -66,7 +66,7 @@ export default function HomePage() {
                 Un servizio PB TAX International · Dubai
               </div>
               <h1 style={{ fontSize: 'clamp(34px,5.2vw,56px)', lineHeight: 1.05, letterSpacing: '-0.03em', fontWeight: 800, margin: '0 0 20px' }}>
-                La gestione della tua società a Dubai, <span style={{ color: '#a9885e' }}>affidata a chi ci vive ogni giorno.</span>
+                La gestione della tua società a Dubai, <span style={{ color: '#a9885e' }}>team italiano.</span>
               </h1>
               <p style={{ fontSize: 'clamp(16px,1.6vw,19px)', lineHeight: 1.6, color: '#5b6570', margin: '0 0 30px', maxWidth: 560 }}>
                 Contabilità, Corporate Tax UAE, VAT e compliance — tutto gestito da professionisti italiani a Dubai. Scopri il piano giusto per te in 3 minuti.
