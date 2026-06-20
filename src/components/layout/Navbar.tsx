@@ -11,7 +11,7 @@ export default function Navbar() {
     <header style={{ position: 'sticky', top: 0, zIndex: 50, background: 'rgba(245,242,236,0.88)', backdropFilter: 'blur(12px)', borderBottom: '1px solid #e6dfd2' }}>
       <div style={{ maxWidth: 1180, margin: '0 auto', padding: '12px clamp(18px,4vw,40px)', display: 'flex', alignItems: 'center', gap: 18, flexWrap: 'wrap' }}>
         <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none' }}>
-          <Image src="/pbtax-logo.svg" alt="PB TAX International" width={140} height={36} priority style={{ height: 36, width: 'auto' }} />
+          <Image src="/pbtax-logo.svg" alt="PB TAX International" width={120} height={34} priority style={{ height: 34, width: 'auto' }} />
           <span style={{ fontSize: 14, fontWeight: 600, letterSpacing: '-0.01em', color: '#1d2b3a', borderLeft: '1px solid #ddd4c4', paddingLeft: 12 }}>societa-dubai.it</span>
         </Link>
 

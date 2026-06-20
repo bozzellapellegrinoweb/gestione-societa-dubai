@@ -1,6 +1,4 @@
-<svg viewBox="0 0 164 42" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PB TAX International">
-  <rect x="0" y="1" width="40" height="40" rx="7" fill="#1d2b3a"/>
-  <text x="20" y="29" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" font-weight="800" fill="#a9885e" text-anchor="middle">PB</text>
-  <text x="50" y="28" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="21" font-weight="700" fill="#1d2b3a" letter-spacing="2.5">TAX</text>
-  <text x="50" y="40" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="8" font-weight="600" fill="#9a8a72" letter-spacing="2.2">INTERNATIONAL</text>
+<svg viewBox="0 0 200 56" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PB TAX International">
+  <text x="100" y="40" font-family="'Georgia', 'Times New Roman', Times, serif" font-size="52" font-weight="700" fill="#3d2314" text-anchor="middle" letter-spacing="2">PB</text>
+  <text x="14" y="53" font-family="'Georgia', 'Times New Roman', Times, serif" font-size="10.5" font-weight="400" fill="#3d2314" letter-spacing="7.5">TAX INTERNATIONAL</text>
 </svg>
