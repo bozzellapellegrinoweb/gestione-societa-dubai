@@ -15,11 +15,10 @@ export async function POST(req: NextRequest) {
 
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://societa-dubai.it'
 
-    const mamoPayload = {
+    const mamoPayload: Record<string, unknown> = {
       title: `Piano ${plan.label} · ${plan.subtitle}`,
       description: `PB TAX International — ${plan.description}. Contabilità società Dubai, ${plan.maxTransactions} transazioni/mese.`,
-      capacity: 1,
-      is_widget: false,
+      active: true,
       enable_tabby: false,
       enable_message: false,
       enable_tips: false,
@@ -27,13 +26,16 @@ export async function POST(req: NextRequest) {
       enable_quantity: false,
       enable_qr_code: false,
       send_customer_receipt: true,
-      active: true,
+      save_card: 'required',
       return_url: `${siteUrl}/onboarding/success`,
       failure_return_url: `${siteUrl}/configuratore?payment=failed`,
       processing_fee_percentage: 0,
       amount: plan.priceAED,
       amount_currency: 'AED',
       link_type: 'standalone',
+      subscription: {
+        frequency: 'monthly',
+      },
       custom_data: {
         piano: planKey,
         piano_label: plan.label,

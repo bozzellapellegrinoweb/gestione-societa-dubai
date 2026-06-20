@@ -108,7 +108,7 @@ export default function ResultCard({ plan, isDiamond, hasItaResidency, onBack }:
               <span style={{ fontSize: 'clamp(44px,7vw,60px)', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1 }}>{plan.price}</span>
               <span style={{ fontSize: 20, fontWeight: 600, color: '#5b6570' }}>AED / mese</span>
             </div>
-            <div style={{ fontSize: 14, color: '#8a93a0', marginTop: 4 }}>IVA 5% inclusa · Pagamento mensile sicuro con carta</div>
+            <div style={{ fontSize: 14, color: '#8a93a0', marginTop: 4 }}>IVA 5% inclusa · Abbonamento mensile · Cancelli quando vuoi</div>
           </div>
 
           {/* Included */}
@@ -147,11 +147,11 @@ export default function ResultCard({ plan, isDiamond, hasItaResidency, onBack }:
               disabled={loading}
               style={{ width: '100%', marginTop: 28, background: '#1d2b3a', color: '#fff', border: 'none', cursor: loading ? 'wait' : 'pointer', fontSize: 17, fontWeight: 700, padding: 17, borderRadius: 13, boxShadow: '0 6px 18px rgba(29,43,58,.24)', font: 'inherit', opacity: loading ? 0.7 : 1, transition: 'opacity .2s' }}
             >
-              {loading ? 'Generazione link di pagamento...' : `Acquista Piano ${plan.label} →`}
+              {loading ? 'Generazione link di pagamento...' : `Abbonati al Piano ${plan.label} →`}
             </button>
 
             <div style={{ fontSize: 12.5, color: '#8a93a0', textAlign: 'center' as const, marginTop: 12, lineHeight: 1.5 }}>
-              Pagamento sicuro tramite MAMO Pay · Nessun vincolo · Cancelli quando vuoi
+              Abbonamento sicuro tramite MAMO Pay · Addebito mensile automatico · Cancelli quando vuoi
             </div>
 
             <Link
