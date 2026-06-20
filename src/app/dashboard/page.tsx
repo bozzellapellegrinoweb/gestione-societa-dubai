@@ -37,7 +37,7 @@ export default function DashboardPage() {
             { label: 'Documenti', desc: 'Carica e visualizza documenti', href: '#' },
             { label: 'Fatture', desc: 'Storico pagamenti e fatture', href: '#' },
             { label: 'Profilo', desc: 'Modifica i tuoi dati', href: '#' },
-            { label: 'Supporto', desc: 'Contatta il team PB TAX', href: 'https://wa.me/971585025012' },
+            { label: 'Supporto', desc: 'Contatta il team PB TAX', href: 'https://wa.me/971585971575' },
           ].map(item => (
             <Link key={item.label} href={item.href} style={{ background: '#fff', border: '1px solid #e6dfd2', borderRadius: 14, padding: '20px', textDecoration: 'none', display: 'block' }}>
               <div style={{ fontSize: 15, fontWeight: 700, color: '#1d2b3a', marginBottom: 4 }}>{item.label}</div>
@@ -52,7 +52,7 @@ export default function DashboardPage() {
           <p style={{ fontSize: 14, lineHeight: 1.6, color: '#5b6570', margin: '0 0 16px' }}>
             La dashboard completa con gestione documenti, fatture e profilo è in fase di implementazione. Per qualsiasi necessità, contattaci direttamente.
           </p>
-          <Link href="https://wa.me/971585025012" target="_blank" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#1d2b3a', color: '#fff', fontSize: 14, fontWeight: 600, padding: '12px 20px', borderRadius: 10, textDecoration: 'none' }}>
+          <Link href="https://wa.me/971585971575" target="_blank" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#1d2b3a', color: '#fff', fontSize: 14, fontWeight: 600, padding: '12px 20px', borderRadius: 10, textDecoration: 'none' }}>
             Contatta il tuo account manager →
           </Link>
         </div>

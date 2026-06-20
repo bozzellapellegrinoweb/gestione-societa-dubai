@@ -21,6 +21,8 @@ const tableRows: TableRow[] = [
   { label: 'Gestione visti', vals: [N, N, N, Y, Y, Y, Y] },
   { label: 'Consulenza Italia-UAE', vals: [N, Y, Y, Y, Y, Y, Y] },
   { label: 'Account manager dedicato', vals: [N, N, Y, Y, Y, Y, Y] },
+  { label: 'Gruppo WhatsApp operativo', vals: [Y, Y, Y, Y, Y, Y, Y] },
+  { label: 'Aggiornamenti legali', vals: [Y, Y, Y, Y, Y, Y, Y] },
 ]
 
 const addons = [
