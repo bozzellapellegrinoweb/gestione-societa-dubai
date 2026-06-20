@@ -16,8 +16,8 @@ export async function GET() {
 
   // DNS check
   try {
-    const addresses = await dns.resolve4('api.mamopay.com')
-    out.push('DNS resolve api.mamopay.com: ' + addresses.join(', '))
+    const addresses = await dns.resolve4('business.mamopay.com')
+    out.push('DNS resolve business.mamopay.com: ' + addresses.join(', '))
   } catch (e: unknown) {
     const err = e as Error
     out.push('DNS error: ' + err.message)
@@ -28,7 +28,7 @@ export async function GET() {
   // Test 1: List webhooks
   try {
     out.push('--- Listing existing webhooks ---')
-    const listRes = await fetch('https://api.mamopay.com/manage_api/v1/webhooks', {
+    const listRes = await fetch('https://business.mamopay.com/manage_api/v1/webhooks', {
       headers: {
         'Authorization': `Bearer ${process.env.MAMOPAY_API_KEY}`,
         'Accept': 'application/json',
@@ -53,7 +53,7 @@ export async function GET() {
   // Test 2: Create webhook
   try {
     out.push('--- Creating webhook ---')
-    const createRes = await fetch('https://api.mamopay.com/manage_api/v1/webhooks', {
+    const createRes = await fetch('https://business.mamopay.com/manage_api/v1/webhooks', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${process.env.MAMOPAY_API_KEY}`,

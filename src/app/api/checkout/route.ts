@@ -43,7 +43,7 @@ export async function POST(req: NextRequest) {
       },
     }
 
-    const mamoRes = await fetch('https://api.mamopay.com/manage_api/v1/links', {
+    const mamoRes = await fetch('https://business.mamopay.com/manage_api/v1/links', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${process.env.MAMOPAY_API_KEY}`,
