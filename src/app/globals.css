@@ -26,6 +26,23 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+.navbar-logo-pb {
+  height: 40px;
+  width: auto;
+}
+.navbar-logo-indubai {
+  height: 28px;
+  width: auto;
+}
+@media (max-width: 480px) {
+  .navbar-logo-pb {
+    height: 30px;
+  }
+  .navbar-logo-indubai {
+    height: 20px;
+  }
+}
+
 @layer utilities {
   .text-gold { color: var(--gold); }
   .text-navy { color: var(--navy); }
