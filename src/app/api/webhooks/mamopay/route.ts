@@ -30,6 +30,7 @@ export async function POST(req: NextRequest) {
   const customerDetails = charge.customer_details as Record<string, string> | undefined
   const customerEmail = customerDetails?.email
   const customerName = customerDetails?.name || 'Cliente'
+  const customerPhone = customerDetails?.phone || ''
   const amountAED = charge.amount as number || 0
 
   console.log('MAMO webhook:', eventType, planKey, customerEmail)
@@ -76,7 +77,7 @@ export async function POST(req: NextRequest) {
 
       try {
         await sendWelcomeEmail(customerEmail, customerName, planLabel, amountAED)
-        await sendNewClientNotification(customerName, customerEmail, planLabel, amountAED)
+        await sendNewClientNotification(customerName, customerEmail, planLabel, amountAED, customerPhone)
       } catch (e) {
         console.error('Email send error:', e)
       }

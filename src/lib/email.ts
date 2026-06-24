@@ -60,8 +60,11 @@ export async function sendWelcomeEmail(to: string, customerName: string, planLab
   })
 }
 
-export async function sendNewClientNotification(customerName: string, customerEmail: string, planLabel: string, amountAED: number) {
+export async function sendNewClientNotification(customerName: string, customerEmail: string, planLabel: string, amountAED: number, customerPhone?: string) {
   if (!resend) { console.warn('Resend not configured, skipping notification'); return }
+
+  const phoneDigits = customerPhone ? customerPhone.replace(/[^0-9]/g, '') : ''
+  const waHref = phoneDigits ? `https://wa.me/${phoneDigits}` : null
 
   await resend.emails.send({
     from: FROM,
@@ -78,6 +81,7 @@ export async function sendNewClientNotification(customerName: string, customerEm
             <tr><td style="padding-right:16px;font-weight:600;white-space:nowrap">Email:</td><td><a href="mailto:${customerEmail}" style="color:#1d6b3a">${customerEmail}</a></td></tr>
             <tr><td style="padding-right:16px;font-weight:600;white-space:nowrap">Piano:</td><td>${planLabel}</td></tr>
             <tr><td style="padding-right:16px;font-weight:600;white-space:nowrap">Importo:</td><td>${amountAED} AED/mese</td></tr>
+            ${customerPhone ? `<tr><td style="padding-right:16px;font-weight:600;white-space:nowrap">WhatsApp:</td><td>${customerPhone}</td></tr>` : ''}
           </table>
 
           <div style="background:#fef9e7;border:1px solid #f0d860;border-radius:10px;padding:16px;margin:20px 0">
@@ -87,9 +91,9 @@ export async function sendNewClientNotification(customerName: string, customerEm
             </p>
           </div>
 
-          <div style="margin-top:20px;display:flex;gap:10px">
-            <a href="mailto:${customerEmail}" style="display:inline-block;background:#1d2b3a;color:#fff;font-size:14px;font-weight:600;padding:12px 20px;border-radius:8px;text-decoration:none">Scrivi al cliente</a>
-            <a href="https://wa.me/971585971575" style="display:inline-block;background:#25d366;color:#fff;font-size:14px;font-weight:600;padding:12px 20px;border-radius:8px;text-decoration:none">WhatsApp</a>
+          <div style="margin-top:20px">
+            <a href="mailto:${customerEmail}" style="display:inline-block;background:#1d2b3a;color:#fff;font-size:14px;font-weight:600;padding:12px 20px;border-radius:8px;text-decoration:none;margin-right:10px">Scrivi al cliente</a>
+            ${waHref ? `<a href="${waHref}" style="display:inline-block;background:#25d366;color:#fff;font-size:14px;font-weight:600;padding:12px 20px;border-radius:8px;text-decoration:none">WhatsApp cliente →</a>` : ''}
           </div>
         </div>
       </div>
