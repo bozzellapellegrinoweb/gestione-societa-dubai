@@ -70,16 +70,18 @@ export async function sendWelcomeEmail(to: string, customerName: string, planLab
   })
 }
 
-export async function sendNewClientNotification(customerName: string, customerEmail: string, planLabel: string, amountAED: number, customerPhone?: string) {
+export async function sendNewClientNotification(customerName: string, customerEmail: string, planLabel: string, amountAED: number, customerPhone?: string, isSubscription = true) {
   if (!resend) { console.warn('Resend not configured, skipping notification'); return }
 
   const phoneDigits = customerPhone ? customerPhone.replace(/[^0-9]/g, '') : ''
   const waHref = phoneDigits ? `https://wa.me/${phoneDigits}` : null
+  const amountLabel = isSubscription ? `${amountAED} AED/mese` : `${amountAED} AED (una tantum)`
+  const tipoLabel = isSubscription ? 'Abbonamento mensile' : 'Pagamento unico'
 
   await resend.emails.send({
     from: FROM,
     to: REPLY_TO,
-    subject: `Nuovo cliente: ${customerName} — Piano ${planLabel} (${amountAED} AED/mese)`,
+    subject: `Nuovo cliente: ${customerName} — ${planLabel} (${amountLabel})`,
     html: `
       <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;max-width:600px;margin:0 auto;color:#1d2b3a">
         <div style="background:#2f8a5b;padding:24px 28px;border-radius:12px 12px 0 0">
@@ -90,8 +92,9 @@ export async function sendNewClientNotification(customerName: string, customerEm
           <table style="font-size:15px;line-height:2.2;color:#3a4550;border-collapse:collapse;width:100%">
             <tr><td style="padding-right:16px;font-weight:600;white-space:nowrap">Email:</td><td><a href="mailto:${customerEmail}" style="color:#1d6b3a">${customerEmail}</a></td></tr>
             <tr><td style="padding-right:16px;font-weight:600;white-space:nowrap">Piano:</td><td>${planLabel}</td></tr>
-            <tr><td style="padding-right:16px;font-weight:600;white-space:nowrap">Importo:</td><td>${amountAED} AED/mese</td></tr>
-            ${customerPhone ? `<tr><td style="padding-right:16px;font-weight:600;white-space:nowrap">WhatsApp:</td><td>${customerPhone}</td></tr>` : ''}
+            <tr><td style="padding-right:16px;font-weight:600;white-space:nowrap">Importo:</td><td>${amountLabel}</td></tr>
+            <tr><td style="padding-right:16px;font-weight:600;white-space:nowrap">Tipo:</td><td>${tipoLabel}</td></tr>
+            ${customerPhone ? `<tr><td style="padding-right:16px;font-weight:600;white-space:nowrap">Telefono:</td><td>${customerPhone}</td></tr>` : ''}
           </table>
 
           <div style="background:#fef9e7;border:1px solid #f0d860;border-radius:10px;padding:16px;margin:20px 0">

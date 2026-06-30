@@ -2,6 +2,17 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { sendWelcomeEmail, sendNewClientNotification, sendPaymentFailedNotification } from '@/lib/email'
 import { trackPurchase, trackPaymentFailed } from '@/lib/ga'
+import { PLANS } from '@/lib/pricing'
+
+function planLabelFromAmount(amountAED: number): string | null {
+  // Plans show price without VAT; MAMO Pay charges +5% IVA
+  for (const p of PLANS) {
+    if (!p.priceAED) continue
+    const withVat = Math.round(p.priceAED * 1.05)
+    if (withVat === amountAED || p.priceAED === amountAED) return p.label
+  }
+  return null
+}
 
 export async function POST(req: NextRequest) {
   const body = await req.text()
@@ -26,14 +37,18 @@ export async function POST(req: NextRequest) {
   const eventType = (charge.event_type || charge.type) as string | undefined
   const customData = charge.custom_data as Record<string, string> | undefined
   const planKey = customData?.piano
-  const planLabel = customData?.piano_label || planKey || 'N/A'
+  const amountAED = charge.amount as number || 0
   const customerDetails = charge.customer_details as Record<string, string> | undefined
   const customerEmail = customerDetails?.email
   const customerName = customerDetails?.name || 'Cliente'
-  const customerPhone = customerDetails?.phone || ''
-  const amountAED = charge.amount as number || 0
+  // MAMO Pay may use different field names for phone depending on link type
+  const customerPhone = customerDetails?.phone || customerDetails?.phone_number || customerDetails?.mobile || ''
 
-  console.log('MAMO webhook:', eventType, planKey, customerEmail)
+  // Try custom_data first; fall back to amount-based lookup for manually-created links
+  const planLabel = customData?.piano_label || planKey || planLabelFromAmount(amountAED) || `Servizio ${amountAED} AED`
+
+  console.log('MAMO webhook:', eventType, { planKey, planLabel, amountAED, customerEmail, customerPhone })
+  console.log('MAMO customer_details raw:', JSON.stringify(customerDetails))
 
   if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
     console.error('Missing Supabase env vars')
@@ -78,7 +93,7 @@ export async function POST(req: NextRequest) {
       const isSubscription = eventType === 'subscription.succeeded'
       try {
         await sendWelcomeEmail(customerEmail, customerName, planLabel, amountAED, isSubscription)
-        await sendNewClientNotification(customerName, customerEmail, planLabel, amountAED, customerPhone)
+        await sendNewClientNotification(customerName, customerEmail, planLabel, amountAED, customerPhone, isSubscription)
       } catch (e) {
         console.error('Email send error:', e)
       }
