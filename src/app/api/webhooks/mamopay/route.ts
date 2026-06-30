@@ -75,8 +75,9 @@ export async function POST(req: NextRequest) {
           .eq('client_email', customerEmail)
       }
 
+      const isSubscription = eventType === 'subscription.succeeded'
       try {
-        await sendWelcomeEmail(customerEmail, customerName, planLabel, amountAED)
+        await sendWelcomeEmail(customerEmail, customerName, planLabel, amountAED, isSubscription)
         await sendNewClientNotification(customerName, customerEmail, planLabel, amountAED, customerPhone)
       } catch (e) {
         console.error('Email send error:', e)

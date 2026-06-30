@@ -5,14 +5,26 @@ const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KE
 const FROM = process.env.RESEND_FROM_EMAIL || 'PB TAX International <onboarding@resend.dev>'
 const REPLY_TO = 'segreteria@indubai.it'
 
-export async function sendWelcomeEmail(to: string, customerName: string, planLabel: string, amountAED: number) {
+export async function sendWelcomeEmail(to: string, customerName: string, planLabel: string, amountAED: number, isSubscription = true) {
   if (!resend) { console.warn('Resend not configured, skipping email'); return }
+
+  const subject = isSubscription
+    ? `Benvenuto in PB TAX International — Piano ${planLabel} attivato`
+    : `Pagamento ricevuto — PB TAX International`
+
+  const riepilogoRiga = isSubscription
+    ? `<div style="font-size:15px;color:#1d2b3a"><strong>Rinnovo:</strong> Mensile automatico</div>`
+    : `<div style="font-size:15px;color:#1d2b3a"><strong>Tipo:</strong> Pagamento unico</div>`
+
+  const intro = isSubscription
+    ? `Il tuo abbonamento al <strong>Piano ${planLabel}</strong> è stato attivato con successo!`
+    : `Il tuo pagamento per il servizio <strong>${planLabel}</strong> è stato ricevuto con successo.`
 
   await resend.emails.send({
     from: FROM,
     to,
     replyTo: REPLY_TO,
-    subject: `Benvenuto in PB TAX International — Piano ${planLabel} attivato`,
+    subject,
     html: `
       <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;max-width:600px;margin:0 auto;color:#1d2b3a">
         <div style="background:#1d2b3a;padding:32px 28px;border-radius:16px 16px 0 0">
@@ -20,15 +32,13 @@ export async function sendWelcomeEmail(to: string, customerName: string, planLab
         </div>
         <div style="background:#fff;padding:32px 28px;border:1px solid #e6dfd2;border-top:none">
           <p style="font-size:17px;font-weight:700;margin:0 0 16px">Ciao ${customerName},</p>
-          <p style="font-size:15px;line-height:1.6;color:#3a4550;margin:0 0 20px">
-            Il tuo abbonamento al <strong>Piano ${planLabel}</strong> è stato attivato con successo!
-          </p>
+          <p style="font-size:15px;line-height:1.6;color:#3a4550;margin:0 0 20px">${intro}</p>
 
           <div style="background:#f5f2ec;border-radius:12px;padding:20px;margin-bottom:24px">
             <div style="font-size:13px;font-weight:600;color:#8a93a0;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Riepilogo</div>
-            <div style="font-size:15px;color:#1d2b3a;margin-bottom:6px"><strong>Piano:</strong> ${planLabel}</div>
-            <div style="font-size:15px;color:#1d2b3a;margin-bottom:6px"><strong>Importo:</strong> ${amountAED} AED/mese</div>
-            <div style="font-size:15px;color:#1d2b3a"><strong>Rinnovo:</strong> Mensile automatico</div>
+            <div style="font-size:15px;color:#1d2b3a;margin-bottom:6px"><strong>Servizio:</strong> ${planLabel}</div>
+            <div style="font-size:15px;color:#1d2b3a;margin-bottom:6px"><strong>Importo:</strong> ${amountAED} AED</div>
+            ${riepilogoRiga}
           </div>
 
           <div style="background:#e8f3ec;border:1px solid #b8dcc8;border-radius:12px;padding:20px;margin-bottom:24px">
