@@ -180,7 +180,7 @@ export default function ConfiguratorWizard() {
   const hasItaResidency = answers[7] === 0 || answers[7] === 2
 
   if (done) {
-    return <ResultCard plan={plan} isDiamond={isDiamond} hasItaResidency={hasItaResidency} onBack={() => setDone(false)} />
+    return <ResultCard plan={plan} isDiamond={isDiamond} hasItaResidency={hasItaResidency} answers={answers} onBack={() => setDone(false)} />
   }
 
   const gridCols = sdef.cols === 1 ? '1fr' : sdef.cols === 3 ? 'repeat(auto-fit,minmax(160px,1fr))' : 'repeat(auto-fit,minmax(260px,1fr))'

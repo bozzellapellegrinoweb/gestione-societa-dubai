@@ -7,10 +7,11 @@ interface Props {
   plan: PlanResult
   isDiamond: boolean
   hasItaResidency: boolean
+  answers?: Record<number, number>
   onBack: () => void
 }
 
-export default function ResultCard({ plan, isDiamond, hasItaResidency, onBack }: Props) {
+export default function ResultCard({ plan, isDiamond, hasItaResidency, answers, onBack }: Props) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
 
@@ -28,7 +29,7 @@ export default function ResultCard({ plan, isDiamond, hasItaResidency, onBack }:
       const res = await fetch('/api/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ plan: plan.key }),
+        body: JSON.stringify({ plan: plan.key, answers: answers ?? {} }),
       })
       const data = await res.json()
       if (data.payment_url) {
