@@ -28,13 +28,13 @@ const STEPS: Step[] = [
   {
     q: 'Quante transazioni contabili stimi al mese?', sub: 'Da qui dipende il piano consigliato.', cols: 2, tip: true,
     options: [
-      { title: 'Fino a 25', desc: 'Piano BASIC', price: '500 AED/mese' },
-      { title: 'Fino a 50', desc: 'Piano ENTRY LEVEL', price: '800 AED/mese' },
-      { title: 'Fino a 100', desc: 'Piano PRO', price: '1.200 AED/mese' },
-      { title: 'Fino a 150', desc: 'Piano SILVER', price: '1.500 AED/mese' },
-      { title: 'Fino a 300', desc: 'Piano GOLD', price: '1.800 AED/mese' },
-      { title: 'Fino a 500', desc: 'Piano PLATINUM', price: '2.000 AED/mese' },
-      { title: 'Oltre 500', desc: 'Piano DIAMOND', price: 'su misura' },
+      { title: 'Fino a 25', desc: 'Piano Basic', price: '500 AED/mese' },
+      { title: 'Fino a 50', desc: 'Piano Entry Level', price: '800 AED/mese' },
+      { title: 'Fino a 100', desc: 'Piano Pro', price: '1.200 AED/mese' },
+      { title: 'Fino a 150', desc: 'Piano Silver', price: '1.500 AED/mese' },
+      { title: 'Fino a 300', desc: 'Piano Gold', price: '1.800 AED/mese' },
+      { title: 'Fino a 500', desc: 'Piano Platinum', price: '2.000 AED/mese' },
+      { title: 'Oltre 500', desc: 'Piano Diamond', price: 'su misura' },
     ],
   },
   {
