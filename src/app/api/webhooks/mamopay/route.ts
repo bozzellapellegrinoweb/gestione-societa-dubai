@@ -92,7 +92,10 @@ export async function POST(req: NextRequest) {
 
       const isSubscription = eventType === 'subscription.succeeded'
       try {
-        await sendWelcomeEmail(customerEmail, customerName, planLabel, amountAED, isSubscription)
+        // Welcome email only for subscriptions — una tantum payments get no client email
+        if (isSubscription) {
+          await sendWelcomeEmail(customerEmail, customerName, planLabel, amountAED, isSubscription)
+        }
         await sendNewClientNotification(customerName, customerEmail, planLabel, amountAED, customerPhone, isSubscription)
       } catch (e) {
         console.error('Email send error:', e)
