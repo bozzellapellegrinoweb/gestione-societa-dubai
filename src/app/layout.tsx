@@ -71,7 +71,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }
           #pbtax-wa-float svg { flex: 0 0 auto; }
           @media (max-width: 640px) {
-            #pbtax-wa-float { padding: 14px; border-radius: 50%; }
+            #pbtax-wa-float { padding: 12px; border-radius: 50%; right: 16px; bottom: 16px; }
+            #pbtax-wa-float svg { width: 24px; height: 24px; }
             #pbtax-wa-float .pbtax-wa-label { display: none; }
           }
         `}</style>
