@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
-import { sendWelcomeEmail, sendNewClientNotification, sendPaymentFailedNotification } from '@/lib/email'
+import { sendNewClientNotification, sendPaymentFailedNotification } from '@/lib/email'
 import { trackPurchase, trackPaymentFailed } from '@/lib/ga'
 import { PLANS } from '@/lib/pricing'
 
@@ -92,10 +92,7 @@ export async function POST(req: NextRequest) {
 
       const isSubscription = eventType === 'subscription.succeeded'
       try {
-        // Welcome email only for subscriptions — una tantum payments get no client email
-        if (isSubscription) {
-          await sendWelcomeEmail(customerEmail, customerName, planLabel, amountAED, isSubscription)
-        }
+        // No client-facing payment email — notify the secretary only
         await sendNewClientNotification(customerName, customerEmail, planLabel, amountAED, customerPhone, isSubscription)
       } catch (e) {
         console.error('Email send error:', e)
