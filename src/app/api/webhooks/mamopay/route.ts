@@ -3,6 +3,7 @@ import { createClient } from '@supabase/supabase-js'
 import { sendNewClientNotification, sendPaymentFailedNotification } from '@/lib/email'
 import { trackPurchase, trackPaymentFailed } from '@/lib/ga'
 import { PLANS } from '@/lib/pricing'
+import { confirmBooking, type BookingRow } from '@/lib/booking-confirm'
 
 function planLabelFromAmount(amountAED: number): string | null {
   // Plans show price without VAT; MAMO Pay charges +5% IVA
@@ -59,6 +60,37 @@ export async function POST(req: NextRequest) {
     process.env.NEXT_PUBLIC_SUPABASE_URL,
     process.env.SUPABASE_SERVICE_ROLE_KEY
   )
+
+  // --- Pagamento di una prenotazione call ---
+  if (customData?.type === 'booking' && customData?.booking_id) {
+    const bookingId = customData.booking_id
+
+    if (eventType === 'charge.succeeded') {
+      const { data: booking } = await supabase
+        .from('bookings')
+        .select('*')
+        .eq('id', bookingId)
+        .single()
+
+      if (booking) {
+        try {
+          await confirmBooking(supabase, booking as BookingRow)
+        } catch (e) {
+          console.error('confirmBooking (webhook) error:', e)
+        }
+        await trackPurchase(customerEmail || (booking as BookingRow).customer_email, (booking as BookingRow).call_label, amountAED)
+      } else {
+        console.error('Booking non trovata per webhook:', bookingId)
+      }
+    }
+
+    if (eventType === 'charge.failed') {
+      // Libera lo slot: la prenotazione pending viene annullata
+      await supabase.from('bookings').update({ status: 'cancelled' }).eq('id', bookingId).eq('status', 'pending')
+    }
+
+    return NextResponse.json({ received: true })
+  }
 
   if (eventType === 'charge.succeeded' || eventType === 'subscription.succeeded') {
     if (customerEmail) {

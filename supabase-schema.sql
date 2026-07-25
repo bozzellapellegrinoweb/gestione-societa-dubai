@@ -62,12 +62,37 @@ CREATE TABLE IF NOT EXISTS alerts_log (
   created_at      timestamptz DEFAULT now()
 );
 
+-- Tabella prenotazioni call
+CREATE TABLE IF NOT EXISTS bookings (
+  id                uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  call_type         text NOT NULL,             -- free | paid
+  call_label        text NOT NULL,
+  customer_name     text NOT NULL,
+  customer_email    text NOT NULL,
+  customer_phone    text,
+  notes             text,
+  start_at          timestamptz NOT NULL,
+  end_at            timestamptz NOT NULL,
+  duration_min      integer NOT NULL,
+  amount_aed        integer DEFAULT 0,
+  status            text DEFAULT 'pending',     -- pending (attende pagamento) | confirmed | cancelled
+  google_event_id   text,
+  meet_link         text,
+  mamopay_link_id   text,
+  created_at        timestamptz DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS idx_bookings_start_at ON bookings(start_at);
+CREATE INDEX IF NOT EXISTS idx_bookings_status ON bookings(status);
+CREATE INDEX IF NOT EXISTS idx_bookings_mamopay_link_id ON bookings(mamopay_link_id);
+
 -- RLS policies (Row Level Security)
 ALTER TABLE clients ENABLE ROW LEVEL SECURITY;
 ALTER TABLE contracts ENABLE ROW LEVEL SECURITY;
 ALTER TABLE configurator_sessions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE documents ENABLE ROW LEVEL SECURITY;
 ALTER TABLE alerts_log ENABLE ROW LEVEL SECURITY;
+ALTER TABLE bookings ENABLE ROW LEVEL SECURITY;
 
 -- Policy: service role ha accesso completo (per le API routes)
 -- Le politiche dettagliate per gli utenti autenticati vanno configurate

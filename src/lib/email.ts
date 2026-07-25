@@ -4,6 +4,8 @@ const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KE
 
 const FROM = process.env.RESEND_FROM_EMAIL || 'PB TAX International <onboarding@resend.dev>'
 const REPLY_TO = 'segreteria@indubai.it'
+// Indirizzo per le notifiche/reply-to delle prenotazioni call
+const BOOKING_EMAIL = process.env.BOOKING_NOTIFY_EMAIL || 'info@pellegrinobozzella.com'
 
 export async function sendWelcomeEmail(to: string, customerName: string, planLabel: string, amountAED: number, isSubscription = true) {
   if (!resend) { console.warn('Resend not configured, skipping email'); return }
@@ -108,6 +110,114 @@ export async function sendNewClientNotification(customerName: string, customerEm
             <a href="mailto:${customerEmail}" style="display:inline-block;background:#1d2b3a;color:#fff;font-size:14px;font-weight:600;padding:12px 20px;border-radius:8px;text-decoration:none;margin-right:10px">Scrivi al cliente</a>
             ${waHref ? `<a href="${waHref}" style="display:inline-block;background:#25d366;color:#fff;font-size:14px;font-weight:600;padding:12px 20px;border-radius:8px;text-decoration:none">WhatsApp cliente →</a>` : ''}
           </div>
+        </div>
+      </div>
+    `,
+  })
+}
+
+function formatBookingWhen(startISO: string): string {
+  // Formatta data e ora nel fuso di Dubai (o quello configurato)
+  const tz = process.env.BOOKING_TIMEZONE || 'Asia/Dubai'
+  const d = new Date(startISO)
+  const date = new Intl.DateTimeFormat('it-IT', {
+    weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: tz,
+  }).format(d)
+  const time = new Intl.DateTimeFormat('it-IT', {
+    hour: '2-digit', minute: '2-digit', timeZone: tz,
+  }).format(d)
+  return `${date} · ${time} (ora di Dubai)`
+}
+
+export async function sendBookingConfirmation(params: {
+  to: string
+  customerName: string
+  callLabel: string
+  startISO: string
+  durationMin: number
+  meetLink?: string
+  isPaid: boolean
+  amountAED: number
+}) {
+  if (!resend) { console.warn('Resend not configured, skipping booking email'); return }
+  const when = formatBookingWhen(params.startISO)
+  const importoRiga = params.isPaid
+    ? `<div style="font-size:15px;color:#1d2b3a;margin-bottom:6px"><strong>Importo:</strong> ${params.amountAED} AED</div>`
+    : ''
+  const meetBtn = params.meetLink
+    ? `<div style="margin:24px 0"><a href="${params.meetLink}" style="display:inline-block;background:#1d8a4e;color:#fff;font-size:15px;font-weight:700;padding:14px 24px;border-radius:10px;text-decoration:none">Partecipa alla video call →</a></div>`
+    : `<p style="font-size:14px;color:#5b6570;margin:16px 0">Riceverai il link della video call prima dell'appuntamento.</p>`
+
+  await resend.emails.send({
+    from: FROM,
+    to: params.to,
+    replyTo: BOOKING_EMAIL,
+    subject: `Call confermata — ${params.callLabel} · ${when}`,
+    html: `
+      <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;max-width:600px;margin:0 auto;color:#1d2b3a">
+        <div style="background:#1d2b3a;padding:32px 28px;border-radius:16px 16px 0 0">
+          <h1 style="color:#fff;font-size:22px;margin:0;font-weight:800">PB TAX International</h1>
+        </div>
+        <div style="background:#fff;padding:32px 28px;border:1px solid #e6dfd2;border-top:none">
+          <p style="font-size:17px;font-weight:700;margin:0 0 16px">Ciao ${params.customerName},</p>
+          <p style="font-size:15px;line-height:1.6;color:#3a4550;margin:0 0 20px">La tua call è stata <strong>confermata</strong>. Ecco i dettagli:</p>
+          <div style="background:#f5f2ec;border-radius:12px;padding:20px;margin-bottom:8px">
+            <div style="font-size:13px;font-weight:600;color:#8a93a0;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">Appuntamento</div>
+            <div style="font-size:15px;color:#1d2b3a;margin-bottom:6px"><strong>Tipo:</strong> ${params.callLabel}</div>
+            <div style="font-size:15px;color:#1d2b3a;margin-bottom:6px"><strong>Quando:</strong> ${when}</div>
+            <div style="font-size:15px;color:#1d2b3a;margin-bottom:6px"><strong>Durata:</strong> ${params.durationMin} minuti</div>
+            ${importoRiga}
+          </div>
+          ${meetBtn}
+          <p style="font-size:14px;color:#5b6570;line-height:1.6;margin:16px 0 24px">L'invito è stato aggiunto al calendario. Per riprogrammare o annullare, rispondi a questa email o scrivici su <a href="https://wa.me/971585971575" style="color:#1d8a4e;font-weight:600">WhatsApp</a>.</p>
+          <div style="border-top:1px solid #e6dfd2;padding-top:20px;font-size:12px;color:#8a93a0;text-align:center">
+            PB TAX International · Dubai, UAE<br>
+            <a href="https://societa-dubai.it" style="color:#a9885e">societa-dubai.it</a>
+          </div>
+        </div>
+      </div>
+    `,
+  })
+}
+
+export async function sendBookingNotification(params: {
+  customerName: string
+  customerEmail: string
+  customerPhone?: string
+  callLabel: string
+  startISO: string
+  durationMin: number
+  isPaid: boolean
+  amountAED: number
+  meetLink?: string
+}) {
+  if (!resend) { console.warn('Resend not configured, skipping booking notification'); return }
+  const when = formatBookingWhen(params.startISO)
+  const phoneDigits = params.customerPhone ? params.customerPhone.replace(/[^0-9]/g, '') : ''
+  const waHref = phoneDigits ? `https://wa.me/${phoneDigits}` : null
+  const importoLabel = params.isPaid ? `${params.amountAED} AED (pagata)` : 'Gratuita'
+
+  await resend.emails.send({
+    from: FROM,
+    to: BOOKING_EMAIL,
+    subject: `Nuova call prenotata: ${params.customerName} — ${params.callLabel} · ${when}`,
+    html: `
+      <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;max-width:600px;margin:0 auto;color:#1d2b3a">
+        <div style="background:#2f8a5b;padding:24px 28px;border-radius:12px 12px 0 0">
+          <h1 style="color:#fff;font-size:20px;margin:0;font-weight:700">Nuova call prenotata</h1>
+        </div>
+        <div style="background:#fff;padding:28px;border:1px solid #e6dfd2;border-top:none;border-radius:0 0 12px 12px">
+          <div style="font-size:18px;font-weight:700;margin-bottom:20px;color:#1d2b3a">${params.customerName}</div>
+          <table style="font-size:15px;line-height:2.2;color:#3a4550;border-collapse:collapse;width:100%">
+            <tr><td style="padding-right:16px;font-weight:600;white-space:nowrap">Email:</td><td><a href="mailto:${params.customerEmail}" style="color:#1d6b3a">${params.customerEmail}</a></td></tr>
+            <tr><td style="padding-right:16px;font-weight:600;white-space:nowrap">Tipo:</td><td>${params.callLabel}</td></tr>
+            <tr><td style="padding-right:16px;font-weight:600;white-space:nowrap">Quando:</td><td>${when}</td></tr>
+            <tr><td style="padding-right:16px;font-weight:600;white-space:nowrap">Durata:</td><td>${params.durationMin} min</td></tr>
+            <tr><td style="padding-right:16px;font-weight:600;white-space:nowrap">Pagamento:</td><td>${importoLabel}</td></tr>
+            ${params.customerPhone ? `<tr><td style="padding-right:16px;font-weight:600;white-space:nowrap">Telefono:</td><td>${params.customerPhone}</td></tr>` : ''}
+            ${params.meetLink ? `<tr><td style="padding-right:16px;font-weight:600;white-space:nowrap">Meet:</td><td><a href="${params.meetLink}" style="color:#1d6b3a">${params.meetLink}</a></td></tr>` : ''}
+          </table>
+          ${waHref ? `<div style="margin-top:20px"><a href="${waHref}" style="display:inline-block;background:#25d366;color:#fff;font-size:14px;font-weight:600;padding:12px 20px;border-radius:8px;text-decoration:none">WhatsApp cliente →</a></div>` : ''}
         </div>
       </div>
     `,
