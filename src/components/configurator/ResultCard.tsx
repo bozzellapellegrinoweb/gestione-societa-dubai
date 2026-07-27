@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, type FormEvent } from 'react'
 import Link from 'next/link'
 import type { PlanResult } from './ConfiguratorWizard'
 
@@ -79,8 +79,12 @@ export default function ResultCard({ plan, isDiamond, hasItaResidency, answers, 
                 <div style={{ fontSize: 14, color: '#5b6570', lineHeight: 1.55, marginTop: 20, paddingTop: 18, borderTop: '1px dashed #e6dfd2' }}>
                   Un membro del team ti scriverà entro 48h per fissare una <strong>video call di onboarding</strong> e definire insieme il piano su misura.
                 </div>
-                <Link href="https://wa.me/971585971575" target="_blank" style={{ display: 'block', width: '100%', marginTop: 18, background: '#1d2b3a', color: '#fff', fontSize: 16, fontWeight: 700, padding: 16, borderRadius: 12, textDecoration: 'none', textAlign: 'center' as const, boxSizing: 'border-box' as const }}>
-                  Scrivici su WhatsApp →
+                <div style={{ marginTop: 18 }}>
+                  <LeadForm planLabel={plan.label} planKey={plan.key} answers={answers} />
+                </div>
+                <Link href="https://wa.me/971585971575" target="_blank" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 9, width: '100%', marginTop: 14, background: '#fff', color: '#1d8a4e', border: '1.5px solid #d6ddd6', fontSize: 15, fontWeight: 600, padding: 14, borderRadius: 12, textDecoration: 'none', textAlign: 'center' as const, boxSizing: 'border-box' as const }}>
+                  <span style={{ width: 20, height: 20, borderRadius: '50%', background: '#25d366', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, flexShrink: 0 }}>✆</span>
+                  Hai domande? Scrivici su WhatsApp
                 </Link>
               </div>
             </div>
@@ -149,18 +153,25 @@ export default function ResultCard({ plan, isDiamond, hasItaResidency, answers, 
               </div>
             )}
 
-            {/* Messaggio pre-acquisto */}
-            <div style={{ fontSize: 14.5, color: '#1d6b3a', textAlign: 'center' as const, marginTop: 26, lineHeight: 1.55, background: '#e8f3ec', border: '1px solid #b8dcc8', borderRadius: 12, padding: '16px 20px' }}>
-              Acquista il pacchetto e <strong>entro 48h organizzeremo una call di onboarding</strong>. Nessun vincolo.
+            {/* CTA primaria: prenota call gratuita */}
+            <div style={{ marginTop: 26 }}>
+              <LeadForm planLabel={plan.label} planKey={plan.key} answers={answers} />
             </div>
 
-            {/* CTA: Acquista */}
+            {/* Divider */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 14, margin: '28px 0 20px' }}>
+              <span style={{ flex: 1, height: 1, background: '#e6dfd2' }} />
+              <span style={{ fontSize: 13, color: '#8a93a0', fontWeight: 600, whiteSpace: 'nowrap' as const }}>oppure, se sei già pronto</span>
+              <span style={{ flex: 1, height: 1, background: '#e6dfd2' }} />
+            </div>
+
+            {/* CTA secondaria: Acquista */}
             <button
               onClick={handleCheckout}
               disabled={loading}
-              style={{ width: '100%', marginTop: 16, background: '#1d2b3a', color: '#fff', border: 'none', cursor: loading ? 'wait' : 'pointer', fontSize: 17, fontWeight: 700, padding: 17, borderRadius: 13, boxShadow: '0 6px 18px rgba(29,43,58,.24)', font: 'inherit', opacity: loading ? 0.7 : 1, transition: 'opacity .2s' }}
+              style={{ width: '100%', background: '#fff', color: '#1d2b3a', border: '1.5px solid #1d2b3a', cursor: loading ? 'wait' : 'pointer', fontSize: 16, fontWeight: 700, padding: 15, borderRadius: 13, font: 'inherit', opacity: loading ? 0.7 : 1, transition: 'opacity .2s' }}
             >
-              {loading ? 'Generazione link di pagamento...' : `Abbonati al Piano ${plan.label} →`}
+              {loading ? 'Generazione link di pagamento...' : `Abbonati subito al Piano ${plan.label} →`}
             </button>
 
             <div style={{ fontSize: 12.5, color: '#8a93a0', textAlign: 'center' as const, marginTop: 12, lineHeight: 1.5 }}>
@@ -182,5 +193,80 @@ export default function ResultCard({ plan, isDiamond, hasItaResidency, answers, 
         <button onClick={onBack} style={{ marginTop: 20, background: 'none', border: 'none', cursor: 'pointer', fontSize: 14, color: '#8a93a0', font: 'inherit' }}>← Torna al configuratore</button>
       </main>
     </div>
+  )
+}
+
+function LeadForm({ planLabel, planKey, answers }: { planLabel: string; planKey: string; answers?: Record<number, number> }) {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
+  const [submitting, setSubmitting] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
+  const [err, setErr] = useState('')
+
+  async function submit(e: FormEvent) {
+    e.preventDefault()
+    if (!name.trim() || !email.trim() || !phone.trim()) {
+      setErr('Compila nome, email e telefono.')
+      return
+    }
+    setSubmitting(true)
+    setErr('')
+    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+      window.gtag('event', 'generate_lead', { plan_name: planLabel, method: 'call_request' })
+    }
+    try {
+      const res = await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, phone, plan_suggested: planKey, answers: answers ?? {} }),
+      })
+      const data = await res.json()
+      if (data.success) setSubmitted(true)
+      else setErr(data.error || 'Qualcosa è andato storto. Riprova o scrivici su WhatsApp.')
+    } catch {
+      setErr('Errore di connessione. Riprova o scrivici su WhatsApp.')
+    }
+    setSubmitting(false)
+  }
+
+  const inputStyle = {
+    width: '100%',
+    padding: '13px 15px',
+    borderRadius: 11,
+    border: '1.5px solid #e6dfd2',
+    fontSize: 15,
+    color: '#1d2b3a',
+    background: '#fff',
+    font: 'inherit',
+    boxSizing: 'border-box' as const,
+    outline: 'none',
+  }
+
+  if (submitted) {
+    return (
+      <div style={{ background: '#e8f3ec', border: '1px solid #b8dcc8', borderRadius: 14, padding: '22px 20px', textAlign: 'center' as const }}>
+        <div style={{ fontSize: 17, fontWeight: 700, color: '#1d6b3a', marginBottom: 6 }}>✓ Richiesta inviata!</div>
+        <div style={{ fontSize: 14.5, lineHeight: 1.55, color: '#2a5a3a' }}>Ti ricontattiamo <strong>entro 48h</strong> per la tua call gratuita. Se preferisci, puoi già scriverci su WhatsApp qui sotto.</div>
+      </div>
+    )
+  }
+
+  return (
+    <form onSubmit={submit} style={{ background: '#fbfaf7', border: '1px solid #e6dfd2', borderRadius: 16, padding: 'clamp(20px,3vw,26px)' }}>
+      <div style={{ fontSize: 17, fontWeight: 800, color: '#1d2b3a', marginBottom: 4 }}>Preferisci parlarne prima? Prenota una call gratuita</div>
+      <div style={{ fontSize: 14, color: '#5b6570', marginBottom: 18, lineHeight: 1.5 }}>Un esperto italiano ti richiama <strong>entro 48h</strong>. Nessun impegno, nessun pagamento ora.</div>
+      <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 10 }}>
+        <input style={inputStyle} type="text" placeholder="Nome e cognome" value={name} onChange={e => setName(e.target.value)} autoComplete="name" />
+        <input style={inputStyle} type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} autoComplete="email" />
+        <input style={inputStyle} type="tel" placeholder="Telefono / WhatsApp" value={phone} onChange={e => setPhone(e.target.value)} autoComplete="tel" />
+      </div>
+      {err && (
+        <div style={{ background: '#fef2f2', border: '1px solid #fca5a5', borderRadius: 10, padding: '11px 14px', marginTop: 12, fontSize: 13.5, color: '#991b1b' }}>{err}</div>
+      )}
+      <button type="submit" disabled={submitting} style={{ width: '100%', marginTop: 14, background: '#1d2b3a', color: '#fff', border: 'none', cursor: submitting ? 'wait' : 'pointer', fontSize: 16.5, fontWeight: 700, padding: 16, borderRadius: 12, boxShadow: '0 6px 18px rgba(29,43,58,.24)', font: 'inherit', opacity: submitting ? 0.7 : 1 }}>
+        {submitting ? 'Invio in corso...' : 'Prenota la mia call gratuita →'}
+      </button>
+    </form>
   )
 }
