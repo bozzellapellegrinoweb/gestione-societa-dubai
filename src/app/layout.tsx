@@ -84,6 +84,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         gtag('js', new Date());
         gtag('config', 'G-GLJ6SEB12P');
       `}</Script>
+      <Script id="wa-click-tracking" strategy="afterInteractive">{`
+        document.addEventListener('click', function (e) {
+          var t = e.target;
+          var a = t && t.closest ? t.closest('a[href*="wa.me"], a[href*="whatsapp.com"]') : null;
+          if (!a) return;
+          if (typeof window.gtag === 'function') {
+            window.gtag('event', 'whatsapp_click', {
+              link_url: a.href,
+              page_location: window.location.pathname,
+            });
+          }
+        }, true);
+      `}</Script>
     </html>
   )
 }
