@@ -12,8 +12,8 @@ const WA_HREF = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_TEXT)}`
 
 export const metadata: Metadata = {
   title: 'PB TAX International — Gestione contabile per società a Dubai',
-  description: 'Commercialista italiano a Dubai. Contabilità, Corporate Tax, VAT, gestione visti per società Free Zone e Mainland negli Emirati Arabi Uniti. PB TAX International Tax Consultants.',
-  keywords: 'contabilità Dubai, commercialista italiano Dubai, gestione società Dubai, corporate tax Dubai, VAT Dubai italiano',
+  description: 'Consulenti fiscali italiani a Dubai. Contabilità, Corporate Tax, VAT, gestione visti per società Free Zone e Mainland negli Emirati Arabi Uniti. PB TAX International Tax Consultants.',
+  keywords: 'contabilità Dubai, consulenti fiscali italiani Dubai, gestione società Dubai, corporate tax Dubai, VAT Dubai italiano',
   openGraph: {
     title: 'PB TAX International — La gestione della tua società a Dubai, team italiano',
     description: 'Contabilità, Corporate Tax, VAT e compliance per società negli Emirati Arabi Uniti. PB TAX International Tax Consultants.',
