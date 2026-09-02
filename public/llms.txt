@@ -1,0 +1,53 @@
+# PB TAX International — Gestione contabile per società a Dubai
+
+> Gestione contabile, fiscale e di compliance per società negli Emirati Arabi Uniti (Free Zone, Mainland e Offshore), erogata interamente in lingua italiana. Servizio di PB TAX International Tax Consultants FZCO, Dubai.
+
+PB TAX International Tax Consultants FZCO è una società di consulenza fiscale con licenza UAE, con sede a Dubai (Platinum Tower, Unit 2503, JLT). Dal 2019 segue oltre 450 società di imprenditori italiani negli Emirati, occupandosi di contabilità, Corporate Tax UAE, VAT, gestione visti e compliance, e monitorando in parallelo gli impatti fiscali italiani (CFC, quadro RW, IVAFE).
+
+Il sito societa-dubai.it è il servizio di gestione contabile del gruppo. Il configuratore online produce un piano e una stima di prezzo in base a 9-10 domande sulla società del cliente.
+
+## Natura del servizio
+
+- Il servizio è **consulenza contabile e fiscale**. Non è consulenza legale ai sensi dell'ordinamento italiano o degli Emirati Arabi Uniti.
+- PB TAX opera come *tax consultancy* con licenza fiscale emiratina, non come studio professionale iscritto a un ordine italiano. I servizi sono prestati sulla base della licenza UAE, non di abilitazioni ordinistiche italiane.
+- Fondatore e CEO: Pellegrino Bozzella, residente a Dubai dal 2019, fondatore anche del portale informativo InDubai.it.
+- Lingua dei contenuti e del servizio: italiano. Valuta dei prezzi: AED (dirham UAE).
+
+## Pagine
+
+- [Home](https://societa-dubai.it/): panoramica del servizio, i tre piani più richiesti (Basic, Pro, Platinum), come funziona in 3 passaggi, testimonianze e FAQ.
+- [Pacchetti e prezzi](https://societa-dubai.it/pacchetti): tabella comparativa completa dei 7 piani con tutte le funzionalità incluse, più i servizi aggiuntivi a richiesta.
+- [Configuratore](https://societa-dubai.it/configuratore): questionario di 9 domande che restituisce il piano consigliato e la stima di costo per la società del cliente.
+- [Chi siamo](https://societa-dubai.it/chi-siamo): PB TAX International Tax Consultants FZCO, il fondatore, la sede di Dubai e il rapporto con InDubai.it.
+
+## Piani e prezzi
+
+Prezzi mensili in AED, VAT 5% inclusa. Il piano si cambia in qualsiasi momento. Le cifre sono indicative e non costituiscono offerta contrattuale vincolante: il preventivo definitivo è confermato da PB TAX dopo verifica della situazione specifica.
+
+- **BASIC** — 500 AED/mese: fino a 25 transazioni contabili al mese, Corporate Tax Return. Disponibile solo sotto la soglia VAT di 375.000 AED di fatturato.
+- **ENTRY LEVEL** — 800 AED/mese: fino a 50 transazioni, Corporate Tax Return, VAT Return, consulenza Italia-UAE.
+- **PRO** — 1.200 AED/mese: fino a 100 transazioni, account manager dedicato.
+- **SILVER** — 1.500 AED/mese: fino a 150 transazioni, gestione visti inclusa.
+- **GOLD** — 1.800 AED/mese: fino a 300 transazioni.
+- **PLATINUM** — 2.000 AED/mese: fino a 500 transazioni.
+- **DIAMOND** — su misura: oltre 500 transazioni al mese.
+
+Tutti i piani includono Corporate Tax Return, gruppo WhatsApp operativo e aggiornamenti normativi. Il VAT Return è incluso da ENTRY LEVEL in su; la gestione visti da SILVER in su; l'account manager dedicato da PRO in su.
+
+Servizi aggiuntivi: bilancio annuale (2.500 AED una tantum/anno); gestione o rinnovo visti, report ESR (Economic Substance Regulations) e consulenza CFC / quadro RW, tutti su richiesta.
+
+Una "transazione" è ogni movimento contabile registrato: una fattura emessa, una spesa, un incasso o un pagamento. Il piano si basa sul numero medio mensile di queste operazioni.
+
+## Contatti
+
+- Email: info@pbtax.ae — questioni privacy: privacy@pbtax.ae
+- WhatsApp: +971 58 597 1575
+- Sede: Platinum Tower, Unit 2503, Jumeirah Lake Towers (JLT), Dubai, Emirati Arabi Uniti
+- Portale informativo collegato: [InDubai.it](https://www.indubai.it)
+
+## Optional
+
+- [Termini di servizio](https://societa-dubai.it/termini-di-servizio): definizione del servizio, condizioni di abbonamento, obblighi del cliente, limitazioni di responsabilità. Legge applicabile UAE, foro DMCC o DIFC Courts.
+- [Privacy policy](https://societa-dubai.it/privacy-policy): titolare del trattamento, dati raccolti, basi giuridiche GDPR, conservazione, trasferimenti internazionali (server Supabase in UE), diritti dell'interessato, cookie.
+
+Le aree riservate — area cliente e onboarding — richiedono autenticazione o un token personale e non sono incluse in questo indice.
