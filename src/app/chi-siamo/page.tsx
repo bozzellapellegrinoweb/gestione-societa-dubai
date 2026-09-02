@@ -5,7 +5,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Chi siamo — PB TAX International',
-  description: 'PB TAX International Tax Consultants FZCO. Pellegrino Bozzella, consulente legale e fiscalista, fondatore di InDubai.it. 450+ aziende italiane gestite a Dubai dal 2019.',
+  description: 'PB TAX International Tax Consultants FZCO. Pellegrino Bozzella, consulente fiscale e societario, fondatore di InDubai.it. 450+ aziende italiane gestite a Dubai dal 2019.',
 }
 
 const stats = [
@@ -65,7 +65,7 @@ export default function ChiSiamoPage() {
               </div>
             </div>
             <p style={{ fontSize: 15, lineHeight: 1.65, color: '#5b6570', margin: '0 0 16px' }}>
-              Dottore in giurisprudenza, consulente legale e fiscale specializzato in diritto societario UAE e fiscalità internazionale. Residente a Dubai dal 2019, ha fondato PB TAX International per rispondere a una necessità concreta: gli imprenditori italiani a Dubai hanno bisogno di un professionista che capisca entrambi i sistemi fiscali.
+              Consulente fiscale e societario, specializzato in fiscalità internazionale e diritto societario UAE. Residente a Dubai dal 2019, ha fondato PB TAX International per rispondere a una necessità concreta: gli imprenditori italiani a Dubai hanno bisogno di un professionista che capisca entrambi i sistemi fiscali.
             </p>
             <p style={{ fontSize: 15, lineHeight: 1.65, color: '#5b6570', margin: 0 }}>
               Opera dalla Platinum Tower al JLT (Jumeirah Lake Towers), il cuore business di Dubai. Fondatore anche di <a href="https://www.indubai.it" target="_blank" rel="noopener noreferrer" style={{ color: '#a9885e', fontWeight: 600, textDecoration: 'none' }}>InDubai.it</a>, la principale risorsa italiana per chi vuole fare impresa negli Emirati.

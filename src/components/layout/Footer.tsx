@@ -14,7 +14,7 @@ export default function Footer() {
               </span>
             </div>
             <p style={{ fontSize: 14, lineHeight: 1.6, color: '#8a96a3', margin: 0 }}>
-              Un servizio PB TAX International Tax Consultants — Dubai. Fondato da Pellegrino Bozzella, consulente legale e fiscalista, fondatore anche di <a href="https://www.indubai.it" target="_blank" rel="noopener noreferrer" style={{ color: '#a9885e', textDecoration: 'none' }}>InDubai.it</a>.
+              Un servizio PB TAX International Tax Consultants — Dubai. Fondato da Pellegrino Bozzella, consulente fiscale e societario, fondatore anche di <a href="https://www.indubai.it" target="_blank" rel="noopener noreferrer" style={{ color: '#a9885e', textDecoration: 'none' }}>InDubai.it</a>.
             </p>
           </div>
           <div style={{ display: 'flex', gap: 'clamp(28px,5vw,64px)', flexWrap: 'wrap' as const }}>
